@@ -10,18 +10,18 @@ def index(request):
     }
     return render(request, 'core/index.html', content)
 
-def main(request):
-    content = {
-        'title': 'Hello'
-    }
-    return render(request, 'core/main.html', content)
-
 def about(request):
     content = {
         'title': 'Hello'
     }
     return render(request, 'core/about.html', content)
 
+def items(request):
+    content = {
+        'title': 'name',
+        'itemname': 'item'        
+    }
+    return render(request, 'core/items.html', content)
 
 def pageNotFound(request, exception):
     return render(request, 'core/404.html')

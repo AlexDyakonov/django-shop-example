@@ -21,9 +21,17 @@ header{
   align-items: center;
 }
 
+.logo-link {
+  display: inline-block;
+  width: 100px; 
+  height: 100px; 
+  overflow: hidden; 
+}
+
 .header-logo{
   max-width: 10%;
   height: 100px;
+  display: block;
 }
 
 .header-text{

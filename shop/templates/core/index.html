@@ -1,194 +1,135 @@
+{% extends 'core/base.html' %}
 {% load static %}
 
-<!doctype html>
-<html class="no-js" lang="">
+{% block content %}
 
-<head>
-  <meta charset="utf-8">
-  <title>{{title}}</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <!-- Place favicon.ico in the root directory -->
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
-
-  <meta name="theme-color" content="#fafafa">
-</head>
-
-<body>
-  <header>
-    <div class="header-container">
-      <img class="header-logo" src="{% static './assets/img/logo.svg' %}" alt="logo-image">
-      <div class="header-text">
+<div class="section-1">
+  <div class="container-1">
+    <div class="crypto-text-top">
+      Верифицированные аккаунты платежных систем и крипто платформ
+    </div>
+    <img class="crypto-image" src="{% static './assets/img/crypto.png' %}" alt="crypto-image">
+  </div>
+</div>
+<div class="decoration-element"></div>
+<div class="section-2">
+  <div class="container-2">
+    <div class="block-content-review">
+      <img class="content-review-img" src="{% static './assets/img/reputation.png' %}" alt="reputation-img">
+      <div class="header-review-text">
+        Репутация
+      </div>
+      <div class="text-review-content">
+        Наш магазин работает уже несколько лет и имеет хорошую репутацию
+      </div>
+    </div>
+    <div class="block-content-review">
+      <img class="content-review-img" src="{% static './assets/img/trust.png' %}" alt="trust-img">
+      <div class="header-review-text">
+        Гарантия
+      </div>
+      <div class="text-review-content">
+        Мы предоставляем гарантию на все продаваемые товары
+      </div>
+    </div>
+    <div class="block-content-review">
+      <img class="content-review-img" src="{% static './assets/img/professional.png' %}" alt="professional-img">
+      <div class="header-review-text">
+        Профессионализм
+      </div>
+      <div class="text-review-content">
+        Наша команда профессионалов всегда готова помочь и ответить на все вопросы
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-3">
+  <div class="container-3">
+    <div class="column">
+      <div class="column-header">
+        <div class="line-near-text"></div>
         Платежные системы
+        <div class="line-near-text"></div>
       </div>
-      <div class="header-text">
-        КриптоПлатформы
-      </div>
-      <div class="header-text">
-        Поддержка
-      </div>
-      <div class="header-text">
-        Вход
-      </div>
-      <div class="header-text">
-        Корзина
-      </div>
-    </div>
-  </header>
-
-  <div class="section-1">
-    <div class="container-1">
-      <div class="crypto-text-top">
-        Верифицированные аккаунты платежных систем и крипто платформ
-      </div>
-      <img class="crypto-image" src="{% static './assets/img/crypto.png' %}" alt="crypto-image">
-    </div>
-  </div>
-
-  <div class="decoration-element"></div>
-
-  <div class="section-2">
-    <div class="container-2">
-      <div class="block-content-review">
-        <img class="content-review-img" src="{% static './assets/img/reputation.png' %}" alt="reputation-img">
-        <div class="header-review-text">
-          Репутация
-        </div>
-        <div class="text-review-content">
-          Наш магазин работает уже несколько лет и имеет хорошую репутацию
-        </div>
-      </div>
-      <div class="block-content-review">
-        <img class="content-review-img" src="{% static './assets/img/trust.png' %}" alt="trust-img">
-        <div class="header-review-text">
-          Гарантия
-        </div>
-        <div class="text-review-content">
-          Мы предоставляем гарантию на все продаваемые товары
-        </div>
-      </div>
-      <div class="block-content-review">
-        <img class="content-review-img" src="{% static './assets/img/professional.png' %}" alt="professional-img">
-        <div class="header-review-text">
-          Профессионализм
-        </div>
-        <div class="text-review-content">
-          Наша команда профессионалов всегда готова помочь и ответить на все вопросы
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-3">
-    <div class="container-3">
-      <div class="column">
-        <div class="column-header">
-          <div class="line-near-text"></div>
-          Платежные системы
-          <div class="line-near-text"></div>
-        </div>
-        <div class="shop-item">
-          <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
-          <div>
-            <div class="item-header">
-              Пример товара
-            </div>
-            <div class="item-price">
-              $19.00
-            </div>
-          </div>
-        </div>
-        <div class="shop-item">
-          <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
-          <div>
-            <div class="item-header">
-              Пример товара
-            </div>
-            <div class="item-price">
-              $19.00
-            </div>
-          </div>
-        </div>
-        <div class="shop-item">
-          <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
-          <div>
-            <div class="item-header">
-              Пример товара
-            </div>
-            <div class="item-price">
-              $19.00
-            </div>
-          </div>
-        </div>
+      <div class="shop-item">
+        <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
         <div>
-          <button class="view-all-btn"> Смотреть все </button>
+          <div class="item-header">
+            Пример товара
+          </div>
+          <div class="item-price">
+            $19.00
+          </div>
         </div>
-
       </div>
-
-      <div class="column">
-        <div class="column-header">
-          <div class="line-near-text"></div>
-          Платежные системы
-          <div class="line-near-text"></div>
-        </div>
-        <div class="shop-item">
-          <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
-          <div>
-            <div class="item-header">
-              Пример товара
-            </div>
-            <div class="item-price">
-              $19.00
-            </div>
+      <div class="shop-item">
+        <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
+        <div>
+          <div class="item-header">
+            Пример товара
+          </div>
+          <div class="item-price">
+            $19.00
           </div>
         </div>
-        <div class="shop-item">
-          <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
-          <div>
-            <div class="item-header">
-              Пример товара
-            </div>
-            <div class="item-price">
-              $19.00
-            </div>
+      </div>
+      <div class="shop-item">
+        <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
+        <div>
+          <div class="item-header">
+            Пример товара
+          </div>
+          <div class="item-price">
+            $19.00
           </div>
         </div>
-        <div class="shop-item">
-          <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
-          <div>
-            <div class="item-header">
-              Пример товара
-            </div>
-            <div class="item-price">
-              $19.00
-            </div>
-          </div>
-        </div>
+      </div>
+      <div>
         <button class="view-all-btn"> Смотреть все </button>
       </div>
-
+    </div>
+    <div class="column">
+      <div class="column-header">
+        <div class="line-near-text"></div>
+        Платежные системы
+        <div class="line-near-text"></div>
+      </div>
+      <div class="shop-item">
+        <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
+        <div>
+          <div class="item-header">
+            Пример товара
+          </div>
+          <div class="item-price">
+            $19.00
+          </div>
+        </div>
+      </div>
+      <div class="shop-item">
+        <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
+        <div>
+          <div class="item-header">
+            Пример товара
+          </div>
+          <div class="item-price">
+            $19.00
+          </div>
+        </div>
+      </div>
+      <div class="shop-item">
+        <img class="item-picture" src="{% static './assets/img/pyypl-100x100.jpg' %}" alt="">
+        <div>
+          <div class="item-header">
+            Пример товара
+          </div>
+          <div class="item-price">
+            $19.00
+          </div>
+        </div>
+      </div>
+      <button class="view-all-btn"> Смотреть все </button>
     </div>
   </div>
+</div>
 
-  <footer>
-    <div class="footer-container">
-      2023 @companyName
-    </div>
-  </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock %}
