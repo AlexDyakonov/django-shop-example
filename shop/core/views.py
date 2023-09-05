@@ -19,7 +19,7 @@ def about(request):
 def items(request):
     content = {
         'title': 'name',
-        'itemname': 'item'        
+        'itemname': 'category_name'        
     }
     return render(request, 'core/items.html', content)
 

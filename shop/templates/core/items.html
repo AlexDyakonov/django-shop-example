@@ -2,5 +2,31 @@
 {% load static %}
 
 {% block content %}
-<h1>{{itemname}}</h1>
+
+<div class="section-items">
+    <div class="container-items">
+      <div class="category-header">
+        {{itemname}}
+      </div>
+      <div class="show-case">
+  
+        <div class="item-card">
+          <div class="show-case-item">
+            <img class="show-case-img" src="{% static './assets/img/binance-300x300.jpg' %}" alt="">
+            <div class="show-case-category">
+                {{itemname}}
+            </div>
+            <div class="show-case-item-name">
+              Binance <br> Верифицированный Аккаунт
+            </div>
+            <div class="item-price">
+              $35.00
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
 {% endblock %}
