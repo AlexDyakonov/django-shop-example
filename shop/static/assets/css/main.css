@@ -238,8 +238,12 @@ footer{
   border-radius: 10px;
   background: rgba(143, 143, 143, 0.11);
   margin: 20px;
+  box-shadow: 1px 5px 10px rgba(0, 9, 60, 0.3);
 }
 
+.item-card:hover{
+  box-shadow: 1px 1px 10px black;
+}
 .show-case-item{
   width: 214px;
   margin: 10px auto;
@@ -270,6 +274,7 @@ footer{
   font-style: normal;
   font-size: .9em;
   color: #0052ff;
+  cursor: pointer;
 }
 
 .show-case-item-name:hover{
