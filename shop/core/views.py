@@ -10,11 +10,11 @@ def index(request):
     }
     return render(request, 'core/index.html', content)
 
-def about(request):
+def help(request):
     content = {
-        'title': 'Hello'
+        'title': 'Help'
     }
-    return render(request, 'core/about.html', content)
+    return render(request, 'core/help.html', content)
 
 def showcase(request):
     content = {

@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/help.css' %}"> 
+{% endblock %}
+
+{% block content %}
+
+<div class="section-help">
+    <div class="container-help">
+        <img class="help-img" src="{% static 'assets/img/security.png' %}" alt="security-png">
+        <div class="help-text">
+            <div class="header">
+                ТЕХНИЧЕСКАЯ ПОДДЕРЖКА
+            </div>
+            <div class="description">
+                Если у Вас возникли вопросы технического или финансового плана, напишите нам и мы поможем Вам в решении вашего вопроса. <br>
+                <br>
+                Мы отвечаем на вопросы в течение 15-60 минут, в зависимости от загрузки сервиса.<br>
+                <br>
+                Почта для технической поддержки пользователей: <br>
+                support@company_name.cc <br>
+                <br>
+                Режим работы службы поддержки: ежедневно с 10:00 до 22:00 (МСК) 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

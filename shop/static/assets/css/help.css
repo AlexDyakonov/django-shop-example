@@ -1,0 +1,40 @@
+.section-help{
+    display: flex;
+    justify-content: center;
+}
+
+.container-help{
+    margin: 100px 0;
+    width: 1220px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.help-text{
+    width: 510px;
+}
+
+.help-img{
+    width: 400px;
+    height: 400px;
+}
+
+.header{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-style: normal;
+    color: #262626;
+    font-size: 1.25em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.description{
+    text-align: left;
+    font-weight: 600;
+    font-style: normal;
+    color: #515151;
+    line-height: 1.6;
+    font-size: 100%;
+}
