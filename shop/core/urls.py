@@ -6,6 +6,6 @@ app_name = "core"
 urlpatterns = [
     path('', index, name='home'),
     path('about/', about),
-    path('items/', showcase)
+    path('items/', showcase),
     path('item/number/', item)
 ]
