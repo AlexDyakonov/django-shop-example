@@ -21,7 +21,7 @@ def items(request):
         'title': 'name',
         'itemname': 'category_name'        
     }
-    return render(request, 'core/items.html', content)
+    return render(request, 'core/showcase.html', content)
 
 def pageNotFound(request, exception):
     return render(request, 'core/404.html')

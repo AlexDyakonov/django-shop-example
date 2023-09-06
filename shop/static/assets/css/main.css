@@ -12,9 +12,23 @@ header{
   background: #0052ff;
   display: flex;
   justify-content: center;
+  transition: top 0.3s ease;
+}
+.header-sticky{
+  transition: top 0.5s ease;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-hidden {
+  transform: translateY(-100%);
+  transition: top 0.3s ease;
 }
 
 .header-container{
+  display: fixed;
+  z-index: 1000;
   width: 1220px;
   display: flex;
   justify-content: space-between;
