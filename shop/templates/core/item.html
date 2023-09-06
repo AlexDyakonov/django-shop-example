@@ -1,6 +1,12 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/item.css' %}"> 
+<link rel="stylesheet" href="{% static 'assets/css/item-card.css' %}">
+{% endblock %}
+
+
 {% block content %}
 
 <div class="section-item">
@@ -43,16 +49,15 @@
         Страна аккаунта
         <div>
 
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Воронеж
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Бельгия</a></li>
-              <li><a class="dropdown-item" href="#">Что-то</a></li>
-              <li><a class="dropdown-item" href="#">еще что-то</a></li>
-            </ul>
-          </div>
+          <li class="drop"><a href="#">Average Menu</a>
+        		<ul class="sub_menu">
+        			<li><a href="#">Lorem</a></li>
+							<li><a href="#">Ipsum</a></li>
+							<li><a href="#">Dolor</a></li>
+							<li><a href="#">Lipsum</a></li>
+							<li><a href="#">Consectetur </a></li>
+        		</ul>
+        	</li>
 
           <div class="item-action-add-to-card">
             <div class="input-group">

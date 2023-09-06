@@ -1,6 +1,10 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/index.css' %}?v={{ random_number }}"> 
+{% endblock %}
+
 {% block content %}
 
 <div class="section-1">

@@ -1,0 +1,31 @@
+.item-price{
+    color: #111;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.section-items{
+    display: flex;
+    justify-content: center;
+}
+
+.container-items{
+  width: 1220px;
+  margin-bottom: 120px;
+}
+
+.category-header{
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 0;
+  padding: 0;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-size: 1.15em;
+  margin: 20px 0;
+}
+
+.show-case{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
