@@ -16,12 +16,20 @@ def about(request):
     }
     return render(request, 'core/about.html', content)
 
-def items(request):
+def showcase(request):
     content = {
         'title': 'name',
         'itemname': 'category_name'        
     }
     return render(request, 'core/showcase.html', content)
+
+def item(request):
+    content = {
+        'title': 'name',
+        'itemname': 'category_name'        
+    }
+    return render(request, 'core/item.html', content)
+
 
 def pageNotFound(request, exception):
     return render(request, 'core/404.html')

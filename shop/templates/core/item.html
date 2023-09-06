@@ -1,0 +1,151 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="section-item">
+  <div class="container-item">
+    <img class="item-picture-bigger" src="./img/blackcatcard-600x566.jpg" alt="">
+    <div class="item-text">
+      <div class="category-name">
+        Категория
+      </div>
+      <div class="item-name">
+        Blackcatcard Верифицированный Аккаунт
+      </div>
+      <div class="item-price-text">
+        $59.00
+      </div>
+      <div class="item-description">
+        Тут лежит описание: <br> <br>
+
+        Чистый аккаунт <br>
+        Полностью верифицирован <br>
+        Доступные страны – Бельгия / Болгария / Венгрия / Германия / Греция / Испания / Италия / Латвия / Литва / Нидерланды / Польша / Португалия / Румыния / Словакия / Финляндия / Франция / Чехия / Эстония <br>
+        Выпущена дебетовая карта <br>
+        Гарантия 14 дней на замену, в случае невалидности аккаунта
+      </div>
+
+      <div class="item-description">
+        Комплект:
+        <ul>
+          <li>Данные для доступа к аккаунту</li>
+          <li>Данные для доступа к привязанному E-mail</li>
+          <li>Данные для доступа к виртуальному номеру телефона</li>
+          <li>Данные дебетовой карты, сканы карты</li>
+          <li>Полные данные холдера, сканы документов привязанных к аккаунту</li>
+          <li>Мануал по использованию аккаунта</li>
+        </ul>
+
+      </div>
+
+      <div class="item-action">
+        Страна аккаунта
+        <div>
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Воронеж
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Бельгия</a></li>
+              <li><a class="dropdown-item" href="#">Что-то</a></li>
+              <li><a class="dropdown-item" href="#">еще что-то</a></li>
+            </ul>
+          </div>
+
+          <div class="item-action-add-to-card">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+              </span>
+              <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+            </div>
+            <button class="view-all-btn"> В корзину </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section-items">
+  <div class="container-items">
+    <div class="category-header">
+      Похожие товары
+    </div>
+
+    <div class="show-case">
+      <div class="item-card">
+        <div class="show-case-item">
+          <img class="show-case-img" src="./img/binance-300x300.jpg" alt="">
+          <div class="show-case-category">
+            КРИПТО ПЛАТФОРМЫ
+          </div>
+          <div class="show-case-item-name">
+            Binance <br> Верифицированный Аккаунт
+          </div>
+          <div class="item-price">
+            $35.00
+          </div>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="show-case-item">
+          <img class="show-case-img" src="./img/binance-300x300.jpg" alt="">
+          <div class="show-case-category">
+            КРИПТО ПЛАТФОРМЫ
+          </div>
+          <div class="show-case-item-name">
+            Binance <br> Верифицированный Аккаунт
+          </div>
+          <div class="item-price">
+            $35.00
+          </div>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="show-case-item">
+          <img class="show-case-img" src="./img/binance-300x300.jpg" alt="">
+          <div class="show-case-category">
+            КРИПТО ПЛАТФОРМЫ
+          </div>
+          <div class="show-case-item-name">
+            Binance <br> Верифицированный Аккаунт
+          </div>
+          <div class="item-price">
+            $35.00
+          </div>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="show-case-item">
+          <img class="show-case-img" src="./img/binance-300x300.jpg" alt="">
+          <div class="show-case-category">
+            КРИПТО ПЛАТФОРМЫ
+          </div>
+          <div class="show-case-item-name">
+            Binance <br> Верифицированный Аккаунт
+          </div>
+          <div class="item-price">
+            $35.00
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
