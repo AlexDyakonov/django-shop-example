@@ -12,10 +12,17 @@ header{
   background: #0052ff;
   display: flex;
   justify-content: center;
-  transition: top 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
+
+header a{
+  text-decoration: none;
+}
+
+
 .header-sticky{
-  transition: top 0.5s ease;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -23,7 +30,7 @@ header{
 
 .header-hidden {
   transform: translateY(-100%);
-  transition: top 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .header-container{
@@ -43,9 +50,10 @@ header{
 }
 
 .header-logo{
-  max-width: 10%;
-  height: 100px;
+  width: 150px;
+  height: 50;
   display: block;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(217deg) brightness(105%) contrast(101%);
 }
 
 .header-text{
