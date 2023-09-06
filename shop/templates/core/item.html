@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'assets/css/item.css' %}"> 
-<link rel="stylesheet" href="{% static 'assets/css/item-card.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/item.css' %}?v={{ random_number }}"> 
+<link rel="stylesheet" href="{% static 'assets/css/item-card.css' %}?v={{ random_number }}">
+<link rel="stylesheet" href="{% static 'assets/css/dropdown-item.css' %}?v={{ random_number }}">
 {% endblock %}
 
 
@@ -47,37 +48,19 @@
 
       <div class="item-action">
         Страна аккаунта
-        <div>
+        
+        <div class="cart-country">
+          <select id="soflow">
+            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+            <option>Венгрия</option>
+            <option>Австралия</option>
+            <option>Другие страны</option>
+          </select>
 
-          <li class="drop"><a href="#">Average Menu</a>
-        		<ul class="sub_menu">
-        			<li><a href="#">Lorem</a></li>
-							<li><a href="#">Ipsum</a></li>
-							<li><a href="#">Dolor</a></li>
-							<li><a href="#">Lipsum</a></li>
-							<li><a href="#">Consectetur </a></li>
-        		</ul>
-        	</li>
-
-          <div class="item-action-add-to-card">
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
-                  <span class="glyphicon glyphicon-minus"></span>
-                </button>
-              </span>
-              <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
-              </span>
-            </div>
-            <button class="view-all-btn"> В корзину </button>
-          </div>
-        </div>
+          <button class="to-cart-btn"> В корзину </button>
       </div>
 
+      </div>
     </div>
   </div>
 </div>
@@ -153,4 +136,8 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script src="{% static './assets/js/main.js' %}"></script>
 {% endblock %}

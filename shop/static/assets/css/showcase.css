@@ -1,12 +1,12 @@
 .item-price{
-    color: #111;
-    font-weight: 700;
-    white-space: nowrap;
+  color: #111;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .section-items{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .container-items{
