@@ -1,6 +1,66 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/sign-up.css' %}?v={{ random_number }}"> 
+{% endblock %}
+
 {% block content %}
+
+<div class="section-sign-up">
+    <div class="container-sign-up">
+        <img class="register-img" src="{% static './assets/img/register/register.png' %}" alt="register-img">
+
+        <div class="register-form">
+
+            <div>
+                <div class="registration-header">
+                    REGISTRATION
+                </div>
+
+                <div class="line"></div>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password2 }}
+                    </div>
+    
+                    <div class="btn-container">
+                        <button class="submit-btn" type="submit"> Sumbit & Register </button>
+                    </div>
+                </form>
+
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ field }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                        </div>
+
+            
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
 
 {% endblock %}

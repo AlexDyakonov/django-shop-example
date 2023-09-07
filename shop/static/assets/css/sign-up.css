@@ -1,0 +1,89 @@
+.section-sign-up{
+    display: flex;
+    justify-content: center;
+}
+
+.container-sign-up{
+    width: 1220px;
+    margin-bottom: 120px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.register-form {
+    color: white;
+    width: 390px;
+    height: auto;
+    background: linear-gradient(135deg, rgba(92,145,255,1) 20%, rgba(1,173,207,1) 100%);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.register-img{
+    width: 400px;
+    height: 400px;
+}
+
+.registration-header{
+    color: white;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    line-height: normal;
+}
+
+.line{
+    margin: 20px auto;
+    height: 2px;
+    width: 150px;
+    background: white;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.submit-btn{
+    color: white;
+    font-weight: 600;
+    background: linear-gradient(45deg, #3578ff 10%,  #000066 90%);
+    text-decoration: none;
+    border-radius: 10px;
+    background-size: 200%;
+    transition: .5s;
+    border: none;
+    display: inline-block;
+
+    width: 180px;
+    height: 40px;
+    text-align: center;
+}
+.submit-btn:hover {
+    background-position: right;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Нижний отступ между группами полей */
+}
+
+.form-group label {
+    font-weight: bold; /* Жирный шрифт для меток полей */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%; /* Расширить поля ввода на всю ширину родительского контейнера */
+    padding: 10px; /* Внутренний отступ для полей ввода */
+    border: 1px solid #ccc; /* Граница полей ввода */
+    border-radius: 4px; /* Скругление углов полей ввода */
+    margin-bottom: 10px;
+}
