@@ -25,6 +25,7 @@ from core.views import pageNotFound
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
+    path('user/', include('userauths.urls')),
 ]
 
 

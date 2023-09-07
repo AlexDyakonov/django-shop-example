@@ -32,4 +32,4 @@ def item(request):
 
 
 def pageNotFound(request, exception):
-    return render(request, 'core/404.html')
+    return render(request, '404.html')

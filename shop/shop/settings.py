@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Custom apps
 
     'core',
+    'userauths',
 ]
 
 MIDDLEWARE = [
@@ -145,6 +146,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JAZZMIN_SETTINGS = {
     'site_header':"wallet",
     'site_brand': "company_name",
-    'site_logo': "static/assets/img/logo.svg",
+    'site_logo': "assets/img/logo.svg",
     'copyright': "company_name.cc",
 }
+
+AUTH_USER_MODEL = 'userauths.User'
