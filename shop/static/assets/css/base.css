@@ -116,6 +116,17 @@ ul.custom-ul li:hover ul.dropdown {
   display: block;
 }
 
+.innerdiv {
+  margin-left: 100px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.alert{
+  display:inline-block;
+}
+
 footer{
   background: #1c1c1c;
   display: flex;

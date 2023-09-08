@@ -60,11 +60,21 @@
     transition: .5s;
     border: none;
     display: inline-block;
-
+    margin-bottom: 19px;
     width: 180px;
     height: 40px;
     text-align: center;
 }
+
+.have-acc-text{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.have-acc-text a{
+    color: white;
+}
+
 .submit-btn:hover {
     background-position: right;
 }
@@ -86,4 +96,8 @@
     border: 1px solid #ccc; /* Граница полей ввода */
     border-radius: 4px; /* Скругление углов полей ввода */
     margin-bottom: 10px;
+}
+
+.alert alert-danger{
+    display:inline-block;
 }

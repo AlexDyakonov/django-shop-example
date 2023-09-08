@@ -21,6 +21,8 @@
 
         {% block css %}
         {% endblock %}
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       
         <meta name="theme-color" content="#fafafa">
       </head>
@@ -64,7 +66,7 @@
               {% if request.user.is_authenticated %}
               <a href="#"> Аккаунт </a>
             <ul class="dropdown">
-              <li> <a href="{% url 'userauths:account' %}"> {{ request.user.username }} </a> </li>
+              <li> <a href="{% url 'userauths:account' %}"> {{ request.user.username|slice:":7" }} </a> </li>
               <li> <a href="{% url 'userauths:account' %}"> Мой аккаунт  </a> </li>
               <li> <a href="#"> Корзина </a> </li>
               <li> <a href="{% url 'userauths:sign-out' %}"> Выход </a> </li>
@@ -78,15 +80,31 @@
           </li>
         </ul>
       </div>
-
     </div>
   </header>
 
 <!-- Блок контента -->
 	<div class="content-text">
+
 {% block content %}
 {% endblock %}
 	</div>
+
+  <div class="innerdiv">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+      <strong> {{ message }} </strong>
+    </div>
+    {% endfor %}
+  {% endif %}
+<script>
+  setTimeout (() => {
+    $(".alert").alert("close")
+  }, 3000)
+</script> 
+</div>
+
 
 <!-- Footer -->
 <footer>
