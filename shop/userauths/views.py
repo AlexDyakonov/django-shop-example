@@ -65,3 +65,16 @@ def logout_view(request):
     messages.success(request, "Logged out.")
 
     return redirect("userauths:sign-in")
+
+def my_account(request):
+
+    if request.user.is_authenticated:
+        context = {
+           "username" : request.user.username,
+           "email" : request.user.email,
+        }
+
+        return render(request, "userauths/my-account.html", context)
+    else:
+        messages.warning(request, "Необходимо войти в аккаунт.")
+        return redirect("core:home")

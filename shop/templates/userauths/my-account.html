@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/my-account.css' %}?v={{ random_number }}"> 
+{% endblock %}
+
+{% block content %}
+
+
+<div class="section-account">
+    <div class="container-account">
+
+        <div class="account-card">
+            <div class="account-header"> ВАШ АККАУНТ </div>
+
+            <div class="account-content">
+                <img class="profile-img" src="{% static './assets/img/profile.png' %}" alt="">
+            
+                <div class="account-data-content">
+                    <div class="account-data">
+                        <div>Логин: </div>
+                        <div>{{ username }}</div>
+                    </div>
+                    <div class="account-data">
+                        <div>Email: </div>
+                        <div>{{ email }}</div>
+                    </div>
+
+                    <div class="account-password">
+                        Для смены пароля:
+                    </div>
+
+                    <div class="passwd">
+                        <form action="">
+                            <div class="form-group">
+                                <input type="password" value="" placeholder="Old password" id="password" class="password">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" value="" placeholder="New password" id="password" class="password">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" value="" placeholder="Confirm Password" id="confirm-password" class="password">
+                            </div>
+                            <button class="sumbit-btn">Подтвердить</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% endblock %}
