@@ -57,16 +57,27 @@
           Поддержка
         </div>
       </a>
-      <a href="{% url 'userauths:sign-up' %}">
-        <div class="header-text">
-          Вход
-        </div>
-      </a>
-      <a href="#">
-        <div class="header-text">
-          Корзина
-        </div>
-      </a>
+
+      <div class="dropdown-account">
+        <ul class="custom-ul">
+          <li>
+              {% if request.user.is_authenticated %}
+              <a href="#"> Аккаунт </a>
+            <ul class="dropdown">
+              <li> <a href="#"> Мой аккаунт  </a> </li>
+              <li> <a href="#"> Корзина </a> </li>
+              <li> <a href="{% url 'userauths:sign-out' %}"> Выход </a> </li>
+            </ul>
+              {% else %}
+
+              <li> <a href="{% url 'userauths:sign-in' %}"> Вход </a> </li>
+              {% endif %}
+  
+            
+          </li>
+        </ul>
+      </div>
+
     </div>
   </header>
 

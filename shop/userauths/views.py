@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from userauths.forms import UserRegisterForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
 
@@ -59,3 +59,9 @@ def login_view(request):
     }
 
     return render(request, "userauths/sign-in.html", context)
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Logged out.")
+
+    return redirect("userauths:sign-in")
