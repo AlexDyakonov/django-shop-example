@@ -15,7 +15,7 @@
 
             <div>
                 <div class="registration-header">
-                    REGISTRATION
+                    SIGN IN
                 </div>
 
                 <div class="line"></div>
@@ -24,24 +24,18 @@
                     {% csrf_token %}
                     
                     <div class="form-group">
-                        {{ form.username }}
+                        <input type="text" required name="email" placeholder="Email">    
                     </div>
                     <div class="form-group">
-                        {{ form.email }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password1 }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password2 }}
+                        <input required type="password" name="password" placeholder="Your password *">
                     </div>
     
                     <div class="btn-container">
-                        <button class="submit-btn" type="submit"> Sumbit & Register </button>
+                        <button class="submit-btn" type="submit"> Log In </button>
                     </div>
 
                     <div>
-                        Already have an account? <a href="{% url 'userauths:sign-in' %}"> Log In </a> 
+                        Don't have an account? <a href="{% url 'userauths:sign-up' %}"> Sign Up </a> 
                     </div>
                 </form>
 
