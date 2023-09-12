@@ -4,8 +4,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
 from userauths.models import User
+from core.models import Product, Category, CartOrder, CartOrderItems
 
 # User = settings.AUTH_USER_MODEL
+categories = Category.objects.all()
 
 
 def register_view(request):
@@ -25,9 +27,10 @@ def register_view(request):
         
     else:
         form = UserRegisterForm()    
-    
+
     context = {
         'form': form,
+        "categories" : categories,
     }
 
     return render(request, "userauths/sign-up.html", context)
@@ -55,7 +58,7 @@ def login_view(request):
             messages.warning(request, f"Пользователя с почтой {email} не существует.")
 
     context = {
-
+        "categories" : categories,
     }
 
     return render(request, "userauths/sign-in.html", context)
@@ -72,6 +75,7 @@ def my_account(request):
         context = {
            "username" : request.user.username,
            "email" : request.user.email,
+           "categories" : categories,
         }
 
         return render(request, "userauths/my-account.html", context)

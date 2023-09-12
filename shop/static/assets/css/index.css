@@ -123,6 +123,7 @@
     color: #0052ff;
     font-weight: 600;
     font-style: normal;
+    width: 150px;
   }
   
   .item-header:hover {

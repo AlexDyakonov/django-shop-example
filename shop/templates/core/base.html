@@ -37,23 +37,14 @@
         <img class="header-logo" src="{% static './assets/img/logo.svg' %}" alt="logo-image">
       </a>
 
+      {% for category in categories %}
+      <a href="{% url 'core:showcase' %}">
+        <div class="header-text">
+          {{category.title}}
+        </div>
+      </a>
+      {% endfor %}
 
-      <a href="{% url 'core:showcase' %}">
-        <div class="header-text">
-          Платежные системы
-        </div>
-      </a>
-    
-      <a href="{% url 'core:showcase' %}">
-        <div class="header-text">
-          КриптоПлатформы
-        </div>
-      </a>
-      <a href="{% url 'core:showcase' %}">
-        <div class="header-text">
-          Прочее
-        </div>
-      </a>
       <a href="{% url 'core:help' %}">
         <div class="header-text">
           Поддержка

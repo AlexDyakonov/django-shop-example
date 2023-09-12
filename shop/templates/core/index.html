@@ -49,129 +49,38 @@
 </div>
 <div class="section-3">
   <div class="container-3">
+
+    {% for category in categories %}
     <div class="column">
       <div class="column-header">
         <div class="line-near-text"></div>
-        Платежные системы
+          {{category.title}}
         <div class="line-near-text"></div>
       </div>
+
+      {% for product in products|slice:":5" %}
+      {% if product.category == category %}
       <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
+        <img class="item-picture" width="100" height="100" src="{{ product.image.url }}" alt="">
         <div>
           <div class="item-header">
-            Пример товара
+            {{product.title}}
           </div>
           <div class="item-price">
-            $19.00
+            ${{product.price}}
           </div>
         </div>
       </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
+      {% endif %}
+      {% endfor %}
+
+
+
       <a href="{% url 'core:showcase' %}" class="view-all-btn"> Смотреть все </a>
     </div>
-    <div class="column">
-      <div class="column-header">
-        <div class="line-near-text"></div>
-        КриптоПлатформы
-        <div class="line-near-text"></div>
-      </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
-      <a href="{% url 'core:showcase' %}" class="view-all-btn"> Смотреть все </a>
-    </div>
-    <div class="column">
-      <div class="column-header">
-        <div class="line-near-text"></div>
-          Прочее
-        <div class="line-near-text"></div>
-      </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
-      <div class="shop-item">
-        <img class="item-picture" src="{% static './assets/img/core-img/pyypl-100x100.jpg' %}" alt="">
-        <div>
-          <div class="item-header">
-            Пример товара
-          </div>
-          <div class="item-price">
-            $19.00
-          </div>
-        </div>
-      </div>
-      <a href="{% url 'core:showcase' %}" class="view-all-btn"> Смотреть все </a>
-    </div>
+    {% endfor %}
+
+    
   </div>
 </div>
 
