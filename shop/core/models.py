@@ -11,8 +11,6 @@ STATUS_CHOICE = {
 STATUS = {
     ("draft", "Draft"),
     ("disabled", "Disabled"),
-    ("rejected", "rejected"),
-    ("in_review", "In review"),
     ("published", "Published"),
 }
 
@@ -43,7 +41,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2, default=9.99)
     old_price = models.DecimalField(max_digits=9, decimal_places=2, default=14.99)
 
-    product_status = models.CharField(choices=STATUS,  max_length=10, default="in_review")
+    product_status = models.CharField(choices=STATUS,  max_length=10, default="draft")
 
     status = models.BooleanField(default=True)
     in_stock = models.BooleanField(default=True)
