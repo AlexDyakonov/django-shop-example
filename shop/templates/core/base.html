@@ -38,7 +38,7 @@
       </a>
 
       {% for category in categories %}
-      <a href="{% url 'core:showcase' %}">
+      <a href="{% url 'core:category' cid=category.cid %}">
         <div class="header-text">
           {{category.title}}
         </div>

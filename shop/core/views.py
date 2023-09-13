@@ -39,22 +39,15 @@ def help(request):
     }
     return render(request, 'core/help.html', content)
 
-def showcase(request):
-    content = {
-        'title': 'name',
-        "categories" : categories,  
-    }
-    return render(request, 'core/showcase.html', content)
-
 def show_category(request, cid):
-    category = Category.objects.get(cid)
+    category = Category.objects.get(cid=cid)
     products = Product.objects.filter(category=category)
-
 
     content = {
         'title': category.title,
+        "categories": categories,
         "category" : category,  
-        "product" : products,
+        "products" : products,
     }
     return render(request, 'core/showcase.html', content)
 

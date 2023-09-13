@@ -72,7 +72,7 @@
           </div>
           {% endfor %}
       
-          <a href="{% url 'core:showcase' %}" class="view-all-btn"> Смотреть все </a>
+          <a href="{% url 'core:category' cid=category.cid %}" class="view-all-btn"> Смотреть все </a>
       </div>
       {% endfor %}
 

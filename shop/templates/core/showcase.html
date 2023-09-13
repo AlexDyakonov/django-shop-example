@@ -11,25 +11,29 @@
 <div class="section-items">
     <div class="container-items">
       <div class="category-header">
-        {{itemname}}
+        {{category.title}}
       </div>
       <div class="show-case">
-  
+
+        {% for product in products %}
+
         <div class="item-card">
           <div class="show-case-item">
-            <img class="show-case-img" src="{% static './assets/img/binance-300x300.jpg' %}" alt="">
+            <img class="show-case-img" src="{{ product.image.url }}" alt="">
             <div class="show-case-category">
-                {{itemname}}
+                {{category.title}}
             </div>
             <div class="show-case-item-name">
-              <a href="{% url 'core:item' %}">Binance <br> Верифицированный Аккаунт</a>
+              <a href="{% url 'core:item' pid=product.pid %}"> {{product.title}} </a>
             </div>
             <div class="item-price">
-              $35.00
+              {{product.price}}
             </div>
           </div>
         </div>
-  
+
+        {% endfor %}
+
       </div>
     </div>
   </div>
