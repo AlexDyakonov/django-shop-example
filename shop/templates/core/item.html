@@ -12,10 +12,10 @@
 
 <div class="section-item">
   <div class="container-item">
-    <img class="item-picture-bigger" src="{{ item.image.url }}" alt="product-image">
+    <img width="214px" height="214px" class="item-picture-bigger" src="{{ item.image.url }}" alt="product-image">
     <div class="item-text">
       <div class="category-name">
-        {{item.category}}
+        <a style="all: unset;" href="{% url 'core:category' cid=item.category.cid %}"> {{item.category}} </a>
       </div>
       <div class="item-name">
         {{item.title}}
@@ -70,10 +70,10 @@
         <div class="show-case-item">
           <img class="show-case-img" src="{{ product.image.url }}" alt="">
           <div class="show-case-category">
-            {{product.category}}
+            <a style="all: unset;" href="{% url 'core:category' cid=product.category.cid %}">{{product.category}}</a>
           </div>
           <div class="show-case-item-name">
-            {{product.title}}
+            <a style="all: unset;" href="{% url 'core:item' pid=product.pid %}">{{product.title}}</a>
           </div>
           <div class="item-price">
             {{product.price}}
