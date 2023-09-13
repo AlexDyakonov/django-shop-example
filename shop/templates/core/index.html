@@ -50,35 +50,31 @@
 <div class="section-3">
   <div class="container-3">
 
-    {% for category in categories %}
-    <div class="column">
-      <div class="column-header">
-        <div class="line-near-text"></div>
-          {{category.title}}
-        <div class="line-near-text"></div>
-      </div>
-
-      {% for product in products|slice:":5" %}
-      {% if product.category == category %}
-      <div class="shop-item">
-        <img class="item-picture" width="100" height="100" src="{{ product.image.url }}" alt="">
-        <div>
-          <div class="item-header">
-            {{product.title}}
+    {% for category, category_products in filtered_products.items %}
+      <div class="column">
+          <div class="column-header">
+              <div class="line-near-text"></div>
+              {{ category.title }}
+              <div class="line-near-text"></div>
           </div>
-          <div class="item-price">
-            ${{product.price}}
+      
+          {% for product in category_products %}
+          <div class="shop-item">
+              <img class="item-picture" width="100" height="100" src="{{ product.image.url }}" alt="">
+              <div>
+                  <div class="item-header">
+                      {{ product.title }}
+                  </div>
+                  <div class="item-price">
+                      ${{ product.price }}
+                  </div>
+              </div>
           </div>
-        </div>
+          {% endfor %}
+      
+          <a href="{% url 'core:showcase' %}" class="view-all-btn"> Смотреть все </a>
       </div>
-      {% endif %}
       {% endfor %}
-
-
-
-      <a href="{% url 'core:showcase' %}" class="view-all-btn"> Смотреть все </a>
-    </div>
-    {% endfor %}
 
     
   </div>

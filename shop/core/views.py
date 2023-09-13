@@ -2,6 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from core.models import Product, Category, CartOrder, CartOrderItems
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+num_of_products = int(os.getenv("NUMBER_OF_PRODUCTS_ON_MAIN_PAGE"))
 
 # Create your views here.
 
@@ -16,6 +22,14 @@ def index(request):
         "categories" : categories,
         "products" : products,
     }
+
+    filtered_products = {}
+    for category in categories:
+        category_products = products.filter(category=category)[:num_of_products]  
+        filtered_products[category] = category_products
+
+    content['filtered_products'] = filtered_products
+
     return render(request, 'core/index.html', content)
 
 def help(request):
