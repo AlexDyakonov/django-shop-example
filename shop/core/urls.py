@@ -7,5 +7,5 @@ urlpatterns = [
     path('', index, name='home'),
     path('help/', help, name='help'),
     path('showcase/', showcase, name='showcase'),
-    path('item/number/', item, name='item')
+    path('item/<str:pid>/', show_item, name='item')
 ]

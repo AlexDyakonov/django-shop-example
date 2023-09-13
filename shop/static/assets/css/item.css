@@ -20,8 +20,7 @@
 }
 .item-picture-bigger{
     width: 600px;
-    height: auto;
-    max-height: 600px;
+    height: 600px;
 }
 .item-text{
     width: 555px;

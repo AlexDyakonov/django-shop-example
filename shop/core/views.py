@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from core.models import Product, Category, CartOrder, CartOrderItems
 import os
@@ -46,10 +46,24 @@ def showcase(request):
     }
     return render(request, 'core/showcase.html', content)
 
-def item(request):
+def show_category(request, cid):
+    category = Category.objects.get(cid)
+    products = Product.objects.filter(category=category)
+
+
     content = {
-        'title': 'name',
-        'itemname': 'category_name',
+        'title': category.title,
+        "category" : category,  
+        "product" : products,
+    }
+    return render(request, 'core/showcase.html', content)
+
+def show_item(request, pid):
+    item = get_object_or_404(Product, pid=pid)
+
+    content = {
+        'title': item.title,
+        'item': item,
         "categories" : categories,  
     }
     return render(request, 'core/item.html', content)

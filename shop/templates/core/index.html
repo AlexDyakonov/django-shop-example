@@ -63,7 +63,7 @@
               <img class="item-picture" width="100" height="100" src="{{ product.image.url }}" alt="">
               <div>
                   <div class="item-header">
-                      {{ product.title }}
+                    <a href="{% url 'core:item' pid=product.pid %}">{{ product.title }}</a>
                   </div>
                   <div class="item-price">
                       ${{ product.price }}

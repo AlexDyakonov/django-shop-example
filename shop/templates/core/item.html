@@ -12,25 +12,19 @@
 
 <div class="section-item">
   <div class="container-item">
-    <img class="item-picture-bigger" src="{% static './assets/img/blackcatcard-600x566.jpg' %}" alt="">
+    <img class="item-picture-bigger" src="{{ item.image.url }}" alt="product-image">
     <div class="item-text">
       <div class="category-name">
-        Категория
+        {{item.category}}
       </div>
       <div class="item-name">
-        Blackcatcard Верифицированный Аккаунт
+        {{item.title}}
       </div>
       <div class="item-price-text">
-        $59.00
+        {{item.price}}
       </div>
       <div class="item-description">
-        Тут лежит описание: <br> <br>
-
-        Чистый аккаунт <br>
-        Полностью верифицирован <br>
-        Доступные страны – Бельгия / Болгария / Венгрия / Германия / Греция / Испания / Италия / Латвия / Литва / Нидерланды / Польша / Португалия / Румыния / Словакия / Финляндия / Франция / Чехия / Эстония <br>
-        Выпущена дебетовая карта <br>
-        Гарантия 14 дней на замену, в случае невалидности аккаунта
+        {{item.description}}
       </div>
 
       <div class="item-description">
@@ -51,7 +45,6 @@
         
         <div class="cart-country">
           <select id="soflow">
-            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
             <option>Венгрия</option>
             <option>Австралия</option>
             <option>Другие страны</option>
@@ -72,51 +65,6 @@
     </div>
 
     <div class="show-case">
-      <div class="item-card">
-        <div class="show-case-item">
-          <img class="show-case-img" src="{% static './assets/img/binance-300x300.jpg' %}" alt="">
-          <div class="show-case-category">
-            КРИПТО ПЛАТФОРМЫ
-          </div>
-          <div class="show-case-item-name">
-            Binance <br> Верифицированный Аккаунт
-          </div>
-          <div class="item-price">
-            $35.00
-          </div>
-        </div>
-      </div>
-
-      <div class="item-card">
-        <div class="show-case-item">
-          <img class="show-case-img" src="{% static './assets/img/binance-300x300.jpg' %}" alt="">
-          <div class="show-case-category">
-            КРИПТО ПЛАТФОРМЫ
-          </div>
-          <div class="show-case-item-name">
-            Binance <br> Верифицированный Аккаунт
-          </div>
-          <div class="item-price">
-            $35.00
-          </div>
-        </div>
-      </div>
-
-      <div class="item-card">
-        <div class="show-case-item">
-          <img class="show-case-img" src="{% static './assets/img/binance-300x300.jpg' %}" alt="">
-          <div class="show-case-category">
-            КРИПТО ПЛАТФОРМЫ
-          </div>
-          <div class="show-case-item-name">
-            Binance <br> Верифицированный Аккаунт
-          </div>
-          <div class="item-price">
-            $35.00
-          </div>
-        </div>
-      </div>
-
       <div class="item-card">
         <div class="show-case-item">
           <img class="show-case-img" src="{% static './assets/img/binance-300x300.jpg' %}" alt="">
