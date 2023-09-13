@@ -18,7 +18,7 @@ def index(request):
     products = Product.objects.all()
 
     content = {
-        'title': 'main',
+        'title': 'CompanyName',
         "categories" : categories,
         "products" : products,
     }
@@ -53,11 +53,14 @@ def show_category(request, cid):
 
 def show_item(request, pid):
     item = get_object_or_404(Product, pid=pid)
+    products = Product.objects.filter(category=item.category)
+
 
     content = {
         'title': item.title,
         'item': item,
-        "categories" : categories,  
+        'products': products,
+        "categories" : categories,
     }
     return render(request, 'core/item.html', content)
 

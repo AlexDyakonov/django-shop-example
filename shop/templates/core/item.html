@@ -65,22 +65,24 @@
     </div>
 
     <div class="show-case">
+      {% for product in products|slice:":4" %}
       <div class="item-card">
         <div class="show-case-item">
-          <img class="show-case-img" src="{% static './assets/img/binance-300x300.jpg' %}" alt="">
+          <img class="show-case-img" src="{{ product.image.url }}" alt="">
           <div class="show-case-category">
-            КРИПТО ПЛАТФОРМЫ
+            {{product.category}}
           </div>
           <div class="show-case-item-name">
-            Binance <br> Верифицированный Аккаунт
+            {{product.title}}
           </div>
           <div class="item-price">
-            $35.00
+            {{product.price}}
           </div>
         </div>
       </div>
-
+      {% endfor %}
     </div>
+
   </div>
 </div>
 

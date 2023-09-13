@@ -1,6 +1,8 @@
 from django import template
 from core.models import *
 
+# TODO Оптимизировать | заменить все что возможно на теги
+
 register = template.Library()
 
 @register.simple_tag(name='getcats')
