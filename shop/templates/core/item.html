@@ -43,14 +43,19 @@
       <div class="item-action">
         Страна аккаунта
         
-        <div class="cart-country">
-          <select id="soflow">
-            <option>Венгрия</option>
-            <option>Австралия</option>
-            <option>Другие страны</option>
-          </select>
+        <form method="post">
+          {% csrf_token %}
 
-          <button class="to-cart-btn"> В корзину </button>
+          <div class="cart-country">
+            <select id="soflow" name="countries">
+              {% for country in item.countries.all %}
+                <option value="{{ country.pk }}">{{country.title}}</option>
+              {% endfor %}
+            </select>
+  
+            <button type="submit" class="to-cart-btn"> В корзину </button>
+        </form>
+        
       </div>
 
       </div>

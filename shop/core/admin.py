@@ -1,10 +1,13 @@
 from django.contrib import admin
-from core.models import Product, Category, CartOrder, CartOrderItems
+from core.models import Product, Category, Country, CartOrder, CartOrderItems
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['user', 'title', 'product_image', 'price', 'product_status']
+    list_display = ['user', 'title', 'category','product_image', 'price', 'product_status']
 
 class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['title']
+
+class CountryAdmin(admin.ModelAdmin):
     list_display = ['title']
 
 class CartOrderAdmin(admin.ModelAdmin):
@@ -15,5 +18,6 @@ class CartOrderItemsAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Country, CountryAdmin)
 admin.site.register(CartOrder, CartOrderAdmin)
 admin.site.register(CartOrderItems, CartOrderItemsAdmin)

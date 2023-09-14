@@ -1,4 +1,5 @@
 from pyexpat import model
+from django import forms
 from django.db import models
 from shortuuid.django_fields import ShortUUIDField
 from userauths.models import User
@@ -26,6 +27,16 @@ class Category(models.Model):
     
     def __str__(self) -> str:
         return self.title
+
+class Country(models.Model):
+    coid = ShortUUIDField(unique=True, length=10, max_length=30, alphabet="abcdefgh12345")
+    title = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Countries"
+
+    def __str__(self) -> str:
+        return self.title
     
 class Product(models.Model):
     pid = ShortUUIDField(unique=True, length=10, max_length=30, alphabet="abcdefgh12345")
@@ -38,8 +49,9 @@ class Product(models.Model):
     description = models.TextField(null=False, blank=False, default="Товар в нашем магазине")
     specifications = models.TextField(null=False, blank=False, default="Особых свойств нет")
 
+    countries = models.ManyToManyField(Country, related_name='products')
+
     price = models.DecimalField(max_digits=9, decimal_places=2, default=9.99)
-    old_price = models.DecimalField(max_digits=9, decimal_places=2, default=14.99)
 
     product_status = models.CharField(choices=STATUS,  max_length=10, default="draft")
 
@@ -58,11 +70,6 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.title
-    
-    def get_precentage(self):
-        new_price = (self.price / self.old_price) * 100
-        return new_price
-
 
 # Cart, Order, OrderItem
 
