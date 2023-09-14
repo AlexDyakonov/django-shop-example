@@ -71,7 +71,7 @@
     color: #fff;
     background: #0052ff;
     text-decoration: none;
-    padding: 10px 40px;
+    padding: 15px 43px;
     background-size: 200%;
     transition: .5s;
     border: none;
@@ -112,4 +112,10 @@
 .show-case{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.qty-btn-fields{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

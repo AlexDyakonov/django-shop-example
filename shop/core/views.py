@@ -65,5 +65,19 @@ def show_item(request, pid):
     return render(request, 'core/item.html', content)
 
 
+def add_to_cart(request):
+    cart_product = {}
+    
+    cart_product[str(request.GET['id'])] = {
+        'title': request.GET['title'],
+        'price': request.GET['price'],
+        'country': request.GET['country'],
+    }
+
+    if 'cart_data_obj' in request.session:
+        if str(request.get['id'] in request.session['cart_data_obj']):
+            cart_data = request.session['cart_data_obj']
+            cart_data[str(request.GET('id'))]
+
 def pageNotFound(request, exception):
     return render(request, '404.html')

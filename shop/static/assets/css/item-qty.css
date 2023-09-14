@@ -1,0 +1,41 @@
+.product-qty {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+
+.wrapper{
+    color: #222;
+    height: 50px;
+    width: 110px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 2px;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.wrapper span{
+    width: 100%;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.wrapper span.num{
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.wrapper span.minus span.plus :hover{
+    background: #000;
+    color: #bebebe;
+}

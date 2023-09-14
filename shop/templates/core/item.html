@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'assets/css/item.css' %}?v={{ random_number }}"> 
 <link rel="stylesheet" href="{% static 'assets/css/item-card.css' %}?v={{ random_number }}">
 <link rel="stylesheet" href="{% static 'assets/css/dropdown-item.css' %}?v={{ random_number }}">
+<link rel="stylesheet" href="{% static 'assets/css/item-qty.css' %}">
 {% endblock %}
 
 
@@ -21,7 +22,7 @@
         {{item.title}}
       </div>
       <div class="item-price-text">
-        {{item.price}}
+        ${{item.price}}
       </div>
       <div class="item-description">
         {{item.description}}
@@ -52,10 +53,24 @@
                 <option value="{{ country.pk }}">{{country.title}}</option>
               {% endfor %}
             </select>
-  
+
+            <input type="hidden" value="{{item.id}}" class="product-id">
+            <input type="hidden" value="{{item.title}}" class="product-title">
+            <input type="hidden" value="{{item.price}}" class="product-price">
+          
+          </div>
+          <div class="qty-btn-fields">
+            <!-- <input type="number" value="1" class="product-qty" width="20" height="20" min="1"> -->
+            <div class="wrapper">
+              <span class="minus">-</span>
+              <span class="num">1</span>
+              <span class="plus">+</span>
+            </div>
+
             <button type="submit" class="to-cart-btn"> В корзину </button>
+          </div>
+
         </form>
-        
       </div>
 
       </div>
@@ -95,4 +110,5 @@
 
 {% block script %}
 <script src="{% static './assets/js/main.js' %}"></script>
+<script src="{% static './assets/js/functions.js' %}"></script>
 {% endblock %}
