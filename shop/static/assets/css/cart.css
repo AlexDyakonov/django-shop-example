@@ -1,0 +1,12 @@
+.section-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-cart{
+    width: 1220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

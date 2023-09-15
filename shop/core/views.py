@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_POST
+from django.contrib import messages
 
 from core.models import Product, Category, Cart, CartItem, Country
 import os
@@ -111,6 +112,18 @@ def add_to_cart(request):
     
     return JsonResponse({'error': 'Invalid request method'})
 
+def show_cart(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Вам необходимо войти в аккаунт.")
+        return redirect("core:home")
+    
+    user = request.user
+
+    content = {
+        'title': 'Корзина',
+        "categories": categories,
+    }
+    return render(request, 'core/cart.html', content)
 
 def pageNotFound(request, exception):
     return render(request, '404.html')

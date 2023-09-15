@@ -59,7 +59,7 @@
             <ul class="dropdown">
               <li> <a href="{% url 'userauths:account' %}"> {{ request.user.username|slice:":7" }} </a> </li>
               <li> <a href="{% url 'userauths:account' %}"> Мой аккаунт  </a> </li>
-              <li> <a href="#"> Корзина </a> </li>
+              <li> <a href="{% url 'core:cart' %}"> Корзина </a> </li>
               <li> <a href="{% url 'userauths:sign-out' %}"> Выход </a> </li>
             </ul>
               {% else %}
