@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Product, Category, Country, CartOrder, CartOrderItems
+from core.models import Product, Category, Country, Cart, CartItem, Order
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['user', 'title', 'category','product_image', 'price', 'product_status']
@@ -10,14 +10,19 @@ class CategoryAdmin(admin.ModelAdmin):
 class CountryAdmin(admin.ModelAdmin):
     list_display = ['title']
 
-class CartOrderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'price', 'paid_status', 'order_date', 'product_status']
+class CartAdmin(admin.ModelAdmin):
+    list_display = ['user', 'created_at', 'updated_at', 'total_items', 'total_price']
 
-class CartOrderItemsAdmin(admin.ModelAdmin):
-    list_display = ['order', 'invoice_no', 'item', 'image', 'quantity', 'price', 'total']
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ['cart', 'product', 'quantity', 'price', 'order_image']
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('oid', 'cart', 'created_at', 'updated_at', 'payment_status')
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Country, CountryAdmin)
-admin.site.register(CartOrder, CartOrderAdmin)
-admin.site.register(CartOrderItems, CartOrderItemsAdmin)
+admin.site.register(Cart, CartAdmin)
+admin.site.register(CartItem, CartItemAdmin)
+admin.site.register(Order, OrderAdmin)
+

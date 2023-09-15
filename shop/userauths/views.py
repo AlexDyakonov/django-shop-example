@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
 from userauths.models import User
-from core.models import Product, Category, CartOrder, CartOrderItems
+from core.models import Product, Category, Cart, CartItem, Order
 
 # User = settings.AUTH_USER_MODEL
 categories = Category.objects.all()

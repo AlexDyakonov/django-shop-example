@@ -73,31 +73,63 @@ class Product(models.Model):
 
 # Cart, Order, OrderItem
 
-class CartOrder(models.Model):
+class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=9, decimal_places=2, default=9.99)
-    paid_status = models.BooleanField(default=False)
-    order_date = models.DateTimeField(auto_now_add=True)
-    product_status = models.CharField(choices=STATUS_CHOICE, max_length=10, default="process")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        verbose_name_plural = "Cart Order"
+    def total_items(self):
+        return self.cartitem_set.count()
 
+    def total_price(self):
+        return sum(item.total_price() for item in self.cartitem_set.all())
 
-
-class CartOrderItems(models.Model):
-    order = models.ForeignKey(CartOrder, on_delete=models.CASCADE)
-    invoice_no = models.CharField(max_length=200)
-    product_status = models.CharField(max_length=200)
-    item = models.CharField(max_length=200)
-    image = models.CharField(max_length=200)
-    quantity = models.IntegerField(default=0)
-    price = models.DecimalField(max_digits=9, decimal_places=2, default=9.99)
-    total = models.DecimalField(max_digits=9, decimal_places=2, default=9.99)
-
-    class Meta:
-        verbose_name_plural = "Cart Order Items"
+    def __str__(self):
+        return f"Cart for {self.user.username}"
     
+    class Meta:
+        verbose_name_plural = "Carts"
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.CharField(max_length=200)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=10, decimal_places=2) 
+
     def order_image(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" />' % (self.image.url))
 
+    def total_price(self):
+        return self.quantity * self.price
+
+    def __str__(self):
+        return f"{self.product.title} ({self.quantity} units)"
+    
+    class Meta:
+        verbose_name_plural = "Cart items"
+
+class Order(models.Model):
+    oid = ShortUUIDField(unique=True, length=10, max_length=30, prefix="order", alphabet="abcdefgh12345")
+    cart = models.OneToOneField(Cart, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    PAYMENT_STATUS_CHOICES = [
+        ('pending', 'Ожидание оплаты'),
+        ('paid', 'Оплачено'),
+        ('failed', 'Ошибка оплаты'),
+        ('refunded', 'Возврат средств'),
+    ]
+
+    payment_status = models.CharField(
+        max_length=10,
+        choices=PAYMENT_STATUS_CHOICES,
+        default='pending',
+    )
+
+    def __str__(self):
+        return f"Order #{self.pk} - {self.get_payment_status_display()}"
+    
+    class Meta:
+        verbose_name_plural = "Orders"
