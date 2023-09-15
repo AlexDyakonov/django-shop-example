@@ -93,12 +93,13 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.CharField(max_length=200)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, default="1")
+    image = models.ImageField(upload_to=user_directiory_path, null=False, default="product.png")    
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10, decimal_places=2) 
 
-    def order_image(self):
-        return mark_safe('<img src="/media/%s" width="50" height="50" />' % (self.image.url))
+    def cart_item_image(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
     def total_price(self):
         return self.quantity * self.price

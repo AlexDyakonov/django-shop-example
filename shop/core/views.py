@@ -2,9 +2,13 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 
-from core.models import Product, Category, Cart, CartItem
+from core.models import Product, Category, Cart, CartItem, Country
 import os
 from dotenv import load_dotenv
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -72,25 +76,29 @@ def add_to_cart(request):
     try:
         if request.method == 'POST':
             product_id = request.POST.get('id')
-            product_title = request.POST.get('title')
-            product_country = request.POST.get('country')
+            product_country_id = request.POST.get('country')
             quantity = int(request.POST.get('qty'))
             product_price = float(request.POST.get('price'))
 
+            product = Product.objects.get(pk=product_id)
+            product_image = product.image
+
             user = request.user
 
-            cart = Cart.objects.get_or_create(user=user)
+            cart_tuple = Cart.objects.get_or_create(user=user)
+            cart = cart_tuple[0]
 
             cart_item, item_created = CartItem.objects.get_or_create(
                 cart=cart,
                 product_id=product_id,
+                country_id=product_country_id,
                 defaults={
-                    'title': product_title,
-                    'country': product_country,
+                    'image': product_image,
                     'quantity': quantity,
                     'price': product_price
                 }
             )
+            
 
             if not item_created:
                 cart_item.quantity += quantity
@@ -98,6 +106,7 @@ def add_to_cart(request):
 
             return JsonResponse({'message': 'Product added to cart', 'cart_total': cart.total_items})
     except Exception as e:
+        print(e)
         return JsonResponse({'error': str(e)})
     
     return JsonResponse({'error': 'Invalid request method'})

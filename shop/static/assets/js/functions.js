@@ -31,7 +31,6 @@ $(".to-cart-btn").on("click", function(event){
         var numText = document.querySelector('.num').textContent;
         var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
     
-        let product_title = $(".product-title").val();
         let product_id = $(".product-id").val();
         let product_country = $("#soflow").val();
         let quantity = parseInt(numText);
@@ -39,7 +38,6 @@ $(".to-cart-btn").on("click", function(event){
         let this_val = $(this)
         
     
-        console.log("Title:", product_title)
         console.log("Id:", product_id)
         console.log("Country ID:", product_country)
         console.log("Item qty:", quantity)
@@ -54,7 +52,6 @@ $(".to-cart-btn").on("click", function(event){
             url: '/add-to-cart',
             data:{
                 'id': product_id,
-                'title': product_title,
                 'country': product_country,
                 'qty': quantity,
                 'price': product_price,
