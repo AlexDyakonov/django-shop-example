@@ -111,21 +111,52 @@ def add_to_cart(request):
     
     return JsonResponse({'error': 'Invalid request method'})
 
+@require_POST
+def remove_from_cart(request):
+    try:
+        if request.method == 'POST':
+            product_id = request.POST.get('id')
+            user = request.user
+
+            cart_tuple = Cart.objects.get_or_create(user=user)
+            cart = cart_tuple[0]
+
+            cart_item = CartItem.objects.get(cart=cart.id, id=product_id)
+            cart_item.delete()
+
+            cart_items = CartItem.objects.filter(cart = cart.id)
+
+            if cart_items.exists:
+                new_cart_total_price = cart.total_price()
+                return JsonResponse({'message': 'Product removed from cart', 'cart_total_price': new_cart_total_price})
+            else:
+                return JsonResponse({'message': 'Product removed from cart', 'cart_is_empty': True})
+            
+    except Exception as e:
+        print(e)
+        return JsonResponse({'error': str(e)})
+    
+    return JsonResponse({'error': 'Invalid request method'})
+
 def show_cart(request):
     if not request.user.is_authenticated:
         messages.warning(request, "Вам необходимо войти в аккаунт.")
         return redirect("core:home")
-
+    is_authenticated = request.user.is_authenticated
+    
     cart_tuple = Cart.objects.get_or_create(user=request.user)
     cart = cart_tuple[0]
 
     cart_items = CartItem.objects.filter(cart = cart)
+    cart_items_exist = cart_items.exists
 
     content = {
         'title': 'Корзина',
         'categories': categories,
         'cart_items': cart_items,
         'cart': cart,
+        'is_authenticated': is_authenticated,
+        'cart_items_exist': cart_items_exist,
     }
     return render(request, 'core/cart.html', content)
 
