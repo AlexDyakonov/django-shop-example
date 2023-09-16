@@ -2,52 +2,101 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'assets/css/cart.css' %}"> 
+<link rel="stylesheet" href="{% static 'assets/css/item-qty.css' %}?v={{ random_number }}"> 
+<link rel="stylesheet" href="{% static 'assets/css/cart.css' %}?v={{ random_number }}"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 {% endblock %}
 
 {% block content %}
 
 <div class="section-cart">
     <div class="container-cart">
-        <table>
-            <tr>
-              <td>&nbsp;</td>
-              <td>Knocky</td>
-              <td>Flor</td>
-              <td>Ella</td>
-              <td>Juan</td>
-            </tr>
-            <tr>
-              <td>Breed</td>
-              <td>Jack Russell</td>
-              <td>Poodle</td>
-              <td>Streetdog</td>
-              <td>Cocker Spaniel</td>
-            </tr>
-            <tr>
-              <td>Age</td>
-              <td>16</td>
-              <td>9</td>
-              <td>10</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>Owner</td>
-              <td>Mother-in-law</td>
-              <td>Me</td>
-              <td>Me</td>
-              <td>Sister-in-law</td>
-            </tr>
-            <tr>
-              <td>Eating Habits</td>
-              <td>Eats everyone's leftovers</td>
-              <td>Nibbles at food</td>
-              <td>Hearty eater</td>
-              <td>Will eat till he explodes</td>
-            </tr>
+
+      <div class="cart-header">
+        Ваша корзина:
+      </div>
+
+      <div class="cart-order">
+
+        <div class="table-container"> 
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Товар</th>
+                <th>Количество</th>
+                <th>Итого</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      close
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <div class="cart-info">
+                    <img width="100px" height="100px" src="{% static './assets/img/core-img/reputation.png' %}" alt="">
+                    <div class="item-info">
+                      <p> <a href="#"> Название </a> </p>
+                      <small>Цена: 10$</small>
+                    </div>
+                  </div>
+                  
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="minus">-</span>
+                    <span class="num">1</span>
+                    <span class="plus">+</span>
+                  </div>
+                </td> 
+                <td>
+                  <div class="item-info">
+                    100$  
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
           </table>
+
+          <div class="total-container">
+            <table>
+              <tr>
+                <td>Подытог</td>
+                <td>100$</td>
+              </tr>
+              <tr>
+                <td>Итого</td>
+                <td>200$</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <button type="submit" class="order-btn">Оформить заказ</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      
+    </div>
           
     </div>
 </div>
+
+{% endblock %}
+
+
+{% block script %}
+
+<script src="{% static './assets/js/functions.js' %}"></script>
 
 {% endblock %}
