@@ -29,21 +29,25 @@
               </tr>
             </thead>
             <tbody>
-              
+              {% for cart_item in cart_items %}
               <tr>
                 <td>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      close
-                    </span>
-                  </a>
+                  
+                  <form action="POST">
+                    <a class="remove_from_cart" href="#">
+                      <span class="material-symbols-outlined">
+                        close
+                      </span>
+                    </a>
+                  </form>
+                  
                 </td>
                 <td>
                   <div class="cart-info">
-                    <img width="100px" height="100px" src="{% static './assets/img/core-img/reputation.png' %}" alt="">
+                    <img width="100px" height="100px" src="{{ cart_item.image.url }}" alt="">
                     <div class="item-info">
-                      <p> <a href="#"> Название </a> </p>
-                      <small>Цена: 10$</small>
+                      <p> <a href="{% url 'core:item' pid=cart_item.product.pid %}"> {{ cart_item.product.title }} </a> </p>
+                      <small>Цена:  {{ cart_item.product.price }}  $</small>
                     </div>
                   </div>
                   
@@ -51,17 +55,17 @@
                 <td>
                   <div class="wrapper">
                     <span class="minus">-</span>
-                    <span class="num">1</span>
+                    <span class="num"> {{ cart_item.quantity }} </span>
                     <span class="plus">+</span>
                   </div>
                 </td> 
                 <td>
                   <div class="item-info">
-                    100$  
+                    {{ cart_item.total_price }}$  
                   </div>
                 </td>
               </tr>
-
+              {% endfor %}
             </tbody>
           </table>
 
@@ -69,11 +73,11 @@
             <table>
               <tr>
                 <td>Подытог</td>
-                <td>100$</td>
+                <td>{{cart.total_price}}</td>
               </tr>
               <tr>
                 <td>Итого</td>
-                <td>200$</td>
+                <td>{{cart.total_price}}</td>
               </tr>
               <tr>
                 <td colspan="2">

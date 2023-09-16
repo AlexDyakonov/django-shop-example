@@ -62,7 +62,6 @@ def show_item(request, pid):
     item = get_object_or_404(Product, pid=pid)
     products = Product.objects.filter(category=item.category)
 
-
     content = {
         'title': item.title,
         'item': item,
@@ -116,12 +115,17 @@ def show_cart(request):
     if not request.user.is_authenticated:
         messages.warning(request, "Вам необходимо войти в аккаунт.")
         return redirect("core:home")
-    
-    user = request.user
+
+    cart_tuple = Cart.objects.get_or_create(user=request.user)
+    cart = cart_tuple[0]
+
+    cart_items = CartItem.objects.filter(cart = cart)
 
     content = {
         'title': 'Корзина',
-        "categories": categories,
+        'categories': categories,
+        'cart_items': cart_items,
+        'cart': cart,
     }
     return render(request, 'core/cart.html', content)
 
