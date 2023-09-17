@@ -198,7 +198,9 @@ def show_checkout(request):
         'title': 'Оформление заказа',
         'categories': categories,
         'user': request.user,
+        'cart_items': cart_items,
         'cart_items_exist': cart_items_exist,
+        'cart': cart,
         'payments': Payment.objects.all(),
     }
     return render(request, 'core/checkout.html', content)

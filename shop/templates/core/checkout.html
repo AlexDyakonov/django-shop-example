@@ -64,45 +64,32 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for cart_item in cart_items %}
                             <tr>
                                 <th>
                                     <div class="item-info">
                                         <div class="item-header">
-                                            Товар
+                                            {{cart_item.product.title}}
                                         </div>
                                         <div class="item-country">
-                                            Страна
+                                            {{cart_item.country}}
                                         </div>
                                     </div>
                                 </th>
-                                <th>
-                                    20$
+                                <th  >
+                                    {{cart_item.total_price}} $
                                 </th>
                             </tr>
-                            <tr>
-                                <th>
-                                    <div class="item-info">
-                                        <div class="item-header">
-                                            Товар
-                                        </div>
-                                        <div class="item-country">
-                                            Страна
-                                        </div>
-                                    </div>
-                                </th>
-                                <th>
-                                    20$
-                                </th>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th> Комиссия </th>
-                                <th> 0.85 </th>
+                                <th id="comission"> 1.00 $ </th>
                             </tr>
                             <tr>
                                 <th> Итого </th>
-                                <th> 100 </th>
+                                <th> <span id="order-total"> {{cart.total_price}} </span>$</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -123,7 +110,7 @@
                         <select id="soflow" name="countries" placeholder="Выберите криптовалюту">
                             <option value="" disabled selected>Выберите криптовалюту</option>
                             {% for payment in payments %}
-                                <option value="{{payment.shortcut}}">{{payment.title}}</option>
+                                <option id="payment_type" value="{{payment.comission}}">{{payment.title}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -171,4 +158,6 @@
   </script>
 
 <script type="text/javascript" src=/path.js?<?=$cur_time;?>"></script>
+<script src="{% static './assets/js/checkout.js' %}"></script>
+
 {% endblock %}

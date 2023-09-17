@@ -71,6 +71,20 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.title
 
+# Payment methods: crypto
+
+class Payment(models.Model):
+    title = models.CharField(max_length=100)
+    comission = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
+    shortcut =  models.CharField(max_length=100, default=title)
+
+
+    class Meta:
+        verbose_name_plural = "Payments"
+
+    def __str__(self) -> str:
+        return self.title
+
 # Cart, Order, OrderItem
 
 class Cart(models.Model):
@@ -113,6 +127,7 @@ class CartItem(models.Model):
 class Order(models.Model):
     oid = ShortUUIDField(unique=True, length=10, max_length=30, prefix="order", alphabet="abcdefgh12345")
     cart = models.OneToOneField(Cart, on_delete=models.CASCADE)
+    payment = models.OneToOneField(Payment, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -134,17 +149,3 @@ class Order(models.Model):
     
     class Meta:
         verbose_name_plural = "Orders"
-
-# Payment methods: crypto
-
-class Payment(models.Model):
-    title = models.CharField(max_length=100)
-    comission = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
-    shortcut =  models.CharField(max_length=100, default=title)
-
-
-    class Meta:
-        verbose_name_plural = "Payments"
-
-    def __str__(self) -> str:
-        return self.title
