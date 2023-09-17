@@ -117,6 +117,7 @@ th:last-child{
 }
 
 .order-btn {
+    text-align: center;
     font-size: 20px;
     color: #fff;
     background: linear-gradient(90deg, rgba(0,82,255,1) 0%, rgba(0,212,255,1) 100%);;
@@ -130,7 +131,8 @@ th:last-child{
     display: inline-block;
   }
   
-  .view-all-btn:hover {
+  .order-btn:hover {
+    color: #fff;
     background-position: right;
   }
   

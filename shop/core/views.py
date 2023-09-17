@@ -183,5 +183,24 @@ def update_cart_item(request):
     else:
         return JsonResponse({'success': False})
 
+def show_checkout(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Вам необходимо войти в аккаунт.")
+        return redirect("core:home")
+    
+    cart_tuple = Cart.objects.get_or_create(user=request.user)
+    cart = cart_tuple[0]
+
+    cart_items = CartItem.objects.filter(cart = cart)
+    cart_items_exist = cart_items.exists
+
+    content = {
+        'title': 'Оформление заказа',
+        'categories': categories,
+        'user': request.user,
+        'cart_items_exist': cart_items_exist,
+    }
+    return render(request, 'core/checkout.html', content)
+
 def pageNotFound(request, exception):
     return render(request, '404.html')

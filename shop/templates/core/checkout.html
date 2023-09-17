@@ -1,0 +1,175 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/dropdown-item.css' %}?v={{ random_number }}">
+<link rel="stylesheet" href="{% static 'assets/css/checkout.css' %}?v={{ random_number }}"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+{% endblock %}
+
+{% block content %}
+
+<div class="section-checkout">
+    <div class="container-checkout">
+      {% csrf_token %}
+    
+      {% if cart_items_exist %}
+
+      <div class="checkout-header">
+        Информация о заказе
+      </div>
+
+      <div class="checkout-content">
+        <div class="left-content-checkout">
+            <div class="decor-line"></div>
+
+            <div class="order-header">
+                Детали заказа
+            </div>
+            <div class="order-details">
+                <div>
+                    Email-адрес*
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default" value="{{ user.email }}">
+                </div>
+            </div>
+            <div class="order-details">
+                <div>
+                    Примечание к заказу (необязательно)
+                </div>
+                <div class="input-group">
+                    <textarea class="form-control" id="text-area-detail" placeholder="Примечение к вашему заказу"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-content-checkout">
+            <div class="inner-border">
+
+                <div class="order-header">
+                    Ваш заказ
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Товар
+                                </th>
+                                <th>
+                                    Подытог
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <div class="item-info">
+                                        <div class="item-header">
+                                            Товар
+                                        </div>
+                                        <div class="item-country">
+                                            Страна
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    20$
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div class="item-info">
+                                        <div class="item-header">
+                                            Товар
+                                        </div>
+                                        <div class="item-country">
+                                            Страна
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    20$
+                                </th>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th> Комиссия </th>
+                                <th> 0.85 </th>
+                            </tr>
+                            <tr>
+                                <th> Итого </th>
+                                <th> 100 </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div>
+                    <div class="crypto-text">
+                        <div class="crypto-header-text">
+                            Оплата криптовалютой
+                        </div>
+                        <div>
+                            <small>
+                                Для некоторых криптовалют включен сервисный сбор. <br>
+                                Его размер напрямую зависит от комиссии блокчейна.
+                            </small>
+                        </div>                        
+                    </div>
+                    <div>
+                        <select id="soflow" name="countries" placeholder="Выберите криптовалюту">
+                            
+                            <option value="" disabled selected>Выберите криптовалюту</option>
+                            <option value="btc">BTC</option>
+                            <option value="eth">ETH</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="bottom-btns">
+                    <button class="create-order-btn" id="to-cart-button">Корзина</button> 
+                    <button class="create-order-btn">Подтвердить</button>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+
+      {% else %}
+      
+      <div class="cart-empty">
+        Ваша корзина пуста
+      </div>
+
+      <div class="btn-empty">
+        <a href="{% url 'core:home' %}" class="to-shop"> В магазин </a>
+      </div>
+
+      {% endif %}
+    </div>
+          
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+  var is_authenticated = {% if is_authenticated %}true{% else %}false{% endif %};
+</script>
+
+<script>
+    var redirectButton = document.getElementById('to-cart-button');
+  
+    redirectButton.addEventListener('click', function() {
+      window.location.href = '{% url 'core:cart' %}';
+    });
+  </script>
+
+<script type="text/javascript" src=/path.js?<?=$cur_time;?>"></script>
+{% endblock %}
