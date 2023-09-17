@@ -121,11 +121,10 @@
                     </div>
                     <div>
                         <select id="soflow" name="countries" placeholder="Выберите криптовалюту">
-                            
                             <option value="" disabled selected>Выберите криптовалюту</option>
-                            <option value="btc">BTC</option>
-                            <option value="eth">ETH</option>
-                            
+                            {% for payment in payments %}
+                                <option value="{{payment.shortcut}}">{{payment.title}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>

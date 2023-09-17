@@ -134,3 +134,17 @@ class Order(models.Model):
     
     class Meta:
         verbose_name_plural = "Orders"
+
+# Payment methods: crypto
+
+class Payment(models.Model):
+    title = models.CharField(max_length=100)
+    comission = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
+    shortcut =  models.CharField(max_length=100, default=title)
+
+
+    class Meta:
+        verbose_name_plural = "Payments"
+
+    def __str__(self) -> str:
+        return self.title

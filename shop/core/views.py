@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 
-from core.models import Product, Category, Cart, CartItem, Country
+from core.models import Product, Category, Cart, CartItem, Country, Payment
 import os
 from dotenv import load_dotenv
 
@@ -199,6 +199,7 @@ def show_checkout(request):
         'categories': categories,
         'user': request.user,
         'cart_items_exist': cart_items_exist,
+        'payments': Payment.objects.all(),
     }
     return render(request, 'core/checkout.html', content)
 
