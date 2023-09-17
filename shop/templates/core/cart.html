@@ -101,7 +101,11 @@
       {% else %}
       
       <div class="cart-empty">
-        Ваша корзина пуста.
+        Ваша корзина пуста
+      </div>
+
+      <div class="btn-empty">
+        <a href="{% url 'core:home' %}" class="to-shop"> В магазин </a>
       </div>
 
       {% endif %}

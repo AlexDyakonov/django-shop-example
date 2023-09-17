@@ -161,6 +161,10 @@ def show_cart(request):
     return render(request, 'core/cart.html', content)
 
 def update_cart_item(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Вам необходимо войти в аккаунт.")
+        return redirect("core:home")
+    
     if request.method == 'POST':
         cart_item_id = request.POST.get('cart_item_id')
         quantity = request.POST.get('quantity')

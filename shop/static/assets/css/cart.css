@@ -23,6 +23,35 @@
     font-weight: 700;
 }
 
+.btn-empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.btn-empty a{
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    background: linear-gradient(90deg, rgba(0,82,255,1) 0%, rgba(0,212,255,1) 100%);;
+    text-decoration: none;
+    width: 350px;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-size: 200%;
+    transition: .5s;
+    border: none;
+}
+
+.btn-empty a:hover{
+    text-decoration: none;
+    background-position: right;
+}
+
 .cart-order{
     display: flex;
     justify-content: center;
