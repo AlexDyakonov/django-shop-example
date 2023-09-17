@@ -4,26 +4,58 @@ const minusButtons = document.querySelectorAll(".minus");
 const numElements = document.querySelectorAll(".num");
 
 plusButtons.forEach((plusButton, index) => {
+    var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
     const minusButton = minusButtons[index];
     const numElement = numElements[index];
-    let a = parseInt(numElement.innerText);
+    const cart_item_id = numElement.id; 
+    let quantity = parseInt(numElement.innerText);
 
     plusButton.addEventListener("click", () => {
-        a++;
-        numElement.innerText = a;
+        quantity++;
+        numElement.innerText = quantity;
+        if (window.location.pathname === '/cart/'){
+            console.log("cart")
+            updateCartItem(cart_item_id, quantity); 
+        }
     });
 
     minusButton.addEventListener("click", () => {
-        if ((--a) <= 1) {
-            a = 1;
-        } else {
-            a--;
+        if (quantity > 1) {
+            quantity--;
+            numElement.innerText = quantity;
+            if (window.location.pathname === '/cart/'){
+                updateCartItem(cart_item_id, quantity); 
+            }
         }
-
-        numElement.innerText = a;
-        console.log(a);
     });
+
+    function updateCartItem(cart_item_id, quantity) {
+        $.ajax({
+            type: 'POST',
+            url: '/update-cart-item', 
+            data: {
+                'cart_item_id': cart_item_id,
+                'quantity': quantity,
+                'csrfmiddlewaretoken': csrf_token 
+            },
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    $('#total-item-' + cart_item_id).text(response.item_cart_total_price);
+                    $('#pretotal-price').text(response.cart_total_price);
+                    $('#total-price').text(response.cart_total_price);
+                    console.log("Product updated in cart.");
+                } else {
+                    console.log("Error while updating product in cart.");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error while updating product in cart.");
+            }
+        });
+    }
 });
+
 // Add to cart functionality
 
 $(".to-cart-btn").on("click", function(event){

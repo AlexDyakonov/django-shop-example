@@ -160,5 +160,24 @@ def show_cart(request):
     }
     return render(request, 'core/cart.html', content)
 
+def update_cart_item(request):
+    if request.method == 'POST':
+        cart_item_id = request.POST.get('cart_item_id')
+        quantity = request.POST.get('quantity')
+
+        cart = Cart.objects.get_or_create(user=request.user)
+        
+        cart_item = get_object_or_404(CartItem, id=cart_item_id, cart=cart[0])
+        
+        cart_item.quantity = int(quantity)
+        cart_item.save()
+        
+        item_cart_total_price = cart_item.total_price()
+        new_cart_total_price = cart[0].total_price()
+
+        return JsonResponse({'success': True, 'item_cart_total_price': item_cart_total_price, 'cart_total_price': new_cart_total_price})
+    else:
+        return JsonResponse({'success': False})
+
 def pageNotFound(request, exception):
     return render(request, '404.html')

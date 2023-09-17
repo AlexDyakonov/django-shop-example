@@ -11,7 +11,8 @@
 
 <div class="section-cart">
     <div class="container-cart">
-
+      {% csrf_token %}
+    
       {% if cart_items_exist %}
 
       <div class="cart-header">
@@ -62,12 +63,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="minus">-</span>
-                    <span class="num"> {{ cart_item.quantity }} </span>
+                    <span class="num" id="{{ cart_item.id }}">{{ cart_item.quantity }}</span>
                     <span class="plus">+</span>
                   </div>
                 </td> 
                 <td>
-                  <div class="item-info">
+                  <div class="item-info" id="total-item-{{ cart_item.id }}">
                     {{ cart_item.total_price }}$  
                   </div>
                 </td>
@@ -118,6 +119,6 @@
   var is_authenticated = {% if is_authenticated %}true{% else %}false{% endif %};
 </script>
 
-<script src="{% static './assets/js/functions.js' %}"></script>
-
+<script src="{% static './assets/js/functions.js' %} {{ random_number }}"></script>
+<script type="text/javascript" src=/path.js?<?=$cur_time;?>"></script>
 {% endblock %}
