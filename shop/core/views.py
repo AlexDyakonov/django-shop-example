@@ -2,8 +2,10 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.conf import settings
+from coinbase_commerce.client import Client
 
-from core.models import Product, Category, Cart, CartItem, Country, Payment
+from core.models import Product, Category, Cart, CartItem, Payment
 import os
 from dotenv import load_dotenv
 
@@ -201,9 +203,35 @@ def show_checkout(request):
         'cart_items': cart_items,
         'cart_items_exist': cart_items_exist,
         'cart': cart,
-        'payments': Payment.objects.all(),
     }
     return render(request, 'core/checkout.html', content)
+
+def create_payment(request):
+    if request.method == 'POST':
+        # Прописать получение данных о заказе
+
+        client = Client(api_key=settings.COINBASE_API_KEY)
+        charge_data = {
+            'name': 'Order Payment',
+            'description': 'Payment for an order',
+            'local_price': {
+                'amount': '10.00',  
+                'currency': 'USD',
+            },
+            'pricing_type': 'fixed_price',
+            'metadata': {
+                'order_id': '12345',  
+            },
+        }
+        charge = client.charge.create(**charge_data)
+
+        Payment.objects.create(charge_id=charge.id, description=charge.description, amount=charge.local_price.amount)
+
+        payment_url = charge.hosted_url
+
+        return render(request, 'payments/payment_page.html', {'payment_url': payment_url})
+
+    return render(request, 'core/checkout.html')
 
 def pageNotFound(request, exception):
     return render(request, '404.html')

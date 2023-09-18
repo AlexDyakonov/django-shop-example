@@ -4,6 +4,7 @@ from django.db import models
 from shortuuid.django_fields import ShortUUIDField
 from userauths.models import User
 from django.utils.html import mark_safe
+from django.utils import timezone
 
 STATUS_CHOICE = {
     ("process", "Processing"),
@@ -71,19 +72,6 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.title
 
-# Payment methods: crypto
-
-class Payment(models.Model):
-    title = models.CharField(max_length=100)
-    comission = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
-    shortcut =  models.CharField(max_length=100, default=title)
-
-
-    class Meta:
-        verbose_name_plural = "Payments"
-
-    def __str__(self) -> str:
-        return self.title
 
 # Cart, Order, OrderItem
 
@@ -126,8 +114,7 @@ class CartItem(models.Model):
 
 class Order(models.Model):
     oid = ShortUUIDField(unique=True, length=10, max_length=30, prefix="order", alphabet="abcdefgh12345")
-    cart = models.OneToOneField(Cart, on_delete=models.CASCADE)
-    payment = models.OneToOneField(Payment, on_delete=models.CASCADE, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -149,3 +136,17 @@ class Order(models.Model):
     
     class Meta:
         verbose_name_plural = "Orders"
+
+# Payment methods: crypto
+class Payment(models.Model):
+    charge_id = models.CharField(max_length=100, unique=True, default=ShortUUIDField(unique=True, length=10, max_length=30, alphabet="abcdefgh12345"))
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    description = models.TextField(null=True)
+    to_pay = models.DecimalField(max_digits=10, decimal_places=2, default=9999)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Payment #{self.id}'
+    
+    class Meta:
+        verbose_name_plural = "Payments"

@@ -109,9 +109,11 @@
                     <div>
                         <select id="soflow" name="countries" placeholder="Выберите криптовалюту">
                             <option value="" disabled selected>Выберите криптовалюту</option>
-                            {% for payment in payments %}
+                            <option value="1.00">Любая криптовалюта</option>
+
+                            <!-- {% for payment in payments %}
                                 <option id="payment_type" value="{{payment.comission}}">{{payment.title}}</option>
-                            {% endfor %}
+                            {% endfor %} -->
                         </select>
                     </div>
                 </div>

@@ -19,11 +19,9 @@ class CartItemAdmin(admin.ModelAdmin):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('oid', 'cart', 'created_at', 'updated_at', 'payment_status')
 
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ('oid', 'cart', 'created_at', 'updated_at', 'payment_status')
-
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'comission')
+    list_display = ('charge_id', 'order', 'description', 'to_pay', 'created_at')
+
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
@@ -32,4 +30,3 @@ admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment, PaymentAdmin)
-
