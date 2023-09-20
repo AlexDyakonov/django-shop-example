@@ -202,6 +202,7 @@ def show_checkout(request):
         'user': request.user,
         'cart_items': cart_items,
         'cart_items_exist': cart_items_exist,
+        'is_authenticated': request.user.is_authenticated,
         'cart': cart,
     }
     return render(request, 'core/checkout.html', content)
@@ -229,9 +230,9 @@ def create_payment(request):
 
         payment_url = charge.hosted_url
 
-        return render(request, 'payments/payment_page.html', {'payment_url': payment_url})
-
-    return render(request, 'core/checkout.html')
+        return redirect(payment_url)
+    
+    return redirect("core:cart")
 
 def pageNotFound(request, exception):
     return render(request, '404.html')

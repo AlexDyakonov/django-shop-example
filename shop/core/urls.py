@@ -17,5 +17,4 @@ urlpatterns = [
 
     path('checkout/', show_checkout, name="checkout"),
     path('payment/', create_payment, name="payment")
-
 ]

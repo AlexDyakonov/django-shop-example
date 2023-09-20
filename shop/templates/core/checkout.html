@@ -11,7 +11,6 @@
 
 <div class="section-checkout">
     <div class="container-checkout">
-      {% csrf_token %}
     
       {% if cart_items_exist %}
 
@@ -50,7 +49,6 @@
                 <div class="order-header">
                     Ваш заказ
                 </div>
-
                 <div class="table-container">
                     <table>
                         <thead>
@@ -110,17 +108,18 @@
                         <select id="soflow" name="countries" placeholder="Выберите криптовалюту">
                             <option value="" disabled selected>Выберите криптовалюту</option>
                             <option value="1.00">Любая криптовалюта</option>
-
-                            <!-- {% for payment in payments %}
-                                <option id="payment_type" value="{{payment.comission}}">{{payment.title}}</option>
-                            {% endfor %} -->
                         </select>
                     </div>
                 </div>
                 <div class="bottom-btns">
                     <button class="create-order-btn" id="to-cart-button">Корзина</button> 
-                    <button class="create-order-btn">Подтвердить</button>
+                    <form action="post" action="/payment">
+                        <button class="create-order-btn" id="to-payment-button" type="submit">
+                            Подтвердить
+                        </button>
+                    </form>
                 </div>
+            </form>
             </div>
             
         </div>
@@ -146,20 +145,10 @@
 
 
 {% block script %}
+<script src="{% static './assets/js/checkout.js' %}"></script>
 
 <script>
   var is_authenticated = {% if is_authenticated %}true{% else %}false{% endif %};
 </script>
-
-<script>
-    var redirectButton = document.getElementById('to-cart-button');
-  
-    redirectButton.addEventListener('click', function() {
-      window.location.href = '{% url 'core:cart' %}';
-    });
-  </script>
-
-<script type="text/javascript" src=/path.js?<?=$cur_time;?>"></script>
-<script src="{% static './assets/js/checkout.js' %}"></script>
 
 {% endblock %}

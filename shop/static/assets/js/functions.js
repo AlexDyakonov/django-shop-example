@@ -76,7 +76,6 @@ $(".to-cart-btn").on("click", function(event){
         console.log("Country ID:", product_country)
         console.log("Item qty:", quantity)
         console.log("Price:", product_price)
-        console.log("CSRF Token:", "{{ csrf_token }}");
     
         $.ajaxSetup({
             headers: { "X-CSRFToken": "{{ csrf_token }}" }
@@ -145,7 +144,6 @@ $(".remove_from_cart").on("click", function(event){
                 } else {
                     console.log("Error while removing product from cart.");
                 }
-                
             },
         })
     } else {

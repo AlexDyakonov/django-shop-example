@@ -115,6 +115,7 @@ class CartItem(models.Model):
 class Order(models.Model):
     oid = ShortUUIDField(unique=True, length=10, max_length=30, prefix="order", alphabet="abcdefgh12345")
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0) 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
