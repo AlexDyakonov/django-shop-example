@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from coinbase_commerce.client import Client
+from core.tasks import delete_payment
 
 from core.models import Product, Category, Cart, CartItem, Payment, Order
 import os
@@ -221,7 +222,39 @@ def show_checkout(request):
     return render(request, 'core/checkout.html', content)
 
 def create_payment(request):
+    if request.method == 'POST':
+        api_key = settings.COINBASE_API_KEY
+
+        user = request.user
+        cart = get_object_or_404(Cart, user=user)
+        order =get_object_or_404(Order, cart=cart)
         
+        total = cart.total_price()
+
+        payment = Payment.objects.get_or_create(order=order, description=user.email)
+# TODO научиться удалять платеж спустя время
+        # delete_payment.apply_async(args=[payment[0].charge_id], countdown=3600)
+
+        client = Client(api_key)
+        charge_data = {
+            "name": "Заказ #" + str(order.pk), 
+            "description": "Оплата заказа на сайте SiteName",
+            "local_price": {
+                "amount": float(total),
+                "currency": "USD"  
+            },
+            "pricing_type": "fixed_price", 
+            "metadata": {
+                "order_id": payment[0].charge_id
+            }
+        }   
+
+        charge = client.charge.create(**charge_data)
+
+
+
+        return redirect(charge.hosted_url)
+
     return redirect("core:cart")
 
 def pageNotFound(request, exception):

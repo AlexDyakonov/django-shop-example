@@ -9,7 +9,7 @@ selectElement.addEventListener("change", function () {
 
     let comission = parseFloat(selectedOption.value);
     
-    let order_total = orderTotalNoComission + comission;
+    // let order_total = orderTotalNoComission + comission;
 
     orderTotalElement.textContent = order_total
 

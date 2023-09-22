@@ -140,10 +140,9 @@ class Order(models.Model):
 
 # Payment methods: crypto
 class Payment(models.Model):
-    charge_id = models.CharField(max_length=100, unique=True, default=ShortUUIDField(unique=True, length=10, max_length=30, alphabet="abcdefgh12345"))
+    charge_id = ShortUUIDField(unique=True, length=10, max_length=30, alphabet="abcdefgh12345")
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     description = models.TextField(null=True)
-    to_pay = models.DecimalField(max_digits=10, decimal_places=2, default=9999)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
