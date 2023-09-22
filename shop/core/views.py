@@ -190,10 +190,19 @@ def create_order(request):
     if request.method == 'POST':
         user = request.user
         cart, created = Cart.objects.get_or_create(user=user)
-        order, _ = Order.objects.get_or_create(cart=cart)
+
+        try:
+            order = Order.objects.get(cart=cart)
+        except Order.DoesNotExist:
+            order = None
         
+        if order:
+            order.delete()
+        
+        # Создаем новый заказ
+        order = Order.objects.create(cart=cart)
         order.total = cart.total_price()
-        order.save()        
+        order.save()      
 
         return redirect('core:checkout')
 
