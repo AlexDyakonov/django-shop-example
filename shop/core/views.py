@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.conf import settings
 from coinbase_commerce.client import Client
 
-from core.models import Product, Category, Cart, CartItem, Payment
+from core.models import Product, Category, Cart, CartItem, Payment, Order
 import os
 from dotenv import load_dotenv
 
@@ -184,6 +184,19 @@ def update_cart_item(request):
         return JsonResponse({'success': True, 'item_cart_total_price': item_cart_total_price, 'cart_total_price': new_cart_total_price})
     else:
         return JsonResponse({'success': False})
+    
+def create_order(request):
+    if request.method == 'POST':
+        user = request.user
+        cart, created = Cart.objects.get_or_create(user=user)
+        order, _ = Order.objects.get_or_create(cart=cart)
+        
+        order.total = cart.total_price()
+        order.save()        
+
+        return redirect('core:checkout')
+
+    return redirect('core:cart')
 
 def show_checkout(request):
     if not request.user.is_authenticated:

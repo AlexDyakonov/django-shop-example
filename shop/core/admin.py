@@ -17,7 +17,7 @@ class CartItemAdmin(admin.ModelAdmin):
     list_display = ['cart', 'product', 'country','quantity', 'price', 'total_price', 'cart_item_image']
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('oid', 'cart', 'created_at', 'updated_at', 'payment_status')
+    list_display = ('oid', 'cart', 'total', 'created_at', 'updated_at', 'payment_status')
 
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ('charge_id', 'order', 'description', 'to_pay', 'created_at')

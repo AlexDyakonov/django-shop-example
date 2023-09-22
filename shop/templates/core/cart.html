@@ -89,7 +89,12 @@
               </tr>
               <tr>
                 <td colspan="2">
-                  <a href="{% url 'core:checkout' %}" class="order-btn">Оформить заказ</a>
+                  <form method="post" action="{% url 'core:create-order' %}">
+                    {% csrf_token %}
+                    <button class="order-btn" id="to-payment-button" type="submit">
+                      Оформить заказ
+                    </button>
+                </form>
                 </td>
               </tr>
             </table>
