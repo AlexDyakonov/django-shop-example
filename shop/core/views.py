@@ -208,30 +208,7 @@ def show_checkout(request):
     return render(request, 'core/checkout.html', content)
 
 def create_payment(request):
-    if request.method == 'POST':
-        # Прописать получение данных о заказе
-
-        client = Client(api_key=settings.COINBASE_API_KEY)
-        charge_data = {
-            'name': 'Order Payment',
-            'description': 'Payment for an order',
-            'local_price': {
-                'amount': '10.00',  
-                'currency': 'USD',
-            },
-            'pricing_type': 'fixed_price',
-            'metadata': {
-                'order_id': '12345',  
-            },
-        }
-        charge = client.charge.create(**charge_data)
-
-        Payment.objects.create(charge_id=charge.id, description=charge.description, amount=charge.local_price.amount)
-
-        payment_url = charge.hosted_url
-
-        return redirect(payment_url)
-    
+        
     return redirect("core:cart")
 
 def pageNotFound(request, exception):

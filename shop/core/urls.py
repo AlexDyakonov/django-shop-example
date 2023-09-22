@@ -16,5 +16,5 @@ urlpatterns = [
     path('update-cart-item', update_cart_item, name="update-cart-item"),
 
     path('checkout/', show_checkout, name="checkout"),
-    path('payment/', create_payment, name="payment")
+    path('payment', create_payment, name="payment")
 ]

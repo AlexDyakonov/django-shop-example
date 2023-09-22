@@ -30,7 +30,7 @@
                     Email-адрес*
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default" value="{{ user.email }}">
+                    <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default" value="{{ user.email }}" id="user-mail">
                 </div>
             </div>
             <div class="order-details">
@@ -113,7 +113,9 @@
                 </div>
                 <div class="bottom-btns">
                     <button class="create-order-btn" id="to-cart-button">Корзина</button> 
-                    <form action="post" action="/payment">
+                    <form method="post" action="/payment">
+                        {% csrf_token %}
+
                         <button class="create-order-btn" id="to-payment-button" type="submit">
                             Подтвердить
                         </button>
@@ -146,6 +148,14 @@
 
 {% block script %}
 <script src="{% static './assets/js/checkout.js' %}"></script>
+
+<script>
+    var redirectButton = document.getElementById('to-cart-button');
+  
+  redirectButton.addEventListener('click', function() {
+    window.location.href = '{% url 'core:cart' %}';
+  });
+</script>
 
 <script>
   var is_authenticated = {% if is_authenticated %}true{% else %}false{% endif %};
