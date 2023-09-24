@@ -50,7 +50,7 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                messages.success(request, "Вы уже вошли в аккаунт!")
+                messages.success(request, "Вы вошли в аккаунт!")
                 return redirect("core:home")
             else:
                 messages.warning(request, "Данный пользователь не существует, зарегестрируйтесь.")

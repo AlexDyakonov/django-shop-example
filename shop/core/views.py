@@ -5,6 +5,11 @@ from django.contrib import messages
 from django.conf import settings
 from coinbase_commerce.client import Client
 from core.tasks import delete_payment
+from coinbase_commerce.error import SignatureVerificationError, WebhookInvalidPayload
+from coinbase_commerce.webhook import Webhook
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.urls import reverse
 
 from core.models import Product, Category, Cart, CartItem, Payment, Order
 import os
@@ -17,6 +22,12 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 num_of_products = int(os.getenv("NUMBER_OF_PRODUCTS_ON_MAIN_PAGE"))
+
+def exit_if_not_logged_in(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Вам необходимо войти в аккаунт.")
+        return True
+    return False
 
 # Create your views here.
 
@@ -76,6 +87,9 @@ def show_item(request, pid):
 
 @require_POST
 def add_to_cart(request):
+    if exit_if_not_logged_in(request):
+        return redirect("core:home")
+    
     try:
         if request.method == 'POST':
             product_id = request.POST.get('id')
@@ -116,6 +130,9 @@ def add_to_cart(request):
 
 @require_POST
 def remove_from_cart(request):
+    if exit_if_not_logged_in(request):
+        return redirect("core:home")
+    
     try:
         if request.method == 'POST':
             product_id = request.POST.get('id')
@@ -142,9 +159,9 @@ def remove_from_cart(request):
     return JsonResponse({'error': 'Invalid request method'})
 
 def show_cart(request):
-    if not request.user.is_authenticated:
-        messages.warning(request, "Вам необходимо войти в аккаунт.")
+    if exit_if_not_logged_in(request):
         return redirect("core:home")
+    
     is_authenticated = request.user.is_authenticated
     
     cart_tuple = Cart.objects.get_or_create(user=request.user)
@@ -164,8 +181,7 @@ def show_cart(request):
     return render(request, 'core/cart.html', content)
 
 def update_cart_item(request):
-    if not request.user.is_authenticated:
-        messages.warning(request, "Вам необходимо войти в аккаунт.")
+    if exit_if_not_logged_in(request):
         return redirect("core:home")
     
     if request.method == 'POST':
@@ -187,6 +203,9 @@ def update_cart_item(request):
         return JsonResponse({'success': False})
     
 def create_order(request):
+    if exit_if_not_logged_in(request):
+        return redirect("core:home")
+
     if request.method == 'POST':
         user = request.user
         cart, created = Cart.objects.get_or_create(user=user)
@@ -209,8 +228,7 @@ def create_order(request):
     return redirect('core:cart')
 
 def show_checkout(request):
-    if not request.user.is_authenticated:
-        messages.warning(request, "Вам необходимо войти в аккаунт.")
+    if exit_if_not_logged_in(request):
         return redirect("core:home")
     
     cart_tuple = Cart.objects.get_or_create(user=request.user)
@@ -230,7 +248,30 @@ def show_checkout(request):
     }
     return render(request, 'core/checkout.html', content)
 
+def success_view(request):
+    if exit_if_not_logged_in(request):
+        return redirect("core:home")
+    content = {
+        'title': 'Успешно!',
+        'categories': categories,
+    }
+    return render(request, 'core/success.html', content)
+
+
+def cancel_view(request):
+    if exit_if_not_logged_in(request):
+        return redirect("core:home")
+    content = {
+        'title': 'Отмена',
+        'categories': categories,
+    }
+    return render(request, 'core/cancel.html', content)
+
+
 def create_payment(request):
+    if exit_if_not_logged_in(request):
+        return redirect("core:home")
+    
     if request.method == 'POST':
         api_key = settings.COINBASE_API_KEY
 
@@ -253,18 +294,43 @@ def create_payment(request):
                 "currency": "USD"  
             },
             "pricing_type": "fixed_price", 
+            'redirect_url': request.build_absolute_uri(reverse('core:payments-success')),
+            'cancel_url': request.build_absolute_uri(reverse('core:payments-cancel')),
             "metadata": {
-                "order_id": payment[0].charge_id
+                "order_id": payment[0].charge_id,
+                "user_mail": request.user.email
             }
         }   
 
         charge = client.charge.create(**charge_data)
 
-
-
         return redirect(charge.hosted_url)
 
     return redirect("core:cart")
+
+@csrf_exempt
+@require_http_methods(['POST'])
+def coinbase_webhook(request):
+    logger = logging.getLogger(__name__)
+
+    request_data = request.body.decode('utf-8')
+    request_sig = request.headers.get('X-CC-Webhook-Signature', None)
+    webhook_secret = settings.COINBASE_WEBHOOK_SECRET
+
+    try:
+        event = Webhook.construct_event(request_data, request_sig, webhook_secret)
+
+        # https://commerce.coinbase.com/docs/api/#webhooks
+
+        if event['type'] == 'charge:confirmed':
+            logger.info('Payment confirmed.')
+            
+
+    except (SignatureVerificationError, WebhookInvalidPayload) as e:
+        return HttpResponse(e, status=400)
+
+    logger.info(f'Received event: id={event.id}, type={event.type}')
+    return HttpResponse('ok', status=200)
 
 def pageNotFound(request, exception):
     return render(request, '404.html')

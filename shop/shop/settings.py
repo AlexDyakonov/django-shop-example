@@ -28,12 +28,20 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # Coinbase API
 COINBASE_API_KEY = os.getenv("COINBASE_API_KEY")
+COINBASE_WEBHOOK_SECRET = os.getenv("COINBASE_WEBHOOK_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS=['https://a7cb-213-110-204-228.ngrok-free.app']
+
+CORS_ALLOWED_ORIGINS = [
+    "https://a7cb-213-110-204-228.ngrok-free.app",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 

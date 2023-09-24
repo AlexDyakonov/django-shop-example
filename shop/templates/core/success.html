@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/result.css' %}?v={{ random_number }}"> 
+{% endblock %}
+
+{% block content %}
+<div class="section-result">
+  <div class="container-result">
+    <div class="result-header-text">Платеж успешен</div>
+    <a href="{% url 'core:home' %}"> К товарам </a>
+  </div>
+</div>
+{% endblock %}
