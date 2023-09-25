@@ -7,7 +7,7 @@ from coinbase_commerce.client import Client
 from core.tasks import delete_payment
 from coinbase_commerce.error import SignatureVerificationError, WebhookInvalidPayload
 from coinbase_commerce.webhook import Webhook
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
 
@@ -29,7 +29,6 @@ def exit_if_not_logged_in(request):
         return True
     return False
 
-# Create your views here.
 
 categories = Category.objects.all()
 
@@ -208,20 +207,14 @@ def create_order(request):
 
     if request.method == 'POST':
         user = request.user
+
         cart, created = Cart.objects.get_or_create(user=user)
 
-        try:
-            order = Order.objects.get(cart=cart)
-        except Order.DoesNotExist:
-            order = None
-        
-        if order:
-            order.delete()
+        order = Order.objects.get_or_create(cart=cart, payment_status = 'pending')
         
         # Создаем новый заказ
-        order = Order.objects.create(cart=cart)
-        order.total = cart.total_price()
-        order.save()      
+        order[0].total = cart.total_price()
+        order[0].save()      
 
         return redirect('core:checkout')
 
@@ -277,17 +270,18 @@ def create_payment(request):
 
         user = request.user
         cart = get_object_or_404(Cart, user=user)
-        order =get_object_or_404(Order, cart=cart)
-        
+        order_tuple = Order.objects.get_or_create(Order, cart=cart, payment_status='pending')
+        order = order_tuple[0]
+
         total = cart.total_price()
 
         payment = Payment.objects.get_or_create(order=order, description=user.email)
-# TODO научиться удалять платеж спустя время
+        # TODO научиться удалять платеж спустя время
         # delete_payment.apply_async(args=[payment[0].charge_id], countdown=3600)
 
         client = Client(api_key)
         charge_data = {
-            "name": "Заказ #" + str(order.pk), 
+            "name": "Заказ #" + str(order.oid).replace("order", ""), 
             "description": "Оплата заказа на сайте SiteName",
             "local_price": {
                 "amount": float(total),
@@ -297,7 +291,7 @@ def create_payment(request):
             'redirect_url': request.build_absolute_uri(reverse('core:payments-success')),
             'cancel_url': request.build_absolute_uri(reverse('core:payments-cancel')),
             "metadata": {
-                "order_id": payment[0].charge_id,
+                "order_id": order.pk,
                 "user_mail": request.user.email
             }
         }   
@@ -308,6 +302,7 @@ def create_payment(request):
 
     return redirect("core:cart")
 
+@ensure_csrf_cookie
 @csrf_exempt
 @require_http_methods(['POST'])
 def coinbase_webhook(request):
@@ -322,8 +317,25 @@ def coinbase_webhook(request):
 
         # https://commerce.coinbase.com/docs/api/#webhooks
 
+        if event['type'] == 'charge:failed':
+            logger.info('Payment failed.')
+            order_id = event['data']['metadata']['order_id']
+
+            order = Order.objects.get(pk=order_id)
+            order.payment_status = 'failed'
+            order.save()
+
         if event['type'] == 'charge:confirmed':
             logger.info('Payment confirmed.')
+            payment_id = event['data']['metadata']['payment_id']
+            payment = Payment.objects.get(pk=payment_id)
+
+            order = payment.order
+            order.payment_status = 'paid'
+            order.save()
+
+            CartItem.objects.filter(cart=order.cart).get().delete()
+
             
 
     except (SignatureVerificationError, WebhookInvalidPayload) as e:

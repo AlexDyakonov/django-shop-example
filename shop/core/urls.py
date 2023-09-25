@@ -19,7 +19,7 @@ urlpatterns = [
     path('checkout/', show_checkout, name="checkout"),
     path('payment', create_payment, name="payment"),
 
-    path('webhook/', coinbase_webhook),
+    path('coinbase-webhook', coinbase_webhook, name='coinbase-webhook'),
     path('success/', success_view, name='payments-success'),
     path('cancel/', cancel_view, name='payments-cancel'),
 ]
