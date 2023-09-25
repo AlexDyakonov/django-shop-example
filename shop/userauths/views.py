@@ -10,6 +10,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 import json
 from django.http import JsonResponse
+from email_utils.email_utils import send_password_change_mail
 
 # User = settings.AUTH_USER_MODEL
 categories = Category.objects.all()
@@ -99,8 +100,7 @@ def my_account(request):
                 context["msz"] = "Пароль успешно изменен"
                 user = User.objects.get(username=username)
                 login(request,user)
-                send_password_change_mail()
-
+                send_password_change_mail(user)
             else:
                 context["msz"] = "Текущий пароль введен неправильно"
                 context["col"] = "alert-danger"

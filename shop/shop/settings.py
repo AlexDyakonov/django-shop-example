@@ -37,10 +37,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS=['https://2400-213-110-204-228.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS=['*']
 
 CORS_ALLOWED_ORIGINS = [
-    "https://2400-213-110-204-228.ngrok-free.app",
+    "*",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
