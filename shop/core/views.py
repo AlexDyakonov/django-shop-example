@@ -12,6 +12,9 @@ from django.views.decorators.http import require_http_methods
 from django.urls import reverse
 
 from core.models import Product, Category, Cart, CartItem, Payment, Order
+
+from email_utils.email_utils import send_order_confirmation_email, send_create_order_mail, send_cancel_order_mail
+
 import os
 from dotenv import load_dotenv
 
@@ -292,7 +295,8 @@ def create_payment(request):
             'cancel_url': request.build_absolute_uri(reverse('core:payments-cancel')),
             'metadata': {
                 "order_id": order.pk,
-                "user_mail": request.user.email
+                "user_mail": request.user.email,
+                "order_name": str(order.oid).replace("order", ""),
             }
         }   
 
@@ -317,6 +321,12 @@ def coinbase_webhook(request):
 
         # https://commerce.coinbase.com/docs/api/#webhooks
 
+        if event['type'] == 'charge:created':
+            order_id = event['data']['metadata']['order_id']
+            payment_url = event['data']['hosted_url']
+            order = Order.objects.get(pk=order_id)
+            send_create_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""), order_amount=order.total, payment_link=payment_url)
+
         if event['type'] == 'charge:failed':
             logger.info('Payment failed.')
             order_id = event['data']['metadata']['order_id']
@@ -325,17 +335,18 @@ def coinbase_webhook(request):
             order.payment_status = 'failed'
             order.save()
 
+            send_cancel_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""))
+
         if event['type'] == 'charge:confirmed':
             logger.info('Payment confirmed.')
-            payment_id = event['data']['metadata']['payment_id']
-            payment = Payment.objects.get(pk=payment_id)
+            order_id = event['data']['metadata']['order_id']
 
-            order = payment.order
+            order = Order.objects.get(pk=order_id)
             order.payment_status = 'paid'
             order.save()
 
             CartItem.objects.filter(cart=order.cart).get().delete()
-
+            send_order_confirmation_email(user=order.cart.user, order_id=str(order.oid).replace("order", ""), amount=order.total, order_date=order.created_at)
             
 
     except (SignatureVerificationError, WebhookInvalidPayload) as e:

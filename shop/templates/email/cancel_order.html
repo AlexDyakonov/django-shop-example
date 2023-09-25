@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отмена оплаты заказа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Отмена оплаты заказа</h1>
+        <p>Уважаемый/ая {{ user.username }},</p>
+        <p>Мы сожалеем сообщить вам, что оплата для вашего заказа #{{ order_id }} была отменена.</p>
+        <p>Если у вас возникли какие-либо вопросы или проблемы, пожалуйста, свяжитесь с нашей службой поддержки для получения дополнительной информации.</p>
+        <p>С наилучшими пожеланиями,</p>
+        <p>Ваша команда сайта</p>
+    </div>
+</body>
+</html>

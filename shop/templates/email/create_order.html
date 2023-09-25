@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание заказа: ожидается оплата</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .payment-info {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Создание заказа: ожидается оплата</h1>
+        <p>Уважаемый/ая {{ user.username }},</p>
+        <p>Ваш заказ #{{ order_id }} успешно создан, но оплата еще не была получена.</p>
+        <p>Сумма заказа: ${{ order_amount }}</p>
+        <p>Пожалуйста, следуйте инструкциям ниже для оплаты вашего заказа:</p>
+        <div class="payment-info">
+            <p>1. Перейдите на нашу страницу оплаты по <a href="{{ payment_link }}">ссылке для оплаты</a>.</p>
+            <p>2. Выберите удобный способ оплаты и следуйте инструкциям на странице оплаты.</p>
+            <p>3. После успешной оплаты ваш заказ будет обработан.</p>
+        </div>
+        <p>Если у вас есть вопросы или проблемы с оплатой, пожалуйста, свяжитесь с нашей службой поддержки.</p>
+        <p>С наилучшими пожеланиями,</p>
+        <p>Ваша команда сайта</p>
+    </div>
+</body>
+</html>

@@ -33,15 +33,19 @@ COINBASE_WEBHOOK_SECRET = os.getenv("COINBASE_WEBHOOK_SECRET")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Hosts and origins
+
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS=['https://cf03-213-110-204-228.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS=['*']
 
 CORS_ALLOWED_ORIGINS = [
-    "https://cf03-213-110-204-228.ngrok-free.app",
+    "*",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -58,6 +62,7 @@ INSTALLED_APPS = [
 
     'core',
     'userauths',
+    'email_utils',
 ]
 
 MIDDLEWARE = [
@@ -69,8 +74,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'shop.urls'
 
@@ -150,6 +153,17 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# Email
+# For Proton https://www.getmailbird.com/setup/ru/access-protonmail-com-via-imap-smtp
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru' #os.getenv("EMAIL_HOST")
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = 587
+EMAIL_HOST_USER ='smtp-mail-for-test@mail.ru' #os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD ='iGhKXqFnmeqJxTsH5Vgc' #os.getenv("EMAIL_HOST_PASSWORD")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

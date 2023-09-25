@@ -5,10 +5,10 @@ from django.contrib import messages
 from django.conf import settings
 from userauths.models import User
 from core.models import Product, Category, Cart, CartItem, Order
+from email_utils.email_utils import send_registration_email
 
 # User = settings.AUTH_USER_MODEL
 categories = Category.objects.all()
-
 
 def register_view(request):
 
@@ -23,6 +23,9 @@ def register_view(request):
                                     password=form.cleaned_data['password1']
                                     )
             login(request, new_user)
+
+            user = request.user
+            send_registration_email(user=user)
             return redirect("core:home")
         
     else:
