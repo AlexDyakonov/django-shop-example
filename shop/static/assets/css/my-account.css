@@ -16,6 +16,8 @@
     background: #dadada;
     padding: 10px;
     border-radius: 6px;
+    width: 60%;
+
 }
 
 .account-header{
@@ -30,6 +32,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
 }
 
 .profile-img{
@@ -43,6 +46,7 @@
     font-weight: 500;
     font-size: 1em;
     margin: 0 50px;
+    width: 100%;
 }
 
 .account-data{
@@ -81,7 +85,6 @@
     background: linear-gradient(90deg, rgba(0,82,255,1) 0%, rgba(0,212,255,1) 100%);;
     text-decoration: none;
     padding: 10px 40px;
-    border-radius: 10px;
     background-size: 200%;
     transition: .5s;
     border: none;

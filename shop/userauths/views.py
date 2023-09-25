@@ -6,6 +6,10 @@ from django.conf import settings
 from userauths.models import User
 from core.models import Product, Category, Cart, CartItem, Order
 from email_utils.email_utils import send_registration_email
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+import json
+from django.http import JsonResponse
 
 # User = settings.AUTH_USER_MODEL
 categories = Category.objects.all()
@@ -73,14 +77,35 @@ def logout_view(request):
     return redirect("userauths:sign-in")
 
 def my_account(request):
-
-    if request.user.is_authenticated:
-        context = {
+    context = {
            "username" : request.user.username,
            "email" : request.user.email,
            "categories" : categories,
-        }
+    }
 
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            current = request.POST["cpwd"]
+            new_pas = request.POST["npwd"]
+
+            user = User.objects.get(id=request.user.id)
+            username = user.username
+
+            check = user.check_password(current)
+
+            if check==True:
+                user.set_password(new_pas)
+                user.save()
+                context["msz"] = "Пароль успешно изменен"
+                user = User.objects.get(username=username)
+                login(request,user)
+                send_password_change_mail()
+
+            else:
+                context["msz"] = "Текущий пароль введен неправильно"
+                context["col"] = "alert-danger"
+
+            return render(request, "userauths/my-account.html", context)
         return render(request, "userauths/my-account.html", context)
     else:
         messages.warning(request, "Необходимо войти в аккаунт.")

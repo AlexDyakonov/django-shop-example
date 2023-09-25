@@ -68,8 +68,8 @@
                   </div>
                 </td> 
                 <td>
-                  <div class="item-info" id="total-item-{{ cart_item.id }}">
-                    {{ cart_item.total_price }}$  
+                  <div class="item-info">
+                    <span id="total-item-{{ cart_item.id }}">{{ cart_item.total_price }}</span> <span>$</span>  
                   </div>
                 </td>
               </tr>
@@ -81,11 +81,11 @@
             <table>
               <tr>
                 <td>Подытог</td>
-                <td id="pretotal-price">{{cart.total_price}}</td>
+                <td> <span id="pretotal-price">{{cart.total_price}}</span> <span>$</span> </td>
               </tr>
               <tr>
                 <td>Итого</td>
-                <td id="total-price">{{cart.total_price}}</td>
+                <td> <span id="total-price">{{cart.total_price}}</span> <span>$</span> </td>
               </tr>
               <tr>
                 <td colspan="2">

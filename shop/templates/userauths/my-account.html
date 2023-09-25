@@ -32,20 +32,26 @@
                     </div>
 
                     <div class="passwd">
-                        <form action="">
+                        <form method="post">
+                            {% csrf_token %}
                             <div class="form-group">
-                                <input type="password" value="" placeholder="Старый пароль" id="password" class="password">
+                                <input type="password" id="old_password" class="form-control" name="cpwd" placeholder="Старый пароль" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" value="" placeholder="Новый пароль" id="password" class="password">
+                                <input type="password" class="form-control" name="npwd" id="pas" placeholder="Новый пароль" required onkeyup="check_pass()">
                             </div>
                             <div class="form-group">
-                                <input type="password" value="" placeholder="Подтверждение пароля" id="confirm-password" class="password">
+                                <input type="password" class="form-control" id="cpas" placeholder="Подтверждение пароля" required onkeyup="check_pass()">
                             </div>
-                            <button class="sumbit-btn">Подтвердить</button>
+                            <div>
+                            {% if msz %}
+                                <div class="alert {{col}}">{{msz}}</div>
+                            {% endif %}
+                            </div>
+                            <button type="submit" class="sumbit-btn" id="change_password_button" value="Change Password" id="sbbtn">Подтвердить</button>
+                            
                         </form>
                     </div>
-
                 </div>
             </div>
             
@@ -56,4 +62,23 @@
 
 
 
+{% endblock %}
+
+{% block script %}
+<script>
+    function check_pass(){
+        let p = $("#pas").val();
+        let cp = $("#cpas").val();
+        
+        if(p==cp){
+            $("#pas").css("border","1px solid green");
+            $("#cpas").css("border","1px solid green");
+            $(".sumbit-btn").removeAttr("disabled");
+        }else{
+            $("#pas").css("border","1px solid red");
+            $("#cpas").css("border","1px solid red");
+            $(".sumbit-btn").attr("disabled","disabled");
+        }
+    }
+</script>
 {% endblock %}

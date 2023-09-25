@@ -43,3 +43,13 @@ def send_cancel_order_mail(user, order_id):
     message = 'Сожалеем, оплата для вашего заказа была отменена.'
 
     send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], html_message=html_message)
+
+def send_password_change_mail(user):
+    html_message = render_to_string('email/password_change.html', {
+        'user': user,
+    })
+
+    subject = 'Успешная смена пароля'
+    message = 'Ваш пароль был успешно изменен для аккаунта.'
+
+    send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], html_message=html_message)
