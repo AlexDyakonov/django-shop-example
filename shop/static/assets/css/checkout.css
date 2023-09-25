@@ -77,7 +77,7 @@
 
 .inner-border{
     width: 90%;
-    border-color: #0052ff;
+    border-color: #20bc89;
     border-width: 2px;
     border-style: solid;
     padding: 25px;
@@ -94,7 +94,7 @@ table {
 
 table thead tr{
     color: #fff;
-    background: #0051ff;
+    background: #20bc89;
 }
 
 th, td {
@@ -170,7 +170,11 @@ form {
   text-align: center;
   font-size: 20px;
   color: #fff;
-  background: linear-gradient(90deg, rgba(0,82,255,1) 0%, rgba(0,212,255,1) 100%);;
+  background: rgb(32,188,137);
+  background: -moz-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+  background: linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20bc89",endColorstr="#526db2",GradientType=1); 
   text-decoration: none;
   width: 170px;
   height: 40px;

@@ -1,5 +1,5 @@
 .section-1{
-    background: #0052ff;
+    background: #20bc89;
     display: flex;
     justify-content: center;
   }
@@ -26,7 +26,7 @@
   }
   
   .decoration-element{
-      background-color: #0052ff;
+      background-color: #20bc89;
       width: auto;
       height: 100px;
       clip-path: polygon(0 0, 100% 0, 0 100%);
@@ -121,14 +121,14 @@
   }
   
   .item-header{
-    color: #0052ff;
+    color: #1736c5;
     font-weight: 600;
     font-style: normal;
     width: 150px;
   }
   
   .item-header:hover {
-    color: #003ab7;
+    color: #455ed1;
     cursor: pointer;
   }
   
@@ -141,16 +141,22 @@
   .view-all-btn {
     font-size: 20px;
     color: #fff;
-    background: linear-gradient(90deg, rgba(0,82,255,1) 0%, rgba(0,212,255,1) 100%);;
+    background: rgb(32,188,137);
+    background: -moz-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20bc89",endColorstr="#526db2",GradientType=1); 
     text-decoration: none;
     padding: 10px 40px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-size: 200%;
     transition: .5s;
     border: none;
     display: inline-block;
+    margin-top: 10px;
   }
   
   .view-all-btn:hover {
+    color: white;
     background-position: right;
   }

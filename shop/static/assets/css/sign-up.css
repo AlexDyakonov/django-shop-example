@@ -16,7 +16,7 @@
     color: white;
     width: 390px;
     height: auto;
-    background: linear-gradient(135deg, rgba(92,145,255,1) 20%, rgba(1,173,207,1) 100%);
+    background: #20bc89;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -53,9 +53,9 @@
 .submit-btn{
     color: white;
     font-weight: 600;
-    background: linear-gradient(45deg, #3578ff 10%,  #000066 90%);
+    background: #1d3853;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 5px;
     background-size: 200%;
     transition: .5s;
     border: none;

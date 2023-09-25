@@ -21,5 +21,3 @@ document.addEventListener("DOMContentLoaded", function() {
     const comissionValue = selectedOption.value;
     paymentComissionElement.textContent = comissionValue;
 });
-
-// to payment

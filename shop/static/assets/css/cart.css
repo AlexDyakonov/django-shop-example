@@ -36,7 +36,11 @@
     text-decoration: none;
     font-size: 20px;
     color: #fff;
-    background: linear-gradient(90deg, rgba(0,82,255,1) 0%, rgba(0,212,255,1) 100%);;
+    background: rgb(32,188,137);
+    background: -moz-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20bc89",endColorstr="#526db2",GradientType=1); 
     text-decoration: none;
     width: 350px;
     height: auto;
@@ -75,7 +79,7 @@ th{
     text-align: left;
     padding: 5px;
     color: #fff;
-    background: #0052ff;
+    background: #20bc89;
     font-weight: 600;
 }
 td{
@@ -91,6 +95,12 @@ td{
 
 .item-info a{
     text-decoration: none;
+    color: #1736c5;
+}
+
+.item-info a:hover{
+    color: #455ed1;
+    cursor: pointer;
 }
 
 .wrapper{
@@ -104,7 +114,7 @@ td{
 }
 
 .total-container table{
-    border-top: 3px solid #0052ff;
+    border-top: 3px solid #20bc89;
     width: 100%;
     max-width: 350px;
 }
@@ -120,7 +130,11 @@ th:last-child{
     text-align: center;
     font-size: 20px;
     color: #fff;
-    background: linear-gradient(90deg, rgba(0,82,255,1) 0%, rgba(0,212,255,1) 100%);;
+    background: rgb(32,188,137);
+    background: -moz-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20bc89",endColorstr="#526db2",GradientType=1); 
     text-decoration: none;
     width: 100%;
     height: 40px;

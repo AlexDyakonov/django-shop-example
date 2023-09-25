@@ -69,7 +69,11 @@
 
 .to-cart-btn{
     color: #fff;
-    background: #0052ff;
+    background: rgb(32,188,137);
+    background: -moz-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    background: linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20bc89",endColorstr="#526db2",GradientType=1);
     text-decoration: none;
     padding: 15px 43px;
     background-size: 200%;

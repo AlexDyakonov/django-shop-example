@@ -106,11 +106,11 @@
                             <div>
                                 <select id="soflow" name="countries" placeholder="Выберите вариант оплаты" required>
                                     <option value="" disabled selected>Выберите вариант оплаты</option>
-                                    <option value="1.00">Любая криптовалюта</option>
+                                    <option value="1.00">Криптовалюта</option>
                                 </select>
                             </div>
                             <div class="bottom-btns">
-                                <button class="create-order-btn" id="to-cart-button">Корзина</button> 
+                                <button class="create-order-btn" id="to-cart-button" type="button">Корзина</button> 
                                 {% csrf_token %}
                                 <button class="create-order-btn" id="to-payment-button" type="submit">
                                     Подтвердить
