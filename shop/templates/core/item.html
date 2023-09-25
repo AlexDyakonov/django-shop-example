@@ -113,7 +113,7 @@
 <script>
   var is_authenticated = {% if is_authenticated %}true{% else %}false{% endif %};
 </script>
-<script src="{% static './assets/js/main.js' %}"></script>
-<script src="{% static './assets/js/functions.js' %}"></script>
+<script src="{% static './assets/js/main.js' %}?<?=$cur_time;?>"></script>
+<script src="{% static './assets/js/functions.js' %}?<?=$cur_time;?>"></script>
 
 {% endblock %}

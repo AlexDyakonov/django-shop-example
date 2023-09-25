@@ -290,7 +290,7 @@ def create_payment(request):
             "pricing_type": "fixed_price", 
             'redirect_url': request.build_absolute_uri(reverse('core:payments-success')),
             'cancel_url': request.build_absolute_uri(reverse('core:payments-cancel')),
-            "metadata": {
+            'metadata': {
                 "order_id": order.pk,
                 "user_mail": request.user.email
             }

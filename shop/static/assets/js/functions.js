@@ -63,11 +63,15 @@ $(".to-cart-btn").on("click", function(event){
 
     if (is_authenticated) {
         var numText = document.querySelector('.num').textContent;
+
         var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
     
         let product_id = $(".product-id").val();
         let product_country = $("#soflow").val();
         let quantity = parseInt(numText);
+        
+        quantity = quantity == 0 ? 1 : quantity;
+
         let product_price = $(".product-price").val();
         let this_val = $(this)
         

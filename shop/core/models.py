@@ -5,6 +5,7 @@ from shortuuid.django_fields import ShortUUIDField
 from userauths.models import User
 from django.utils.html import mark_safe
 from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator 
 
 STATUS_CHOICE = {
     ("process", "Processing"),
@@ -97,8 +98,13 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
     country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, default="1")
     image = models.ImageField(upload_to=user_directiory_path, null=False, default="product.png")    
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     price = models.DecimalField(max_digits=10, decimal_places=2) 
+
+    def clean(self):
+        super().clean()
+        if self.quantity < 1:  
+            self.quantity = 1  
 
     def cart_item_image(self):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
