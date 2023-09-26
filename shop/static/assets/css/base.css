@@ -74,6 +74,76 @@ header a{
   top: 8px;
 }
 
+.dropdown-language{
+  position: absolute;
+  left: 120px;
+  top: 8px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 600;
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  background: transparent;
+}
+
+
+.selected-option {
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+  display: block;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #20bc89;
+  display: none; 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.options li {
+  padding: 0;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.options li:hover {
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.options li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.options li a:hover {
+  color: white;
+  background: #20bc89;
+}
+
+.custom-select.active .options {
+  display: block;
+}
+
+
+.language-form {
+  display: none; 
+}
+
 ul.custom-ul {
   list-style: none;
   background: #20bc89;
