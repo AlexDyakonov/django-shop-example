@@ -1,13 +1,14 @@
 from django.contrib import admin
 from core.models import Product, Category, Country, Cart, CartItem, Order, Payment
+from modeltranslation.admin import TranslationAdmin
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(TranslationAdmin):
     list_display = ['user', 'title', 'category','product_image', 'price', 'product_status']
 
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslationAdmin):
     list_display = ['title']
 
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(TranslationAdmin):
     list_display = ['title']
 
 class CartAdmin(admin.ModelAdmin):

@@ -1,15 +1,15 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import Category, Product, Country
+from core.models import Category, Product, Country
 
 
 @register(Category)
 class CategoryTranslationOptions(TranslationOptions):
-    fields = ('title')
+    fields = ('title',)
 
 @register(Country)
 class CountryTranslationOptions(TranslationOptions):
-    fields = ('title')
+    fields = ('title',)
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'description')
+    fields = ('title', 'description',)

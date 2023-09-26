@@ -8,15 +8,12 @@ from core.views import pageNotFound
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('user/', include('userauths.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 urlpatterns += i18n_patterns(
-    path('pages/', include('django.contrib.flatpages.urls')),
-    path('contact/', include("contact.urls")),
-    path("", include("movies.urls")),
+    path("", include("core.urls")),
+    path('user/', include('userauths.urls')),
 )
 
 

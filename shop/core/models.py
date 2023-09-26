@@ -95,8 +95,8 @@ class Cart(models.Model):
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
-    country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, default="1")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, default="1")
     image = models.ImageField(upload_to=user_directiory_path, null=False, default="product.png")    
     quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     price = models.DecimalField(max_digits=10, decimal_places=2) 
