@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load static i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/css/index.css' %}?v={{ random_number }}"> 
@@ -10,7 +11,7 @@
 <div class="section-1">
   <div class="container-1">
     <div class="crypto-text-top">
-      Верифицированные аккаунты платежных систем и крипто платформ
+      {% trans 'Верифицированные аккаунты платежных систем и крипто платформ' %}
     </div>
     <img class="crypto-image" src="{% static './assets/img/core-img/crypto-2.png' %}" alt="crypto-image">
   </div>
@@ -21,28 +22,28 @@
     <div class="block-content-review">
       <img class="content-review-img" src="{% static './assets/img/core-img/reputation.png' %}" alt="reputation-img">
       <div class="header-review-text">
-        Репутация
+        {% trans 'Репутация' %}
       </div>
       <div class="text-review-content">
-        Наш магазин работает уже несколько лет и имеет хорошую репутацию
+        {% trans 'Наш магазин работает уже несколько лет и имеет хорошую репутацию' %}
       </div>
     </div>
     <div class="block-content-review">
       <img class="content-review-img" src="{% static './assets/img/core-img/trust.png' %}" alt="trust-img">
       <div class="header-review-text">
-        Гарантия
+        {% trans 'Гарантия' %}
       </div>
       <div class="text-review-content">
-        Мы предоставляем гарантию на все продаваемые товары
+        {% trans 'Мы предоставляем гарантию на все продаваемые товары' %}
       </div>
     </div>
     <div class="block-content-review">
       <img class="content-review-img" src="{% static './assets/img/core-img/professional.png' %}" alt="professional-img">
       <div class="header-review-text">
-        Профессионализм
+        {% trans 'Профессионализм' %}
       </div>
       <div class="text-review-content">
-        Наша команда профессионалов всегда готова помочь и ответить на все вопросы
+        {% trans 'Наша команда профессионалов всегда готова помочь и ответить на все вопросы' %}
       </div>
     </div>
   </div>
@@ -72,7 +73,7 @@
           </div>
           {% endfor %}
       
-          <a href="{% url 'core:category' cid=category.cid %}" class="view-all-btn"> Смотреть все </a>
+          <a href="{% url 'core:category' cid=category.cid %}" class="view-all-btn"> {% trans 'Смотреть все' %} </a>
       </div>
       {% endfor %}
 

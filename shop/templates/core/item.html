@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load static i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/css/item.css' %}?v={{ random_number }}"> 
@@ -29,16 +30,16 @@
       </div>
 
       <div class="item-description">
-        Комплект:
+        {% trans 'Комплект' %}:
         <ul class="item-ul">
-          <li class="item-li">Данные для доступа к аккаунту</li>
-          <li class="item-li">Данные для доступа к привязанному E-mail</li>
-          <li class="item-li">Данные для доступа к виртуальному номеру телефона</li>
+          <li class="item-li">{% trans 'Данные для доступа к аккаунту' %}</li>
+          <li class="item-li">{% trans 'Данные для доступа к привязанному E-mail' %}</li>
+          <li class="item-li">{% trans 'Данные для доступа к виртуальному номеру телефона' %}</li>
         </ul>
       </div>
 
       <div class="item-action">
-        Страна аккаунта
+        {% trans 'Страна аккаунта' %}
         
         <form method="post">
           {% csrf_token %}
@@ -56,14 +57,13 @@
           
           </div>
           <div class="qty-btn-fields">
-            <!-- <input type="number" value="1" class="product-qty" width="20" height="20" min="1"> -->
             <div class="wrapper">
               <span class="minus">-</span>
               <span class="num">1</span>
               <span class="plus">+</span>
             </div>
 
-            <button type="submit" class="to-cart-btn"> В корзину </button>
+            <button type="submit" class="to-cart-btn"> {% trans 'В корзину' %} </button>
           </div>
 
         </form>
@@ -77,7 +77,7 @@
 <div class="section-items">
   <div class="container-items">
     <div class="category-header">
-      Похожие товары
+      {% trans 'Похожие товары' %}
     </div>
 
     <div class="show-case">

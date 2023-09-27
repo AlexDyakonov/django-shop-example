@@ -11,15 +11,10 @@ urlpatterns = [
     path('item/<str:pid>/', show_item, name='item'),
 
     path('cart/', show_cart, name="cart"),
-    path('add-to-cart', add_to_cart, name="add-to-cart"),
-    path('remove-from-cart', remove_from_cart, name="remove-from-cart"),
-    path('update-cart-item', update_cart_item, name="update-cart-item"),
-
     path('create-order/', create_order, name='create-order'),
     path('checkout/', show_checkout, name="checkout"),
     path('payment', create_payment, name="payment"),
 
-    path('coinbase-webhook', coinbase_webhook, name='coinbase-webhook'),
     path('success/', success_view, name='payments-success'),
     path('cancel/', cancel_view, name='payments-cancel'),
 ]

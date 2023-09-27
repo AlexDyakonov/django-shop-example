@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load static i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/css/dropdown-item.css' %}?v={{ random_number }}">
@@ -16,7 +17,7 @@
       {% if cart_items_exist %}
 
       <div class="checkout-header">
-        Информация о заказе
+        {% trans 'Информация о заказе' %}
       </div>
 
       <div class="checkout-content">
@@ -24,11 +25,11 @@
             <div class="decor-line"></div>
 
             <div class="order-header">
-                Детали заказа
+                {% trans 'Детали заказа' %}
             </div>
             <div class="order-details">
                 <div>
-                    Email-адрес*
+                    {% trans 'Email-адрес*' %}
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default" value="{{ user.email }}" id="user-mail">
@@ -36,7 +37,7 @@
             </div>
             <div class="order-details">
                 <div>
-                    Примечание к заказу (необязательно)
+                    {% trans 'Примечание к заказу (необязательно)' %}
                 </div>
                 <div class="input-group">
                     <textarea class="form-control" id="text-area-detail" placeholder="Примечение к вашему заказу"></textarea>
@@ -48,17 +49,17 @@
             <div class="inner-border">
 
                 <div class="order-header">
-                    Ваш заказ
+                    {% trans 'Ваш заказ' %}
                 </div>
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
                                 <th>
-                                    Товар
+                                    {% trans 'Товар' %}
                                 </th>
                                 <th>
-                                    Подытог
+                                    {% trans 'Подытог' %}
                                 </th>
                             </tr>
                         </thead>
@@ -83,7 +84,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th> Итого </th>
+                                <th> {% trans 'Итого' %} </th>
                                 <th> <span id="order-total"> {{cart.total_price}} </span>$</th>
                             </tr>
                         </tfoot>
@@ -94,26 +95,26 @@
                         <div>
                             <div class="crypto-text">
                                 <div class="crypto-header-text">
-                                    Оплата криптовалютой
+                                    {% trans 'Оплата криптовалютой' %}
                                 </div>
                                 <div>
                                     <small>
-                                        Для некоторых криптовалют включен сервисный сбор. <br>
-                                        Его размер напрямую зависит от комиссии блокчейна.
+                                        {% trans 'Для некоторых криптовалют включен сервисный сбор.' %} <br>
+                                        {% trans 'Его размер напрямую зависит от комиссии блокчейна.' %}
                                     </small>
                                 </div>                        
                             </div>
                             <div>
-                                <select id="soflow" name="countries" placeholder="Выберите вариант оплаты" required>
-                                    <option value="" disabled selected>Выберите вариант оплаты</option>
-                                    <option value="1.00">Криптовалюта</option>
+                                <select id="soflow" name="countries" placeholder="{% trans 'Выберите вариант оплаты' %}" required>
+                                    <option value="" disabled selected>{% trans 'Выберите вариант оплаты' %}</option>
+                                    <option value="1.00">{% trans 'Криптовалюта' %}</option>
                                 </select>
                             </div>
                             <div class="bottom-btns">
                                 <button class="create-order-btn" id="to-cart-button" type="button">Корзина</button> 
                                 {% csrf_token %}
                                 <button class="create-order-btn" id="to-payment-button" type="submit">
-                                    Подтвердить
+                                    {% trans 'Подтвердить' %}
                                 </button>
                             </div>
                         </div>

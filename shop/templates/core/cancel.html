@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load static i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/css/result.css' %}?v={{ random_number }}"> 
@@ -8,8 +9,8 @@
 {% block content %}
 <div class="section-result">
   <div class="container-result">
-    <div class="result-header-text">Платеж отменен</div>
-    <a href="{% url 'core:cart' %}"> В корзину</a>
+    <div class="result-header-text"> {% trans 'Платеж отменен' %}</div>
+    <a href="{% url 'core:cart' %}"> {% trans 'В корзину' %}</a>
   </div>
 </div>
 {% endblock %}

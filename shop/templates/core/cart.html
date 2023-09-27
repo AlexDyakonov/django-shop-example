@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load static i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/css/item-qty.css' %}?v={{ random_number }}"> 
@@ -16,7 +17,7 @@
       {% if cart_items_exist %}
 
       <div class="cart-header">
-        Ваша корзина:
+        {% trans 'Ваша корзина:' %}
       </div>
 
       <div class="cart-order">
@@ -26,9 +27,9 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Товар</th>
-                <th>Количество</th>
-                <th>Итого</th>
+                <th>{% trans 'Товар' %}</th>
+                <th>{% trans 'Количество' %}</th>
+                <th>{% trans 'Итого' %}</th>
               </tr>
             </thead>
             <tbody>
@@ -55,7 +56,7 @@
                     <div class="item-info">
                       <p> <a href="{% url 'core:item' pid=cart_item.product.pid %}"> {{ cart_item.product.title }} </a> </p>
                       <small> {{cart_item.country }} </small> <br>
-                      <small>Цена:  {{ cart_item.product.price }}  $</small>
+                      <small> {% trans 'Цена:' %}  {{ cart_item.product.price }}  $</small>
                     </div>
                   </div>
                   
@@ -80,11 +81,11 @@
           <div class="total-container">
             <table>
               <tr>
-                <td>Подытог</td>
+                <td>{% trans 'Подытог' %}</td>
                 <td> <span id="pretotal-price">{{cart.total_price}}</span> <span>$</span> </td>
               </tr>
               <tr>
-                <td>Итого</td>
+                <td>{% trans 'Итого' %}</td>
                 <td> <span id="total-price">{{cart.total_price}}</span> <span>$</span> </td>
               </tr>
               <tr>
@@ -92,7 +93,7 @@
                   <form method="post" action="{% url 'core:create-order' %}">
                     {% csrf_token %}
                     <button class="order-btn" id="to-payment-button" type="submit">
-                      Оформить заказ
+                      {% trans 'Оформить заказ' %}
                     </button>
                 </form>
                 </td>
@@ -106,7 +107,7 @@
       {% else %}
       
       <div class="cart-empty">
-        Ваша корзина пуста
+        {% trans 'Ваша корзина пуста' %}
       </div>
 
       <div class="btn-empty">
