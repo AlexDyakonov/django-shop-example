@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/css/sign-up.css' %}?v={{ random_number }}"> 
@@ -15,7 +15,7 @@
 
             <div>
                 <div class="registration-header">
-                    РЕГИСТРАЦИЯ
+                    {% trans 'РЕГИСТРАЦИЯ' %}
                 </div>
 
                 <div class="line"></div>
@@ -37,11 +37,11 @@
                     </div>
     
                     <div class="btn-container">
-                        <button class="submit-btn" type="submit"> Регистрация </button>
+                        <button class="submit-btn" type="submit"> {% trans 'Регистрация' %} </button>
                     </div>
 
                     <div class="have-acc-text">
-                        Уже есть аккаунт? <a href="{% url 'userauths:sign-in' %}"> Войдите </a> 
+                        {% trans 'Уже есть аккаунт?' %} <a href="{% url 'userauths:sign-in' %}"> {% trans 'Войдите' %} </a> 
                     </div>
                 </form>
 

@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/css/my-account.css' %}?v={{ random_number }}"> 
@@ -12,43 +12,43 @@
     <div class="container-account">
 
         <div class="account-card">
-            <div class="account-header"> ВАШ АККАУНТ </div>
+            <div class="account-header"> {% trans 'ВАШ АККАУНТ' %} </div>
 
             <div class="account-content">
                 <img class="profile-img" src="{% static './assets/img/profile.png' %}" alt="">
             
                 <div class="account-data-content">
                     <div class="account-data">
-                        <div>Логин: </div>
+                        <div>{% trans 'Логин' %}: </div>
                         <div>{{ username }}</div>
                     </div>
                     <div class="account-data">
-                        <div>Email: </div>
+                        <div>{% trans 'Email' %}: </div>
                         <div>{{ email }}</div>
                     </div>
 
                     <div class="account-password">
-                        Для смены пароля:
+                        {% trans 'Для смены пароля' %}:
                     </div>
 
                     <div class="passwd">
                         <form method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <input type="password" id="old_password" class="form-control" name="cpwd" placeholder="Старый пароль" required>
+                                <input type="password" id="old_password" class="form-control" name="cpwd" placeholder="{% trans 'Старый пароль' %}" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="npwd" id="pas" placeholder="Новый пароль" required onkeyup="check_pass()">
+                                <input type="password" class="form-control" name="npwd" id="pas" placeholder="{% trans 'Новый пароль' %}" required onkeyup="check_pass()">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="cpas" placeholder="Подтверждение пароля" required onkeyup="check_pass()">
+                                <input type="password" class="form-control" id="cpas" placeholder="{% trans 'Подтверждение пароля' %}" required onkeyup="check_pass()">
                             </div>
                             <div>
                             {% if msz %}
                                 <div class="alert {{col}}">{{msz}}</div>
                             {% endif %}
                             </div>
-                            <button type="submit" class="sumbit-btn" id="change_password_button" value="Change Password" id="sbbtn">Подтвердить</button>
+                            <button type="submit" class="sumbit-btn" id="change_password_button" value="Change Password" id="sbbtn">{% trans 'Подтвердить' %}</button>
                             
                         </form>
                     </div>

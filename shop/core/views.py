@@ -10,6 +10,7 @@ from coinbase_commerce.webhook import Webhook
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
+from django.utils.translation import gettext as _
 
 from core.models import Product, Category, Cart, CartItem, Payment, Order
 
@@ -28,7 +29,7 @@ num_of_products = int(os.getenv("NUMBER_OF_PRODUCTS_ON_MAIN_PAGE"))
 
 def exit_if_not_logged_in(request):
     if not request.user.is_authenticated:
-        messages.warning(request, "Вам необходимо войти в аккаунт.")
+        messages.warning(request, _("Вам необходимо войти в аккаунт."))
         return True
     return False
 
@@ -36,8 +37,7 @@ def exit_if_not_logged_in(request):
 categories = Category.objects.all()
 
 def index(request):
-    # products = Product.objects.filter(product_status="published")
-    products = Product.objects.all()
+    products = Product.objects.filter(product_status="published")
 
     content = {
         'title': 'CompanyName',
@@ -47,7 +47,7 @@ def index(request):
 
     filtered_products = {}
     for category in categories:
-        category_products = products.filter(category=category)[:num_of_products]  
+        category_products = products.filter(category=category, product_status="published")[:num_of_products]  
         filtered_products[category] = category_products
 
     content['filtered_products'] = filtered_products
@@ -56,7 +56,7 @@ def index(request):
 
 def help(request):
     content = {
-        'title': 'Help',
+        'title': _('ТехПоддержка'),
         "categories" : categories,
     }
     return render(request, 'core/help.html', content)
@@ -76,7 +76,7 @@ def show_category(request, cid):
 def show_item(request, pid):
     is_authenticated = request.user.is_authenticated
     item = get_object_or_404(Product, pid=pid)
-    products = Product.objects.filter(category=item.category)
+    products = Product.objects.filter(category=item.category, product_status="published")
 
     content = {
         'title': item.title,
@@ -117,7 +117,6 @@ def add_to_cart(request):
                     'price': product_price
                 }
             )
-            
 
             if not item_created:
                 cart_item.quantity += quantity
@@ -215,7 +214,6 @@ def create_order(request):
 
         order = Order.objects.get_or_create(cart=cart, payment_status = 'pending')
         
-        # Создаем новый заказ
         order[0].total = cart.total_price()
         order[0].save()      
 
@@ -248,7 +246,7 @@ def success_view(request):
     if exit_if_not_logged_in(request):
         return redirect("core:home")
     content = {
-        'title': 'Успешно!',
+        'title': _('Успешно!'),
         'categories': categories,
     }
     return render(request, 'core/success.html', content)
@@ -258,7 +256,7 @@ def cancel_view(request):
     if exit_if_not_logged_in(request):
         return redirect("core:home")
     content = {
-        'title': 'Отмена',
+        'title': _('Отмена'),
         'categories': categories,
     }
     return render(request, 'core/cancel.html', content)
@@ -282,9 +280,11 @@ def create_payment(request):
         # TODO научиться удалять платеж спустя время
         # delete_payment.apply_async(args=[payment[0].charge_id], countdown=3600)
 
+        order_string = _("Заказ ")
+
         client = Client(api_key)
         charge_data = {
-            "name": "Заказ #" + str(order.oid).replace("order", ""), 
+            "name": order_string + "#" + str(order.oid).replace("order", ""), 
             "description": "Оплата заказа на сайте SiteName",
             "local_price": {
                 "amount": float(total),

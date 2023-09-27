@@ -1,14 +1,14 @@
-# Locales for django site.
-# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Alex Dyakonov shram.monolit@mail.ru, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 10:26+0300\n"
+"POT-Creation-Date: 2023-09-27 19:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,207 +18,539 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\shop\templates\core\base.html:39
+#: .\core\views.py:32
+msgid "Вам необходимо войти в аккаунт."
+msgstr "Log in before."
+
+#: .\core\views.py:59
+#, fuzzy
+#| msgid "Поддержка"
+msgid "ТехПоддержка"
+msgstr "Support"
+
+#: .\core\views.py:249
+msgid "Успешно!"
+msgstr "Successful!"
+
+#: .\core\views.py:259
+msgid "Отмена"
+msgstr "Failed"
+
+#: .\core\views.py:283
+msgid "Заказ "
+msgstr "Order "
+
+#: .\email_utils\email_utils.py:8 .\templates\email\registration_email.html:7
+msgid "Поздравляем с успешной регистрацией"
+msgstr "Congratulations on successful registration!"
+
+#: .\email_utils\email_utils.py:9
+msgid "Добро пожаловать! Ваша почта для входа в аккаунт:"
+msgstr "Добро пожаловать! Ваша почта для входа в аккаунт:"
+
+#: .\email_utils\email_utils.py:19 .\templates\email\order_confirmation.html:7
+#: .\templates\email\order_confirmation.html:37
+msgid "Успешное создание и оплата заказа"
+msgstr "Successful order creation and payment"
+
+#: .\email_utils\email_utils.py:20
+msgid "Спасибо за ваш заказ"
+msgstr "Thank you for your order"
+
+#: .\email_utils\email_utils.py:31
+msgid "Заказ #{} успешно создан: ожидается оплата"
+msgstr "Order #{} has been successfully created: payment pending"
+
+#: .\email_utils\email_utils.py:32
+msgid "Спасибо за ваш заказ. Пожалуйста, выполните оплату по ссылке: {}"
+msgstr "Thank you for your order. Please make the payment using the link: {}"
+
+#: .\email_utils\email_utils.py:42
+msgid "Отмена оплаты заказа #{}"
+msgstr "Cancellation of payment for order #{}"
+
+#: .\email_utils\email_utils.py:43
+msgid "Сожалеем, оплата для вашего заказа была отменена."
+msgstr ""
+"We regret to inform you that the payment for your order has been canceled."
+
+#: .\email_utils\email_utils.py:52 .\templates\email\password_change.html:7
+#: .\templates\email\password_change.html:37
+msgid "Успешная смена пароля"
+msgstr "Successful password change"
+
+#: .\email_utils\email_utils.py:53
+msgid "Ваш пароль был успешно изменен для аккаунта."
+msgstr "Your password has been successfully changed for your account."
+
+#: .\shop\settings.py:145
+msgid "Russian"
+msgstr "Russian"
+
+#: .\shop\settings.py:146
+msgid "English"
+msgstr "English"
+
+#: .\templates\core\base.html:40
 msgid "Язык"
 msgstr "Language"
 
-#: .\shop\templates\core\base.html:95
+#: .\templates\core\base.html:96
 msgid "Поддержка"
 msgstr "Support"
 
-#: .\shop\templates\core\base.html:103
+#: .\templates\core\base.html:104
 msgid "Аккаунт"
 msgstr "Account"
 
-#: .\shop\templates\core\base.html:106
+#: .\templates\core\base.html:107
 msgid "Мой аккаунт"
 msgstr "My Account"
 
-#: .\shop\templates\core\base.html:107
+#: .\templates\core\base.html:108
 msgid "Корзина"
 msgstr "Cart"
 
-#: .\shop\templates\core\base.html:108
+#: .\templates\core\base.html:109
 msgid "Выход"
-msgstr "Logout"
+msgstr "Log Out"
 
-#: .\shop\templates\core\base.html:111
+#: .\templates\core\base.html:112
 msgid "Вход"
-msgstr "Login"
+msgstr "Log in"
 
-#: .\shop\templates\core\cancel.html:12
+#: .\templates\core\cancel.html:11
 msgid "Платеж отменен"
-msgstr "Payment Canceled"
+msgstr "Payment canceled"
 
-#: .\shop\templates\core\cancel.html:13 .\shop\templates\core\item.html:66
+#: .\templates\core\cancel.html:12 .\templates\core\item.html:65
 msgid "В корзину"
 msgstr "To Cart"
 
-#: .\shop\templates\core\cart.html:20
+#: .\templates\core\cart.html:19
 msgid "Ваша корзина:"
 msgstr "Your Cart:"
 
-#: .\shop\templates\core\cart.html:30 .\shop\templates\core\checkout.html:59
+#: .\templates\core\cart.html:29 .\templates\core\checkout.html:58
 msgid "Товар"
-msgstr "Product"
+msgstr "Item"
 
-#: .\shop\templates\core\cart.html:31
+#: .\templates\core\cart.html:30
 msgid "Количество"
 msgstr "Quantity"
 
-#: .\shop\templates\core\cart.html:32 .\shop\templates\core\cart.html:88
-#: .\shop\templates\core\checkout.html:87
+#: .\templates\core\cart.html:31 .\templates\core\cart.html:87
+#: .\templates\core\checkout.html:86
 msgid "Итого"
 msgstr "Total"
 
-#: .\shop\templates\core\cart.html:59
+#: .\templates\core\cart.html:58
 msgid "Цена:"
 msgstr "Price:"
 
-#: .\shop\templates\core\cart.html:84 .\shop\templates\core\checkout.html:62
+#: .\templates\core\cart.html:83 .\templates\core\checkout.html:61
 msgid "Подытог"
 msgstr "Subtotal"
 
-#: .\shop\templates\core\cart.html:96
+#: .\templates\core\cart.html:95
 msgid "Оформить заказ"
-msgstr "Proceed to Checkout"
+msgstr "Checkout"
 
-#: .\shop\templates\core\cart.html:110
+#: .\templates\core\cart.html:109
 msgid "Ваша корзина пуста"
 msgstr "Your cart is empty"
 
-#: .\shop\templates\core\checkout.html:20
+#: .\templates\core\checkout.html:19
 msgid "Информация о заказе"
 msgstr "Order Information"
 
-#: .\shop\templates\core\checkout.html:28
+#: .\templates\core\checkout.html:27
 msgid "Детали заказа"
 msgstr "Order Details"
 
-#: .\shop\templates\core\checkout.html:32
+#: .\templates\core\checkout.html:31
 msgid "Email-адрес*"
 msgstr "Email Address*"
 
-#: .\shop\templates\core\checkout.html:40
+#: .\templates\core\checkout.html:39
 msgid "Примечание к заказу (необязательно)"
-msgstr "Order Note (Optional)"
+msgstr "Order Note (optional)"
 
-#: .\shop\templates\core\checkout.html:52
+#: .\templates\core\checkout.html:51 .\templates\email\create_order.html:45
+#: .\templates\email\order_confirmation.html:40
 msgid "Ваш заказ"
 msgstr "Your Order"
 
-#: .\shop\templates\core\checkout.html:98
+#: .\templates\core\checkout.html:97
 msgid "Оплата криптовалютой"
 msgstr "Cryptocurrency Payment"
 
-#: .\shop\templates\core\checkout.html:102
+#: .\templates\core\checkout.html:101
 msgid "Для некоторых криптовалют включен сервисный сбор."
-msgstr "Service fee is included for some cryptocurrencies."
+msgstr "Service fees may apply for some cryptocurrencies."
 
-#: .\shop\templates\core\checkout.html:103
+#: .\templates\core\checkout.html:102
 msgid "Его размер напрямую зависит от комиссии блокчейна."
-msgstr "Its size depends directly on the blockchain commission."
+msgstr "The fee depends on the blockchain's transaction fee."
 
-#: .\shop\templates\core\checkout.html:108
-#: .\shop\templates\core\checkout.html:109
+#: .\templates\core\checkout.html:107 .\templates\core\checkout.html:108
 msgid "Выберите вариант оплаты"
-msgstr "Choose Payment Method"
+msgstr "Select Payment Method"
 
-#: .\shop\templates\core\checkout.html:110
+#: .\templates\core\checkout.html:109
 msgid "Криптовалюта"
 msgstr "Cryptocurrency"
 
-#: .\shop\templates\core\checkout.html:117
+#: .\templates\core\checkout.html:116 .\templates\userauths\my-account.html:51
 msgid "Подтвердить"
 msgstr "Confirm"
 
-#: .\shop\templates\core\help.html:16
+#: .\templates\core\help.html:15
 msgid "ТЕХНИЧЕСКАЯ ПОДДЕРЖКА"
 msgstr "TECHNICAL SUPPORT"
 
-#: .\shop\templates\core\help.html:19
+#: .\templates\core\help.html:18
 msgid ""
 "Если у Вас возникли вопросы технического или финансового плана, напишите нам "
 "и мы поможем Вам в решении вашего вопроса."
 msgstr ""
-"If you have technical or financial questions, please write to us, and we will help you solve your issue."
+"If you have technical or financial questions, please contact us, and we'll "
+"assist you with your inquiry."
 
-#: .\shop\templates\core\help.html:21
+#: .\templates\core\help.html:20
 msgid ""
 "Мы отвечаем на вопросы в течение 15-60 минут, в зависимости от загрузки "
 "сервиса."
 msgstr ""
-"We respond to questions within 15-60 minutes, depending on the service load."
+"We respond to questions within 15-60 minutes, depending on service load."
 
-#: .\shop\templates\core\help.html:23
+#: .\templates\core\help.html:22
 msgid "Почта для технической поддержки пользователей:"
-msgstr "Email for technical user support:"
+msgstr "Technical support email:"
 
-#: .\shop\templates\core\help.html:26
+#: .\templates\core\help.html:25
 msgid "Режим работы службы поддержки: ежедневно с 10:00 до 22:00 (МСК)"
-msgstr "Support service hours: daily from 10:00 to 22:00 (MSK)"
+msgstr "Support hours: daily from 7:00 to 19:00 (UTC+3)"
 
-#: .\shop\templates\core\index.html:14
+#: .\templates\core\index.html:13
 msgid "Верифицированные аккаунты платежных систем и крипто платформ"
 msgstr "Verified accounts of payment systems and crypto platforms"
 
-#: .\shop\templates\core\index.html:25
+#: .\templates\core\index.html:24
 msgid "Репутация"
 msgstr "Reputation"
 
-#: .\shop\templates\core\index.html:28
+#: .\templates\core\index.html:27
 msgid "Наш магазин работает уже несколько лет и имеет хорошую репутацию"
-msgstr "Our store has been operating for several years and has a good reputation"
+msgstr ""
+"Our store has been operating for several years and has a good reputation"
 
-#: .\shop\templates\core\index.html:34
+#: .\templates\core\index.html:33
 msgid "Гарантия"
 msgstr "Warranty"
 
-#: .\shop\templates\core\index.html:37
+#: .\templates\core\index.html:36
 msgid "Мы предоставляем гарантию на все продаваемые товары"
-msgstr "We provide a warranty for all sold products"
+msgstr "We provide a warranty for all products sold"
 
-#: .\shop\templates\core\index.html:43
+#: .\templates\core\index.html:42
 msgid "Профессионализм"
 msgstr "Professionalism"
 
-#: .\shop\templates\core\index.html:46
+#: .\templates\core\index.html:45
 msgid ""
 "Наша команда профессионалов всегда готова помочь и ответить на все вопросы"
-msgstr "Our team of professionals is always ready to help and answer all questions"
+msgstr ""
+"Our team of professionals is always ready to assist and answer all your "
+"questions"
 
-#: .\shop\templates\core\index.html:76
+#: .\templates\core\index.html:75
 msgid "Смотреть все"
 msgstr "View All"
 
-#: .\shop\templates\core\item.html:33
+#: .\templates\core\item.html:32
 msgid "Комплект"
 msgstr "Kit"
 
-#: .\shop\templates\core\item.html:35
+#: .\templates\core\item.html:34
 msgid "Данные для доступа к аккаунту"
-msgstr "Access Data to the Account"
+msgstr "Account Access Data"
 
-#: .\shop\templates\core\item.html:36
+#: .\templates\core\item.html:35
 msgid "Данные для доступа к привязанному E-mail"
-msgstr "Access Data to the Linked Email"
+msgstr "Access Data for Linked Email"
 
-#: .\shop\templates\core\item.html:37
+#: .\templates\core\item.html:36
 msgid "Данные для доступа к виртуальному номеру телефона"
-msgstr "Access Data to the Virtual Phone Number"
+msgstr "Access Data for Virtual Phone Number"
 
-#: .\shop\templates\core\item.html:42
+#: .\templates\core\item.html:41
 msgid "Страна аккаунта"
 msgstr "Account Country"
 
-#: .\shop\templates\core\item.html:80
+#: .\templates\core\item.html:79
 msgid "Похожие товары"
-msgstr "Similar Products"
+msgstr "Related Products"
 
-#: .\shop\templates\core\success.html:12
+#: .\templates\core\success.html:11
 msgid "Платеж успешен"
 msgstr "Payment Successful"
 
-#: .\shop\templates\core\success.html:13
+#: .\templates\core\success.html:12
 msgid "К товарам"
-msgstr "Back to Products"
+msgstr "To Products"
+
+#: .\templates\email\cancel_order.html:7 .\templates\email\cancel_order.html:37
+msgid "Отмена оплаты заказа"
+msgstr "Payment Canceled"
+
+#: .\templates\email\cancel_order.html:38
+#: .\templates\email\create_order.html:44
+#: .\templates\email\order_confirmation.html:38
+#: .\templates\email\password_change.html:38
+msgid "Уважаемый/ая"
+msgstr "Dear"
+
+#: .\templates\email\cancel_order.html:39
+msgid "Мы сожалеем сообщить вам, что оплата для вашего заказа"
+msgstr "We regret to inform you that the payment for your order"
+
+#: .\templates\email\cancel_order.html:39
+msgid "была отменена."
+msgstr "has been canceled."
+
+#: .\templates\email\cancel_order.html:40
+msgid ""
+"Если у вас возникли какие-либо вопросы или проблемы, пожалуйста, свяжитесь с "
+"нашей службой поддержки для получения дополнительной информации."
+msgstr ""
+"If you have any questions or issues, please contact our support team for "
+"further assistance."
+
+#: .\templates\email\cancel_order.html:41
+#: .\templates\email\create_order.html:54
+#: .\templates\email\order_confirmation.html:45
+#: .\templates\email\password_change.html:43
+#: .\templates\email\registration_email.html:48
+msgid "С наилучшими пожеланиями,"
+msgstr "Best regards,"
+
+#: .\templates\email\cancel_order.html:42
+#: .\templates\email\create_order.html:55
+#: .\templates\email\order_confirmation.html:46
+#: .\templates\email\password_change.html:44
+#: .\templates\email\registration_email.html:49
+msgid "Ваша команда сайта"
+msgstr "Your website team"
+
+#: .\templates\email\create_order.html:7 .\templates\email\create_order.html:43
+msgid "Создание заказа: ожидается оплата"
+msgstr "Order Creation: Payment Pending"
+
+#: .\templates\email\create_order.html:45
+msgid "успешно создан, но оплата еще не была получена."
+msgstr "has been successfully created, but payment has not been received yet."
+
+#: .\templates\email\create_order.html:46
+msgid "Сумма заказа"
+msgstr "Order Amount"
+
+#: .\templates\email\create_order.html:47
+msgid "Пожалуйста, следуйте инструкциям ниже для оплаты вашего заказа:"
+msgstr "Please follow the instructions below to pay for your order:"
+
+#: .\templates\email\create_order.html:49
+msgid "1. Перейдите на нашу страницу оплаты по"
+msgstr "1. Go to our payment page at"
+
+#: .\templates\email\create_order.html:50
+msgid ""
+"2. Выберите удобный способ оплаты и следуйте инструкциям на странице оплаты."
+msgstr ""
+"2. Choose a convenient payment method and follow the instructions on the "
+"payment page."
+
+#: .\templates\email\create_order.html:51
+msgid "3. После успешной оплаты ваш заказ будет обработан."
+msgstr "3. After successful payment, your order will be processed."
+
+#: .\templates\email\create_order.html:53
+msgid ""
+"Если у вас есть вопросы или проблемы с оплатой, пожалуйста, свяжитесь с "
+"нашей службой поддержки."
+msgstr ""
+"If you have any questions or issues with the payment, please contact our "
+"support team."
+
+#: .\templates\email\order_confirmation.html:40
+msgid "успешно создан и оплачен."
+msgstr "has been successfully created and paid for."
+
+#: .\templates\email\order_confirmation.html:41
+msgid "Сумма оплаты"
+msgstr "Payment Amount"
+
+#: .\templates\email\order_confirmation.html:42
+msgid "Дата создания заказа"
+msgstr "Order Creation Date"
+
+#: .\templates\email\order_confirmation.html:43
+msgid "Мы готовы начать обработку вашего заказа. Спасибо за вашу покупку!"
+msgstr ""
+"We are ready to start processing your order. Thank you for your purchase!"
+
+#: .\templates\email\password_change.html:40
+msgid "Мы хотим сообщить вам, что ваш пароль был успешно изменен для аккаунта."
+msgstr ""
+"We want to inform you that your password has been successfully changed for "
+"your account."
+
+#: .\templates\email\password_change.html:41
+msgid ""
+"Если вы не выполняли эту операцию, пожалуйста, свяжитесь с нашей службой "
+"поддержки."
+msgstr ""
+"If you did not perform this operation, please contact our support team."
+
+#: .\templates\email\registration_email.html:42
+msgid "Поздравляем с успешной регистрацией!"
+msgstr "Congratulations on successful registration!"
+
+#: .\templates\email\registration_email.html:43
+msgid "Дорогой"
+msgstr "Dear"
+
+#: .\templates\email\registration_email.html:44
+msgid ""
+"Вы успешно зарегистрировались на нашем сайте. Мы очень рады видеть вас в "
+"нашем сообществе."
+msgstr ""
+"You have successfully registered on our website. We are delighted to have "
+"you in our community."
+
+#: .\templates\email\registration_email.html:46
+msgid "Почта для входа в аккаунт:"
+msgstr "Email for logging into your account:"
+
+#: .\templates\userauths\my-account.html:15
+msgid "ВАШ АККАУНТ"
+msgstr "YOUR ACCOUNT"
+
+#: .\templates\userauths\my-account.html:22
+msgid "Логин"
+msgstr "Username"
+
+#: .\templates\userauths\my-account.html:26
+#: .\templates\userauths\sign-in.html:27 .\userauths\forms.py:9
+msgid "Email"
+msgstr "Email"
+
+#: .\templates\userauths\my-account.html:31
+msgid "Для смены пароля"
+msgstr "To change your password"
+
+#: .\templates\userauths\my-account.html:38
+msgid "Старый пароль"
+msgstr "Old Password"
+
+#: .\templates\userauths\my-account.html:41
+msgid "Новый пароль"
+msgstr "New Password"
+
+#: .\templates\userauths\my-account.html:44
+msgid "Подтверждение пароля"
+msgstr "Password Confirmation"
+
+#: .\templates\userauths\sign-in.html:18
+msgid "ВХОД"
+msgstr "LOG IN"
+
+#: .\templates\userauths\sign-in.html:30
+msgid "Ваш пароль *"
+msgstr "Your Password *"
+
+#: .\templates\userauths\sign-in.html:34
+msgid "Войти"
+msgstr "Log In"
+
+#: .\templates\userauths\sign-in.html:38
+msgid "Нет аккаунта?"
+msgstr "Don't have an account?"
+
+#: .\templates\userauths\sign-in.html:38
+msgid "Создайте!"
+msgstr "Create one!"
+
+#: .\templates\userauths\sign-up.html:18
+msgid "РЕГИСТРАЦИЯ"
+msgstr "REGISTER"
+
+#: .\templates\userauths\sign-up.html:40
+msgid "Регистрация"
+msgstr "Registration"
+
+#: .\templates\userauths\sign-up.html:44
+msgid "Уже есть аккаунт?"
+msgstr "Already have account?"
+
+#: .\templates\userauths\sign-up.html:44
+msgid "Войдите"
+msgstr "Sign in!"
+
+#: .\userauths\forms.py:8
+msgid "Никнейм"
+msgstr "Username"
+
+#: .\userauths\forms.py:10
+#, fuzzy
+#| msgid "Ваш пароль *"
+msgid "Пароль"
+msgstr "Your Password *"
+
+#: .\userauths\forms.py:11
+#, fuzzy
+#| msgid "Подтверждение пароля"
+msgid "Подтвердите пароль"
+msgstr "Password Confirmation"
+
+#: .\userauths\views.py:22
+#, python-brace-format
+msgid "{username}, ваш аккаунт успешно создан."
+msgstr "{username}, your accouct created successfully!"
+
+#: .\userauths\views.py:44
+#, fuzzy
+#| msgid "Мой аккаунт"
+msgid "Вы уже вошли в аккаунт."
+msgstr "My Account"
+
+#: .\userauths\views.py:57
+#, fuzzy
+#| msgid "Мой аккаунт"
+msgid "Вы вошли в аккаунт!"
+msgstr "My Account"
+
+#: .\userauths\views.py:60
+msgid "Данный пользователь не существует, зарегестрируйтесь."
+msgstr "This user does not exist, register."
+
+#: .\userauths\views.py:62
+#, python-brace-format
+msgid "Пользователя с почтой {email} не существует."
+msgstr "Username with mail {email} does not exist."
+
+#: .\userauths\views.py:72
+msgid "Вы успешно вышли из аккаунта."
+msgstr "Logged out!"
+
+#: .\userauths\views.py:96
+msgid "Пароль успешно изменен"
+msgstr "Password successfully changed"
+
+#: .\userauths\views.py:101
+msgid "Текущий пароль введен неправильно"
+msgstr "Current password is not valid."
+
+#: .\userauths\views.py:107
+msgid "Необходимо войти в аккаунт."
+msgstr "Log in before."
