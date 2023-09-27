@@ -7,40 +7,89 @@ from core.models import Category
 from email_utils.email_utils import send_registration_email
 from email_utils.email_utils import send_password_change_mail
 from django.utils.translation import gettext as _
+from django.utils.translation import get_language
+
+
+messages = {
+    'en': {
+        'mail_exist': "A user with this email already exists.",
+        'username_exist': "A user with this username already exists.",
+        'password_mismatch': "Passwords do not match.",
+        'account_created': "Your account has been successfully created, {username}.",
+        'already_logged_in': "You are already logged in.",
+        'user_does_not_exist': "This user does not exist, please register.",
+        'user_email_does_not_exist': "User with email {email} does not exist.",
+        'logged_out': "You have successfully logged out.",
+        'password_changed': "Password successfully changed.",
+        'incorrect_current_password': "Incorrect current password.",
+        'logged_in' : 'Logged in!',
+        "need_log_in": "Log in before action.",
+    },
+    'ru': {
+        'mail_exist': "Пользователь с такой почтой уже существует.",
+        'username_exist': "Пользователь с таким никнеймом уже существует.",
+        'password_mismatch': "Пароли не совпадают.",
+        'account_created': "Аккаунт успешно создан, {username}.",
+        'already_logged_in': "Вы уже вошли в аккаунт.",
+        'user_does_not_exist': "Данный пользователь не существует, зарегистрируйтесь.",
+        'user_email_does_not_exist': "Пользователя с почтой {email} не существует.",
+        'logged_out': "Вы успешно вышли из аккаунта.",
+        'password_changed': "Пароль успешно изменен.",
+        'incorrect_current_password': "Неправильно введен текущий пароль.",
+        'logged_in' : 'Вы успешно вошли!',
+        "need_log_in": "Необходимо войти в аккаунт.",
+    },
+}
+
+def get_message(msg_id):
+    current_language = get_language()
+    if current_language in messages:
+        if msg_id in messages[current_language]:
+            return messages[current_language][msg_id]
+    
+    return "None"
+
 
 # User = settings.AUTH_USER_MODEL
 categories = Category.objects.all()
 
 def register_view(request):
-    if request.method == "POST":
-        form = UserRegisterForm(request.POST or None)
-
-        if form.is_valid():
-            new_user = form.save()
-            username = form.cleaned_data['username']
-            messages.success(request, _(f"{username}, ваш аккаунт успешно создан."))
-            new_user = authenticate(username=form.cleaned_data['email'],
-                                    password=form.cleaned_data['password1']
-                                    )
-            login(request, new_user)
-
-            user = request.user
-            send_registration_email(user=user)
-            return redirect("core:home")
-        
-    else:
-        form = UserRegisterForm()    
-
     context = {
-        'form': form,
         "categories" : categories,
     }
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+
+        if password1 != password2:
+            context["msz"] = get_message('password_mismatch')
+            context["col"] = "alert-danger"
+        else:
+            if User.objects.filter(username=username).exists():
+                context["msz"] = get_message('username_exist')
+                context["col"] = "alert-danger"
+            elif User.objects.filter(email=email).exists():
+                context["msz"] = get_message('mail_exist')
+                context["col"] = "alert-danger"
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password1)
+                messages.success(request, get_message('account_created').format(username=username))
+                new_user = authenticate(username=email,
+                                        password=password1
+                                        )
+                login(request, new_user)
+                user = request.user
+                send_registration_email(user=user)
+                return redirect("core:home")
 
     return render(request, "userauths/sign-up.html", context)
 
 def login_view(request):
     if request.user.is_authenticated:
-        messages.warning(request, _("Вы уже вошли в аккаунт."))
+        messages.warning(request, get_message('already_logged_in'))
         return redirect("core:home")
     
     if request.method == "POST":
@@ -53,12 +102,12 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                messages.success(request, _("Вы вошли в аккаунт!"))
+                messages.success(request, get_message('logged_in'))
                 return redirect("core:home")
             else:
-                messages.warning(request, _( "Данный пользователь не существует, зарегестрируйтесь."))
+                messages.warning(request, get_message('user_does_not_exist'))
         except:
-            messages.warning(request, _(f"Пользователя с почтой {email} не существует."))
+            messages.warning(request, get_message('user_email_does_not_exist').format(email=email))
 
     context = {
         "categories" : categories,
@@ -68,7 +117,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request, _("Вы успешно вышли из аккаунта."))
+    messages.success(request, get_message('logged_out'))
 
     return redirect("userauths:sign-in")
 
@@ -92,16 +141,16 @@ def my_account(request):
             if check==True:
                 user.set_password(new_pas)
                 user.save()
-                context["msz"] = _("Пароль успешно изменен")
+                context["msz"] = get_message('password_changed')
                 user = User.objects.get(username=username)
                 login(request,user)
                 send_password_change_mail(user)
             else:
-                context["msz"] = _("Текущий пароль введен неправильно")
+                context["msz"] = get_message('incorrect_current_password')
                 context["col"] = "alert-danger"
 
             return render(request, "userauths/my-account.html", context)
         return render(request, "userauths/my-account.html", context)
     else:
-        messages.warning(request, _("Необходимо войти в аккаунт."))
+        messages.warning(request, get_message('need_log_in'))
         return redirect("core:home")

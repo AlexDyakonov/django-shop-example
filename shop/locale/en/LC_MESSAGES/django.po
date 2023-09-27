@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 19:17+0300\n"
+"POT-Creation-Date: 2023-09-27 20:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -441,7 +441,8 @@ msgid "Логин"
 msgstr "Username"
 
 #: .\templates\userauths\my-account.html:26
-#: .\templates\userauths\sign-in.html:27 .\userauths\forms.py:9
+#: .\templates\userauths\sign-in.html:27 .\templates\userauths\sign-up.html:30
+#: .\userauths\forms.py:18
 msgid "Email"
 msgstr "Email"
 
@@ -485,6 +486,22 @@ msgstr "Create one!"
 msgid "РЕГИСТРАЦИЯ"
 msgstr "REGISTER"
 
+#: .\templates\userauths\sign-up.html:27 .\userauths\forms.py:14
+msgid "Никнейм"
+msgstr "Никнейм"
+
+#: .\templates\userauths\sign-up.html:33 .\userauths\forms.py:22
+#, fuzzy
+#| msgid "Ваш пароль *"
+msgid "Пароль"
+msgstr "Your Password *"
+
+#: .\templates\userauths\sign-up.html:36
+#, fuzzy
+#| msgid "Подтверждение пароля"
+msgid "Подтверждение"
+msgstr "Password Confirmation"
+
 #: .\templates\userauths\sign-up.html:40
 msgid "Регистрация"
 msgstr "Registration"
@@ -497,60 +514,70 @@ msgstr "Already have account?"
 msgid "Войдите"
 msgstr "Sign in!"
 
-#: .\userauths\forms.py:8
-msgid "Никнейм"
-msgstr "Username"
-
-#: .\userauths\forms.py:10
-#, fuzzy
-#| msgid "Ваш пароль *"
-msgid "Пароль"
-msgstr "Your Password *"
-
-#: .\userauths\forms.py:11
+#: .\userauths\forms.py:26
 #, fuzzy
 #| msgid "Подтверждение пароля"
 msgid "Подтвердите пароль"
 msgstr "Password Confirmation"
 
+#: .\userauths\views.py:26
+msgid "Пароли не совпадают."
+msgstr "Passwords not same"
+
+#: .\userauths\views.py:29
+#, fuzzy
+msgid "Пользователь с таким никнеймом уже существует."
+msgstr "Username with this nickname already exist."
+
 #: .\userauths\views.py:22
+#, fuzzy
+msgid "Пользователь с такой почтой уже существует."
+msgstr "Username with this email already exist."
+
+#: .\userauths\views.py:30
 #, python-brace-format
 msgid "{username}, ваш аккаунт успешно создан."
-msgstr "{username}, your accouct created successfully!"
+msgstr "{username}, your account created successfully!"
 
-#: .\userauths\views.py:44
+#: .\userauths\views.py:47
 #, fuzzy
 #| msgid "Мой аккаунт"
 msgid "Вы уже вошли в аккаунт."
 msgstr "My Account"
 
-#: .\userauths\views.py:57
+#: .\userauths\views.py:60
 #, fuzzy
 #| msgid "Мой аккаунт"
 msgid "Вы вошли в аккаунт!"
 msgstr "My Account"
 
-#: .\userauths\views.py:60
+#: .\userauths\views.py:63
 msgid "Данный пользователь не существует, зарегестрируйтесь."
 msgstr "This user does not exist, register."
 
-#: .\userauths\views.py:62
+#: .\userauths\views.py:65
 #, python-brace-format
 msgid "Пользователя с почтой {email} не существует."
 msgstr "Username with mail {email} does not exist."
 
-#: .\userauths\views.py:72
+#: .\userauths\views.py:75
 msgid "Вы успешно вышли из аккаунта."
 msgstr "Logged out!"
 
-#: .\userauths\views.py:96
+#: .\userauths\views.py:99
 msgid "Пароль успешно изменен"
 msgstr "Password successfully changed"
 
-#: .\userauths\views.py:101
+#: .\userauths\views.py:104
 msgid "Текущий пароль введен неправильно"
 msgstr "Current password is not valid."
 
-#: .\userauths\views.py:107
+#: .\userauths\views.py:110
 msgid "Необходимо войти в аккаунт."
 msgstr "Log in before."
+
+msgid "Confirmation"
+msgstr "Confirmation"
+
+msgid "Password"
+msgstr "Password"
