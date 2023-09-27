@@ -150,6 +150,8 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+print(LOCALE_PATHS)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -187,3 +189,21 @@ JAZZMIN_SETTINGS = {
 }
 
 AUTH_USER_MODEL = 'userauths.User'
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',  # Имя файла для логов
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',  # Минимальный уровень логирования
+    },
+}

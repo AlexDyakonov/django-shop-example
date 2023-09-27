@@ -1,0 +1,224 @@
+# Locales for django site.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Alex Dyakonov shram.monolit@mail.ru, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-27 10:26+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\shop\templates\core\base.html:39
+msgid "Язык"
+msgstr "Language"
+
+#: .\shop\templates\core\base.html:95
+msgid "Поддержка"
+msgstr "Support"
+
+#: .\shop\templates\core\base.html:103
+msgid "Аккаунт"
+msgstr "Account"
+
+#: .\shop\templates\core\base.html:106
+msgid "Мой аккаунт"
+msgstr "My Account"
+
+#: .\shop\templates\core\base.html:107
+msgid "Корзина"
+msgstr "Cart"
+
+#: .\shop\templates\core\base.html:108
+msgid "Выход"
+msgstr "Logout"
+
+#: .\shop\templates\core\base.html:111
+msgid "Вход"
+msgstr "Login"
+
+#: .\shop\templates\core\cancel.html:12
+msgid "Платеж отменен"
+msgstr "Payment Canceled"
+
+#: .\shop\templates\core\cancel.html:13 .\shop\templates\core\item.html:66
+msgid "В корзину"
+msgstr "To Cart"
+
+#: .\shop\templates\core\cart.html:20
+msgid "Ваша корзина:"
+msgstr "Your Cart:"
+
+#: .\shop\templates\core\cart.html:30 .\shop\templates\core\checkout.html:59
+msgid "Товар"
+msgstr "Product"
+
+#: .\shop\templates\core\cart.html:31
+msgid "Количество"
+msgstr "Quantity"
+
+#: .\shop\templates\core\cart.html:32 .\shop\templates\core\cart.html:88
+#: .\shop\templates\core\checkout.html:87
+msgid "Итого"
+msgstr "Total"
+
+#: .\shop\templates\core\cart.html:59
+msgid "Цена:"
+msgstr "Price:"
+
+#: .\shop\templates\core\cart.html:84 .\shop\templates\core\checkout.html:62
+msgid "Подытог"
+msgstr "Subtotal"
+
+#: .\shop\templates\core\cart.html:96
+msgid "Оформить заказ"
+msgstr "Proceed to Checkout"
+
+#: .\shop\templates\core\cart.html:110
+msgid "Ваша корзина пуста"
+msgstr "Your cart is empty"
+
+#: .\shop\templates\core\checkout.html:20
+msgid "Информация о заказе"
+msgstr "Order Information"
+
+#: .\shop\templates\core\checkout.html:28
+msgid "Детали заказа"
+msgstr "Order Details"
+
+#: .\shop\templates\core\checkout.html:32
+msgid "Email-адрес*"
+msgstr "Email Address*"
+
+#: .\shop\templates\core\checkout.html:40
+msgid "Примечание к заказу (необязательно)"
+msgstr "Order Note (Optional)"
+
+#: .\shop\templates\core\checkout.html:52
+msgid "Ваш заказ"
+msgstr "Your Order"
+
+#: .\shop\templates\core\checkout.html:98
+msgid "Оплата криптовалютой"
+msgstr "Cryptocurrency Payment"
+
+#: .\shop\templates\core\checkout.html:102
+msgid "Для некоторых криптовалют включен сервисный сбор."
+msgstr "Service fee is included for some cryptocurrencies."
+
+#: .\shop\templates\core\checkout.html:103
+msgid "Его размер напрямую зависит от комиссии блокчейна."
+msgstr "Its size depends directly on the blockchain commission."
+
+#: .\shop\templates\core\checkout.html:108
+#: .\shop\templates\core\checkout.html:109
+msgid "Выберите вариант оплаты"
+msgstr "Choose Payment Method"
+
+#: .\shop\templates\core\checkout.html:110
+msgid "Криптовалюта"
+msgstr "Cryptocurrency"
+
+#: .\shop\templates\core\checkout.html:117
+msgid "Подтвердить"
+msgstr "Confirm"
+
+#: .\shop\templates\core\help.html:16
+msgid "ТЕХНИЧЕСКАЯ ПОДДЕРЖКА"
+msgstr "TECHNICAL SUPPORT"
+
+#: .\shop\templates\core\help.html:19
+msgid ""
+"Если у Вас возникли вопросы технического или финансового плана, напишите нам "
+"и мы поможем Вам в решении вашего вопроса."
+msgstr ""
+"If you have technical or financial questions, please write to us, and we will help you solve your issue."
+
+#: .\shop\templates\core\help.html:21
+msgid ""
+"Мы отвечаем на вопросы в течение 15-60 минут, в зависимости от загрузки "
+"сервиса."
+msgstr ""
+"We respond to questions within 15-60 minutes, depending on the service load."
+
+#: .\shop\templates\core\help.html:23
+msgid "Почта для технической поддержки пользователей:"
+msgstr "Email for technical user support:"
+
+#: .\shop\templates\core\help.html:26
+msgid "Режим работы службы поддержки: ежедневно с 10:00 до 22:00 (МСК)"
+msgstr "Support service hours: daily from 10:00 to 22:00 (MSK)"
+
+#: .\shop\templates\core\index.html:14
+msgid "Верифицированные аккаунты платежных систем и крипто платформ"
+msgstr "Verified accounts of payment systems and crypto platforms"
+
+#: .\shop\templates\core\index.html:25
+msgid "Репутация"
+msgstr "Reputation"
+
+#: .\shop\templates\core\index.html:28
+msgid "Наш магазин работает уже несколько лет и имеет хорошую репутацию"
+msgstr "Our store has been operating for several years and has a good reputation"
+
+#: .\shop\templates\core\index.html:34
+msgid "Гарантия"
+msgstr "Warranty"
+
+#: .\shop\templates\core\index.html:37
+msgid "Мы предоставляем гарантию на все продаваемые товары"
+msgstr "We provide a warranty for all sold products"
+
+#: .\shop\templates\core\index.html:43
+msgid "Профессионализм"
+msgstr "Professionalism"
+
+#: .\shop\templates\core\index.html:46
+msgid ""
+"Наша команда профессионалов всегда готова помочь и ответить на все вопросы"
+msgstr "Our team of professionals is always ready to help and answer all questions"
+
+#: .\shop\templates\core\index.html:76
+msgid "Смотреть все"
+msgstr "View All"
+
+#: .\shop\templates\core\item.html:33
+msgid "Комплект"
+msgstr "Kit"
+
+#: .\shop\templates\core\item.html:35
+msgid "Данные для доступа к аккаунту"
+msgstr "Access Data to the Account"
+
+#: .\shop\templates\core\item.html:36
+msgid "Данные для доступа к привязанному E-mail"
+msgstr "Access Data to the Linked Email"
+
+#: .\shop\templates\core\item.html:37
+msgid "Данные для доступа к виртуальному номеру телефона"
+msgstr "Access Data to the Virtual Phone Number"
+
+#: .\shop\templates\core\item.html:42
+msgid "Страна аккаунта"
+msgstr "Account Country"
+
+#: .\shop\templates\core\item.html:80
+msgid "Похожие товары"
+msgstr "Similar Products"
+
+#: .\shop\templates\core\success.html:12
+msgid "Платеж успешен"
+msgstr "Payment Successful"
+
+#: .\shop\templates\core\success.html:13
+msgid "К товарам"
+msgstr "Back to Products"
