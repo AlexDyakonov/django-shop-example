@@ -29,7 +29,13 @@
                     <div class="form-group">
                         <input required type="password" name="password" placeholder="{% trans 'Ваш пароль *' %}">
                     </div>
-    
+
+                    <div>
+                        {% if msz %}
+                            <div class="alert {{col}}">{{msz}}</div>
+                        {% endif %}
+                    </div>
+                    
                     <div class="btn-container">
                         <button class="submit-btn" type="submit"> {% trans 'Войти' %} </button>
                     </div>
