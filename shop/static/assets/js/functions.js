@@ -4,6 +4,14 @@ const minusButtons = document.querySelectorAll(".minus");
 const numElements = document.querySelectorAll(".num");
 
 plusButtons.forEach((plusButton, index) => {
+    var curr_pathname = '/cart/';
+
+    if (currentLanguage=="ru"){
+        curr_pathname='/ru/cart/'
+    } else {
+        curr_pathname='/en/cart/'
+    }
+
     var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
     const minusButton = minusButtons[index];
     const numElement = numElements[index];
@@ -13,7 +21,7 @@ plusButtons.forEach((plusButton, index) => {
     plusButton.addEventListener("click", () => {
         quantity++;
         numElement.innerText = quantity;
-        if (window.location.pathname === '/cart/'){
+        if (window.location.pathname === curr_pathname){
             console.log("cart")
             updateCartItem(cart_item_id, quantity); 
         }
@@ -23,7 +31,7 @@ plusButtons.forEach((plusButton, index) => {
         if (quantity > 1) {
             quantity--;
             numElement.innerText = quantity;
-            if (window.location.pathname === '/cart/'){
+            if (window.location.pathname === curr_pathname){
                 updateCartItem(cart_item_id, quantity); 
             }
         }
@@ -62,6 +70,12 @@ $(".to-cart-btn").on("click", function(event){
     event.preventDefault();
 
     if (is_authenticated) {
+        if (currentLanguage == 'ru'){
+            var added_btn = "Добавлено"
+        } else {
+            var added_btn = "Added"
+        }
+
         var numText = document.querySelector('.num').textContent;
 
         var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
@@ -73,6 +87,8 @@ $(".to-cart-btn").on("click", function(event){
         quantity = quantity == 0 ? 1 : quantity;
 
         let product_price = $(".product-price").val();
+        product_price = product_price.replace(/,/g, '.');
+
         let this_val = $(this)
         
     
@@ -95,11 +111,11 @@ $(".to-cart-btn").on("click", function(event){
             },
             dataType: 'json',
             beforeSend: function(xhr, settings) {
-                xhr.setRequestHeader("X-CSRFToken", csrf_token); // csrf_token - значение токена
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
                 console.log("Adding product to cart...")
             },
             success: function(){
-                this_val.html("Добавлено")
+                this_val.html(added_btn);
                 console.log("Added product to cart.")
             },
         })
@@ -116,7 +132,8 @@ $(".remove_from_cart").on("click", function(event){
     if (is_authenticated) {
         var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
     
-        let cart_item_id = $(".cart_item_id").val();
+        var cart_item_id = $(this).data("cart-item-id");
+        console.log(cart_item_id)
     
         console.log("Id:", cart_item_id)
         console.log("CSRF Token:", "{{ csrf_token }}");
@@ -139,8 +156,9 @@ $(".remove_from_cart").on("click", function(event){
                 if ('cart_is_empty' in response && response.cart_is_empty === true) {
                     console.log("reloaded")
                 } else if ('cart_total_price' in response) {
+                    console.log(cart_item_id)
                     $("#cart-item-" + cart_item_id).remove();
-                    console.log("Removed product from cart.")
+                    console.log("Removed product from cart. Id = " + cart_item_id )
                     $('#pretotal-price').text(response.cart_total_price);
                     $('#total-price').text(response.cart_total_price);
                     console.log("Product removed from cart.");

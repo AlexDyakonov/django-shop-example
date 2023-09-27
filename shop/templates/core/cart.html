@@ -41,7 +41,7 @@
 
                     <input type="hidden" value="{{ cart_item.id }}" class="cart_item_id">
 
-                    <button type="submit" class="remove_from_cart">
+                    <button type="submit" class="remove_from_cart" data-cart-item-id="{{ cart_item.id }}">
                       <span  class="material-symbols-outlined">
                         delete
                       </span>
@@ -110,7 +110,7 @@
       </div>
 
       <div class="btn-empty">
-        <a href="{% url 'core:home' %}" class="to-shop"> В магазин </a>
+        <a href="{% url 'core:home' %}" class="to-shop"> {% trans 'К товарам' %} </a>
       </div>
 
       {% endif %}
@@ -126,6 +126,10 @@
 
 <script>
   var is_authenticated = {% if is_authenticated %}true{% else %}false{% endif %};
+</script>
+
+<script>
+  var currentLanguage = "{{ request.LANGUAGE_CODE }}";
 </script>
 
 <script src="{% static './assets/js/functions.js' %}?<?=$cur_time;?>"></script>

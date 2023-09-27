@@ -106,6 +106,10 @@
 {% block script %}
 
 <script>
+  var currentLanguage = "{{ request.LANGUAGE_CODE }}";
+</script>
+
+<script>
   var is_authenticated = {% if is_authenticated %}true{% else %}false{% endif %};
 </script>
 <script src="{% static './assets/js/main.js' %}?<?=$cur_time;?>"></script>

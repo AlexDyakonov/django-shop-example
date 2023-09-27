@@ -10,7 +10,7 @@ from django.utils.translation import gettext as _
 from django.utils.translation import get_language
 
 
-messages = {
+messages_locale = {
     'en': {
         'mail_exist': "A user with this email already exists.",
         'username_exist': "A user with this username already exists.",
@@ -43,9 +43,9 @@ messages = {
 
 def get_message(msg_id):
     current_language = get_language()
-    if current_language in messages:
-        if msg_id in messages[current_language]:
-            return messages[current_language][msg_id]
+    if current_language in messages_locale:
+        if msg_id in messages_locale[current_language]:
+            return messages_locale[current_language][msg_id]
     
     return "None"
 
@@ -54,6 +54,10 @@ def get_message(msg_id):
 categories = Category.objects.all()
 
 def register_view(request):
+    if request.user.is_authenticated:
+        messages.warning(request, get_message('already_logged_in'))
+        return redirect("core:home")
+    
     context = {
         "categories" : categories,
     }
@@ -88,6 +92,10 @@ def register_view(request):
     return render(request, "userauths/sign-up.html", context)
 
 def login_view(request):
+    context = {
+        "categories" : categories,
+    }
+
     if request.user.is_authenticated:
         messages.warning(request, get_message('already_logged_in'))
         return redirect("core:home")
@@ -105,13 +113,11 @@ def login_view(request):
                 messages.success(request, get_message('logged_in'))
                 return redirect("core:home")
             else:
-                messages.warning(request, get_message('user_does_not_exist'))
+                context["msz"] = get_message('user_does_not_exist')
+                context["col"] = "alert-danger"
         except:
-            messages.warning(request, get_message('user_email_does_not_exist').format(email=email))
-
-    context = {
-        "categories" : categories,
-    }
+            context["msz"] = get_message('user_email_does_not_exist').format(email=email)
+            context["col"] = "alert-danger"
 
     return render(request, "userauths/sign-in.html", context)
 
