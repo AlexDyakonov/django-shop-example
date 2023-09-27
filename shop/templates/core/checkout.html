@@ -39,7 +39,7 @@
                     {% trans 'Примечание к заказу (необязательно)' %}
                 </div>
                 <div class="input-group">
-                    <textarea class="form-control" id="text-area-detail" placeholder="Примечение к вашему заказу"></textarea>
+                    <textarea class="form-control" id="text-area-detail" placeholder="{% trans 'Примечение к вашему заказу' %}"></textarea>
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
                                 </select>
                             </div>
                             <div class="bottom-btns">
-                                <button class="create-order-btn" id="to-cart-button" type="button">Корзина</button> 
+                                <button class="create-order-btn" id="to-cart-button" type="button">{% trans 'Корзина' %}</button> 
                                 {% csrf_token %}
                                 <button class="create-order-btn" id="to-payment-button" type="submit">
                                     {% trans 'Подтвердить' %}

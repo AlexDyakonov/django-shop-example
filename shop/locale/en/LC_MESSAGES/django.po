@@ -576,8 +576,8 @@ msgstr "Current password is not valid."
 msgid "Необходимо войти в аккаунт."
 msgstr "Log in before."
 
-msgid "Confirmation"
-msgstr "Confirmation"
+msgid "Примечение к вашему заказу"
+msgstr "Note about your order"
 
 msgid "Password"
 msgstr "Password"
