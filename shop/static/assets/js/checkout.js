@@ -11,9 +11,9 @@ selectElement.addEventListener("change", function () {
     
     // let order_total = orderTotalNoComission + comission;
 
-    orderTotalElement.textContent = order_total
+    // orderTotalElement.textContent = order_total
 
-    paymentComissionElement.textContent = comissionValue;
+    // paymentComissionElement.textContent = comissionValue;
 });
 
 document.addEventListener("DOMContentLoaded", function() {

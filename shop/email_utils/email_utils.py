@@ -2,6 +2,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.utils.translation import gettext as _
+from django.utils.translation import activate
 
 def send_registration_email(user):
     html_message = render_to_string('email/registration_email.html', {'user': user})
@@ -9,7 +10,8 @@ def send_registration_email(user):
     message = _('Добро пожаловать! Ваша почта для входа в аккаунт:') + str(user.email)
     send_mail(subject, message, settings.EMAIL_HOST_USER , [user.email], html_message=html_message)         
 
-def send_order_confirmation_email(user, order_id, amount, order_date):
+def send_order_confirmation_email(user, order_id, amount, order_date, language):
+    activate(language)
     html_message = render_to_string('email/order_confirmation.html', {
         'user': user,
         'order_id': order_id,
@@ -20,7 +22,8 @@ def send_order_confirmation_email(user, order_id, amount, order_date):
     message = _('Спасибо за ваш заказ')
     send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], html_message=html_message)
 
-def send_create_order_mail(user, order_id, order_amount, payment_link):
+def send_create_order_mail(user, order_id, order_amount, payment_link, language):
+    activate(language)
     html_message = render_to_string('email/create_order.html', {
         'user': user,
         'order_id': order_id,
@@ -28,12 +31,13 @@ def send_create_order_mail(user, order_id, order_amount, payment_link):
         'payment_link': payment_link,
     })
 
-    subject = _('Заказ #{} успешно создан: ожидается оплата'.format(order_id))
+    subject = _('Заказ #{} успешно создан: ожидается оплата').format(order_id)
     message = _('Спасибо за ваш заказ. Пожалуйста, выполните оплату по ссылке: {}').format(payment_link)
 
     send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], html_message=html_message)
 
-def send_cancel_order_mail(user, order_id):
+def send_cancel_order_mail(user, order_id, language):
+    activate(language)
     html_message = render_to_string('email/cancel_order.html', {
         'user': user,
         'order_id': order_id,

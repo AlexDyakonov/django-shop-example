@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
 from django.utils.translation import gettext as _
+from django.utils.translation import get_language
 
 from core.models import Product, Category, Cart, CartItem, Payment, Order
 
@@ -297,6 +298,7 @@ def create_payment(request):
                 "order_id": order.pk,
                 "user_mail": request.user.email,
                 "order_name": str(order.oid).replace("order", ""),
+                "language": get_language(),
             }
         }   
 
@@ -324,29 +326,33 @@ def coinbase_webhook(request):
         if event['type'] == 'charge:created':
             order_id = event['data']['metadata']['order_id']
             payment_url = event['data']['hosted_url']
+            language = event['data']['metadata']['language']
+
             order = Order.objects.get(pk=order_id)
-            send_create_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""), order_amount=order.total, payment_link=payment_url)
+            send_create_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""), order_amount=order.total, payment_link=payment_url, language = language)
 
         if event['type'] == 'charge:failed':
             logger.info('Payment failed.')
             order_id = event['data']['metadata']['order_id']
+            language = event['data']['metadata']['language']
 
             order = Order.objects.get(pk=order_id)
             order.payment_status = 'failed'
             order.save()
 
-            send_cancel_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""))
+            send_cancel_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""), language = language)
 
         if event['type'] == 'charge:confirmed':
             logger.info('Payment confirmed.')
             order_id = event['data']['metadata']['order_id']
+            language = event['data']['metadata']['language']
 
             order = Order.objects.get(pk=order_id)
             order.payment_status = 'paid'
             order.save()
 
             CartItem.objects.filter(cart=order.cart).get().delete()
-            send_order_confirmation_email(user=order.cart.user, order_id=str(order.oid).replace("order", ""), amount=order.total, order_date=order.created_at)
+            send_order_confirmation_email(user=order.cart.user, order_id=str(order.oid).replace("order", ""), amount=order.total, order_date=order.created_at, language = language)
             
 
     except (SignatureVerificationError, WebhookInvalidPayload) as e:
