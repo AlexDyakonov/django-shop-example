@@ -7,8 +7,8 @@ urlpatterns = [
     path('', index, name='home'),
     path('help/', help, name='help'),
     
-    path('category/<str:cid>/', show_category, name='category'),
-    path('item/<str:pid>/', show_item, name='item'),
+    path('category/<slug:cat_slug>/', show_category, name='category'),
+    path('item/<slug:item_slug>/', show_item, name='item'),
 
     path('cart/', show_cart, name="cart"),
     path('create-order/', create_order, name='create-order'),

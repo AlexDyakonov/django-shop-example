@@ -84,7 +84,7 @@
       </a>
 
       {% for category in categories %}
-      <a href="{% url 'core:category' cid=category.cid %}">
+      <a href="{% url 'core:category' cat_slug=category.slug %}">
         <div class="header-text">
           {{category.title}}
         </div>

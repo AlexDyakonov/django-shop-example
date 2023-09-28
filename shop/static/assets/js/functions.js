@@ -68,14 +68,15 @@ plusButtons.forEach((plusButton, index) => {
 
 $(".to-cart-btn").on("click", function(event){
     event.preventDefault();
+    if (currentLanguage == 'ru'){
+        var added_btn = "Добавлено"
+        var login_before = "Пользователь не авторизован. Войдите в систему, чтобы добавить товар в корзину."
+    } else {
+        var added_btn = "Added"
+        var login_before = "The user is not logged in. Log in to add an item to the cart."
+    }
 
     if (is_authenticated) {
-        if (currentLanguage == 'ru'){
-            var added_btn = "Добавлено"
-        } else {
-            var added_btn = "Added"
-        }
-
         var numText = document.querySelector('.num').textContent;
 
         var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
@@ -120,7 +121,7 @@ $(".to-cart-btn").on("click", function(event){
             },
         })
     } else {
-        alert("Пользователь не авторизован. Войдите в систему, чтобы добавить товар в корзину.");
+        alert(login_before);
     }
    
 })

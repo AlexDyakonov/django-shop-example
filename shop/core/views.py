@@ -62,8 +62,8 @@ def help(request):
     }
     return render(request, 'core/help.html', content)
 
-def show_category(request, cid):
-    category = Category.objects.get(cid=cid)
+def show_category(request, cat_slug): 
+    category = get_object_or_404(Category, slug=cat_slug)
     products = Product.objects.filter(category=category)
 
     content = {
@@ -74,9 +74,9 @@ def show_category(request, cid):
     }
     return render(request, 'core/showcase.html', content)
 
-def show_item(request, pid):
+def show_item(request, item_slug):
     is_authenticated = request.user.is_authenticated
-    item = get_object_or_404(Product, pid=pid)
+    item = get_object_or_404(Product, slug=item_slug)
     products = Product.objects.filter(category=item.category, product_status="published")
 
     content = {

@@ -22,6 +22,8 @@ def user_directiory_path(instance, filename):
 
 class Category(models.Model):
     cid = ShortUUIDField(unique=True, length=10, max_length=30, prefix="cat", alphabet="abcdefgh12345")
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+
     title = models.CharField(max_length=100)
 
     class Meta:
@@ -42,6 +44,7 @@ class Country(models.Model):
     
 class Product(models.Model):
     pid = ShortUUIDField(unique=True, length=10, max_length=30, alphabet="abcdefgh12345")
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
@@ -49,7 +52,7 @@ class Product(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to=user_directiory_path, null=False, default="product.png")
     description = models.TextField(null=False, blank=False, default="Товар в нашем магазине")
-    specifications = models.TextField(null=False, blank=False, default="Особых свойств нет")
+    # specifications = models.TextField(null=False, blank=False, default="Особых свойств нет")
 
     countries = models.ManyToManyField(Country, related_name='products')
 

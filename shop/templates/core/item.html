@@ -16,7 +16,7 @@
     <img width="214px" height="214px" class="item-picture-bigger" src="{{ item.image.url }}" alt="product-image">
     <div class="item-text">
       <div class="category-name">
-        <a style="all: unset;" href="{% url 'core:category' cid=item.category.cid %}"> {{item.category}} </a>
+        <a style="all: unset;" href="{% url 'core:category' cat_slug=item.category.slug %}"> {{item.category}} </a>
       </div>
       <div class="item-name">
         {{item.title}}
@@ -85,10 +85,10 @@
         <div class="show-case-item">
           <img class="show-case-img" src="{{ product.image.url }}" alt="">
           <div class="show-case-category">
-            <a style="all: unset;" href="{% url 'core:category' cid=product.category.cid %}">{{product.category}}</a>
+            <a style="all: unset;" href="{% url 'core:category' cat_slug=product.category.slug %}">{{product.category}}</a>
           </div>
           <div class="show-case-item-name">
-            <a style="all: unset;" href="{% url 'core:item' pid=product.pid %}">{{product.title}}</a>
+            <a style="all: unset;" href="{% url 'core:item' item_slug=product.slug %}">{{product.title}}</a>
           </div>
           <div class="item-price">
             {{product.price}}

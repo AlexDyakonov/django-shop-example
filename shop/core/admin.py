@@ -3,10 +3,13 @@ from core.models import Product, Category, Country, Cart, CartItem, Order, Payme
 from modeltranslation.admin import TranslationAdmin
 
 class ProductAdmin(TranslationAdmin):
-    list_display = ['user', 'title', 'category','product_image', 'price', 'product_status']
+    list_display = ['user', 'title', 'category', 'product_image', 'price', 'product_status']
+    prepopulated_fields = {"slug":("title",)}
+
 
 class CategoryAdmin(TranslationAdmin):
     list_display = ['title']
+    prepopulated_fields = {"slug":("title",)}
 
 class CountryAdmin(TranslationAdmin):
     list_display = ['title']

@@ -63,7 +63,7 @@
               <img class="item-picture" width="100" height="100" src="{{ product.image.url }}" alt="">
               <div>
                   <div class="item-header">
-                    <a style="all: unset;" href="{% url 'core:item' pid=product.pid %}">{{ product.title }}</a>
+                    <a style="all: unset;" href="{% url 'core:item' item_slug=product.slug %}">{{ product.title }}</a>
                   </div>
                   <div class="item-price">
                       ${{ product.price }}
@@ -72,7 +72,7 @@
           </div>
           {% endfor %}
       
-          <a href="{% url 'core:category' cid=category.cid %}" class="view-all-btn"> {% trans 'Смотреть все' %} </a>
+          <a href="{% url 'core:category' cat_slug=category.slug %}" class="view-all-btn"> {% trans 'Смотреть все' %} </a>
       </div>
       {% endfor %}
 

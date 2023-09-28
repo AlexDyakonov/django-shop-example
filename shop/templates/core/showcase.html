@@ -24,7 +24,7 @@
                 {{category.title}}
             </div>
             <div class="show-case-item-name">
-              <a style="all: unset;" href="{% url 'core:item' pid=product.pid %}"> {{product.title}} </a>
+              <a style="all: unset;" href="{% url 'core:item' item_slug=product.slug %}"> {{product.title}} </a>
             </div>
             <div class="item-price">
               {{product.price}}

@@ -53,7 +53,7 @@
                   <div class="cart-info">
                     <img width="100px" height="100px" src="{{ cart_item.image.url }}" alt="">
                     <div class="item-info">
-                      <p> <a href="{% url 'core:item' pid=cart_item.product.pid %}"> {{ cart_item.product.title }} </a> </p>
+                      <p> <a href="{% url 'core:item' item_slug=cart_item.product.slug %}"> {{ cart_item.product.title }} </a> </p>
                       <small> {{cart_item.country }} </small> <br>
                       <small> {% trans 'Цена:' %}  {{ cart_item.product.price }}  $</small>
                     </div>
