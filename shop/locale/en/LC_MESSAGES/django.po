@@ -233,8 +233,8 @@ msgid "Режим работы службы поддержки: ежедневн
 msgstr "Support hours: daily from 7:00 to 19:00 (UTC+3)"
 
 #: .\templates\core\index.html:13
-msgid "Верифицированные аккаунты платежных систем и крипто платформ"
-msgstr "Verified accounts of payment systems and crypto platforms"
+msgid "Любой текст, который вы захотите сюда добавить"
+msgstr "Любой текст, который вы захотите сюда добавить"
 
 #: .\templates\core\index.html:24
 msgid "Репутация"
