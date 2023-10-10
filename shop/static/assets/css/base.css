@@ -14,25 +14,26 @@ body{
   margin-bottom: 154px;
 }
 
+header a{
+  text-decoration: none;
+}
+
 header{
-  position: relative;
+  background: #20bc89;
+}
+
+.header-section{
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+
   background: #20bc89;
   display: flex;
   justify-content: center;
   transition: all 0.3s ease-in-out;
   padding-bottom: 10px;
   padding-top: 10px;
-}
-
-header a{
-  text-decoration: none;
-}
-
-
-.header-sticky{
-  position: sticky;
-  top: 0;
-  z-index: 999;
 }
 
 .header-hidden {
@@ -46,6 +47,11 @@ header a{
   width: 1220px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.right-content-of-header{
+  display: flex;
   align-items: center;
 }
 
@@ -71,13 +77,13 @@ header a{
 .dropdown-account{
   position: absolute;
   right: 120px;
-  top: 8px;
+  top: 10px;
 }
 
 .dropdown-language{
   position: absolute;
   left: 120px;
-  top: 8px;
+  top: 10px;
   text-align: center;
   color: white;
   text-decoration: none;
@@ -192,6 +198,24 @@ ul.custom-ul li:hover ul.dropdown {
   display: block;
 }
 
+.categories-dropdown {
+ width: 200px;
+ margin-right: 20px;
+}
+
+.categories-dropdown .custom-ul{
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.categories-dropdown ul.custom-ul li ul.dropdown {
+  width: 100%;
+}
+
+.categories-dropdown ul.custom-ul li {
+  width: 100%;
+}
+
 .innerdiv {
   margin-left: 100px;
   position: fixed;
@@ -218,4 +242,78 @@ footer{
 .footer-container{
   margin: 30px 0 100px 0;
   color: hsla(0,0%,100%,.5);
+}
+
+.mobile-navbar{
+  width: 100%;
+  display: none;
+}
+
+.burger-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.navbar-toggler {
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: none;
+  font-weight: 700;
+  color: #fff;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mobile-navbar .dropdown-menu {
+  min-width: 10rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+
+.mobile-navbar .dropdown-item  {
+  font-weight: 600;
+  color: white;
+  width: auto;
+}
+
+.mobile-navbar .dropdown-item:focus, .dropdown-item:hover {
+  color: #1e2125;
+  background-color: #e9ecef;
+}
+
+@media (max-width: 1200px) {
+  .header-container{
+    width: 700px;
+    justify-content: center;
+  }
+  .dropdown-account {
+    right: 60px;
+  }
+  .dropdown-language {
+    left: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-container{
+    display: none;
+  }
+  .mobile-navbar{
+    display: block;
+  } 
+  .header-section{
+    padding: 0;
+  }
 }

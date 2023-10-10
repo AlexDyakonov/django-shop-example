@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 20:07+0300\n"
+"POT-Creation-Date: 2023-10-10 16:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,106 +18,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\core\views.py:32
-msgid "Вам необходимо войти в аккаунт."
-msgstr "Log in before."
-
-#: .\core\views.py:59
-#, fuzzy
-#| msgid "Поддержка"
-msgid "ТехПоддержка"
-msgstr "Support"
-
-#: .\core\views.py:249
-msgid "Успешно!"
-msgstr "Successful!"
-
-#: .\core\views.py:259
-msgid "Отмена"
-msgstr "Failed"
-
-#: .\core\views.py:283
-msgid "Заказ "
-msgstr "Order "
-
-#: .\email_utils\email_utils.py:8 .\templates\email\registration_email.html:7
-msgid "Поздравляем с успешной регистрацией"
-msgstr "Congratulations on successful registration!"
-
-#: .\email_utils\email_utils.py:9
-msgid "Добро пожаловать! Ваша почта для входа в аккаунт:"
-msgstr "Добро пожаловать! Ваша почта для входа в аккаунт:"
-
-#: .\email_utils\email_utils.py:19 .\templates\email\order_confirmation.html:7
-#: .\templates\email\order_confirmation.html:37
-msgid "Успешное создание и оплата заказа"
-msgstr "Successful order creation and payment"
-
-#: .\email_utils\email_utils.py:20
-msgid "Спасибо за ваш заказ"
-msgstr "Thank you for your order"
-
-#: .\email_utils\email_utils.py:31
-msgid "Заказ #{} успешно создан: ожидается оплата"
-msgstr "Order #{} has been successfully created: payment pending"
-
-#: .\email_utils\email_utils.py:32
-msgid "Спасибо за ваш заказ. Пожалуйста, выполните оплату по ссылке: {}"
-msgstr "Thank you for your order. Please make the payment using the link: {}"
-
-#: .\email_utils\email_utils.py:42
-msgid "Отмена оплаты заказа #{}"
-msgstr "Cancellation of payment for order #{}"
-
-#: .\email_utils\email_utils.py:43
-msgid "Сожалеем, оплата для вашего заказа была отменена."
-msgstr ""
-"We regret to inform you that the payment for your order has been canceled."
-
-#: .\email_utils\email_utils.py:52 .\templates\email\password_change.html:7
-#: .\templates\email\password_change.html:37
-msgid "Успешная смена пароля"
-msgstr "Successful password change"
-
-#: .\email_utils\email_utils.py:53
-msgid "Ваш пароль был успешно изменен для аккаунта."
-msgstr "Your password has been successfully changed for your account."
-
-#: .\shop\settings.py:145
-msgid "Russian"
-msgstr "Russian"
-
-#: .\shop\settings.py:146
-msgid "English"
-msgstr "English"
-
-#: .\templates\core\base.html:40
-msgid "Язык"
-msgstr "Language"
-
-#: .\templates\core\base.html:96
+#: .\templates\core\base.html:50 .\templates\core\base.html:171
 msgid "Поддержка"
 msgstr "Support"
 
-#: .\templates\core\base.html:104
+#: .\templates\core\base.html:57 .\templates\core\base.html:180
 msgid "Аккаунт"
 msgstr "Account"
 
-#: .\templates\core\base.html:107
+#: .\templates\core\base.html:61 .\templates\core\base.html:183
 msgid "Мой аккаунт"
 msgstr "My Account"
 
-#: .\templates\core\base.html:108
+#: .\templates\core\base.html:62 .\templates\core\base.html:184
+#: .\templates\core\checkout.html:113
 msgid "Корзина"
 msgstr "Cart"
 
-#: .\templates\core\base.html:109
+#: .\templates\core\base.html:63 .\templates\core\base.html:185
 msgid "Выход"
 msgstr "Log Out"
 
-#: .\templates\core\base.html:112
+#: .\templates\core\base.html:69 .\templates\core\base.html:188
 msgid "Вход"
 msgstr "Log in"
+
+#: .\templates\core\base.html:76 .\templates\core\base.html:151
+msgid "Категории"
+msgstr "Categories"
+
+#: .\templates\core\base.html:100
+msgid "Язык"
+msgstr "Language"
 
 #: .\templates\core\cancel.html:11
 msgid "Платеж отменен"
@@ -160,6 +92,10 @@ msgstr "Checkout"
 msgid "Ваша корзина пуста"
 msgstr "Your cart is empty"
 
+#: .\templates\core\cart.html:113 .\templates\core\success.html:12
+msgid "К товарам"
+msgstr "To Products"
+
 #: .\templates\core\checkout.html:19
 msgid "Информация о заказе"
 msgstr "Order Information"
@@ -175,6 +111,10 @@ msgstr "Email Address*"
 #: .\templates\core\checkout.html:39
 msgid "Примечание к заказу (необязательно)"
 msgstr "Order Note (optional)"
+
+#: .\templates\core\checkout.html:42
+msgid "Примечение к вашему заказу"
+msgstr "Note about your order"
 
 #: .\templates\core\checkout.html:51 .\templates\email\create_order.html:45
 #: .\templates\email\order_confirmation.html:40
@@ -234,7 +174,7 @@ msgstr "Support hours: daily from 7:00 to 19:00 (UTC+3)"
 
 #: .\templates\core\index.html:13
 msgid "Любой текст, который вы захотите сюда добавить"
-msgstr "Любой текст, который вы захотите сюда добавить"
+msgstr "Any text, you want to input"
 
 #: .\templates\core\index.html:24
 msgid "Репутация"
@@ -295,10 +235,6 @@ msgstr "Related Products"
 #: .\templates\core\success.html:11
 msgid "Платеж успешен"
 msgstr "Payment Successful"
-
-#: .\templates\core\success.html:12
-msgid "К товарам"
-msgstr "To Products"
 
 #: .\templates\email\cancel_order.html:7 .\templates\email\cancel_order.html:37
 msgid "Отмена оплаты заказа"
@@ -382,6 +318,11 @@ msgstr ""
 "If you have any questions or issues with the payment, please contact our "
 "support team."
 
+#: .\templates\email\order_confirmation.html:7
+#: .\templates\email\order_confirmation.html:37
+msgid "Успешное создание и оплата заказа"
+msgstr "Successful order creation and payment"
+
 #: .\templates\email\order_confirmation.html:40
 msgid "успешно создан и оплачен."
 msgstr "has been successfully created and paid for."
@@ -399,6 +340,11 @@ msgid "Мы готовы начать обработку вашего заказ
 msgstr ""
 "We are ready to start processing your order. Thank you for your purchase!"
 
+#: .\templates\email\password_change.html:7
+#: .\templates\email\password_change.html:37
+msgid "Успешная смена пароля"
+msgstr "Successful password change"
+
 #: .\templates\email\password_change.html:40
 msgid "Мы хотим сообщить вам, что ваш пароль был успешно изменен для аккаунта."
 msgstr ""
@@ -411,6 +357,10 @@ msgid ""
 "поддержки."
 msgstr ""
 "If you did not perform this operation, please contact our support team."
+
+#: .\templates\email\registration_email.html:7
+msgid "Поздравляем с успешной регистрацией"
+msgstr "Congratulations on successful registration!"
 
 #: .\templates\email\registration_email.html:42
 msgid "Поздравляем с успешной регистрацией!"
@@ -442,7 +392,6 @@ msgstr "Username"
 
 #: .\templates\userauths\my-account.html:26
 #: .\templates\userauths\sign-in.html:27 .\templates\userauths\sign-up.html:30
-#: .\userauths\forms.py:18
 msgid "Email"
 msgstr "Email"
 
@@ -470,15 +419,15 @@ msgstr "LOG IN"
 msgid "Ваш пароль *"
 msgstr "Your Password *"
 
-#: .\templates\userauths\sign-in.html:34
+#: .\templates\userauths\sign-in.html:40
 msgid "Войти"
 msgstr "Log In"
 
-#: .\templates\userauths\sign-in.html:38
+#: .\templates\userauths\sign-in.html:44
 msgid "Нет аккаунта?"
 msgstr "Don't have an account?"
 
-#: .\templates\userauths\sign-in.html:38
+#: .\templates\userauths\sign-in.html:44
 msgid "Создайте!"
 msgstr "Create one!"
 
@@ -486,98 +435,134 @@ msgstr "Create one!"
 msgid "РЕГИСТРАЦИЯ"
 msgstr "REGISTER"
 
-#: .\templates\userauths\sign-up.html:27 .\userauths\forms.py:14
-msgid "Никнейм"
-msgstr "Никнейм"
+#: .\templates\userauths\sign-up.html:27
+msgid "Username"
+msgstr ""
 
-#: .\templates\userauths\sign-up.html:33 .\userauths\forms.py:22
-#, fuzzy
-#| msgid "Ваш пароль *"
-msgid "Пароль"
-msgstr "Your Password *"
+#: .\templates\userauths\sign-up.html:33
+msgid "Password"
+msgstr "Password"
 
 #: .\templates\userauths\sign-up.html:36
-#, fuzzy
-#| msgid "Подтверждение пароля"
-msgid "Подтверждение"
-msgstr "Password Confirmation"
+msgid "Confirmation"
+msgstr ""
 
-#: .\templates\userauths\sign-up.html:40
+#: .\templates\userauths\sign-up.html:44
 msgid "Регистрация"
 msgstr "Registration"
 
-#: .\templates\userauths\sign-up.html:44
+#: .\templates\userauths\sign-up.html:48
 msgid "Уже есть аккаунт?"
 msgstr "Already have account?"
 
-#: .\templates\userauths\sign-up.html:44
+#: .\templates\userauths\sign-up.html:48
 msgid "Войдите"
 msgstr "Sign in!"
 
-#: .\userauths\forms.py:26
+#~ msgid "Вам необходимо войти в аккаунт."
+#~ msgstr "Log in before."
+
 #, fuzzy
-#| msgid "Подтверждение пароля"
-msgid "Подтвердите пароль"
-msgstr "Password Confirmation"
+#~| msgid "Поддержка"
+#~ msgid "ТехПоддержка"
+#~ msgstr "Support"
 
-#: .\userauths\views.py:26
-msgid "Пароли не совпадают."
-msgstr "Passwords not same"
+#~ msgid "Успешно!"
+#~ msgstr "Successful!"
 
-#: .\userauths\views.py:29
+#~ msgid "Отмена"
+#~ msgstr "Failed"
+
+#~ msgid "Заказ "
+#~ msgstr "Order "
+
+#~ msgid "Добро пожаловать! Ваша почта для входа в аккаунт:"
+#~ msgstr "Добро пожаловать! Ваша почта для входа в аккаунт:"
+
+#~ msgid "Спасибо за ваш заказ"
+#~ msgstr "Thank you for your order"
+
+#~ msgid "Заказ #{} успешно создан: ожидается оплата"
+#~ msgstr "Order #{} has been successfully created: payment pending"
+
+#~ msgid "Спасибо за ваш заказ. Пожалуйста, выполните оплату по ссылке: {}"
+#~ msgstr ""
+#~ "Thank you for your order. Please make the payment using the link: {}"
+
+#~ msgid "Отмена оплаты заказа #{}"
+#~ msgstr "Cancellation of payment for order #{}"
+
+#~ msgid "Сожалеем, оплата для вашего заказа была отменена."
+#~ msgstr ""
+#~ "We regret to inform you that the payment for your order has been canceled."
+
+#~ msgid "Ваш пароль был успешно изменен для аккаунта."
+#~ msgstr "Your password has been successfully changed for your account."
+
+#~ msgid "Russian"
+#~ msgstr "Russian"
+
+#~ msgid "English"
+#~ msgstr "English"
+
+#~ msgid "Никнейм"
+#~ msgstr "Никнейм"
+
 #, fuzzy
-msgid "Пользователь с таким никнеймом уже существует."
-msgstr "Username with this nickname already exist."
+#~| msgid "Ваш пароль *"
+#~ msgid "Пароль"
+#~ msgstr "Your Password *"
 
-#: .\userauths\views.py:22
 #, fuzzy
-msgid "Пользователь с такой почтой уже существует."
-msgstr "Username with this email already exist."
+#~| msgid "Подтверждение пароля"
+#~ msgid "Подтверждение"
+#~ msgstr "Password Confirmation"
 
-#: .\userauths\views.py:30
+#, fuzzy
+#~| msgid "Подтверждение пароля"
+#~ msgid "Подтвердите пароль"
+#~ msgstr "Password Confirmation"
+
+#~ msgid "Пароли не совпадают."
+#~ msgstr "Passwords not same"
+
+#, fuzzy
+#~ msgid "Пользователь с таким никнеймом уже существует."
+#~ msgstr "Username with this nickname already exist."
+
+#, fuzzy
+#~ msgid "Пользователь с такой почтой уже существует."
+#~ msgstr "Username with this email already exist."
+
 #, python-brace-format
-msgid "{username}, ваш аккаунт успешно создан."
-msgstr "{username}, your account created successfully!"
+#~ msgid "{username}, ваш аккаунт успешно создан."
+#~ msgstr "{username}, your account created successfully!"
 
-#: .\userauths\views.py:47
 #, fuzzy
-#| msgid "Мой аккаунт"
-msgid "Вы уже вошли в аккаунт."
-msgstr "My Account"
+#~| msgid "Мой аккаунт"
+#~ msgid "Вы уже вошли в аккаунт."
+#~ msgstr "My Account"
 
-#: .\userauths\views.py:60
 #, fuzzy
-#| msgid "Мой аккаунт"
-msgid "Вы вошли в аккаунт!"
-msgstr "My Account"
+#~| msgid "Мой аккаунт"
+#~ msgid "Вы вошли в аккаунт!"
+#~ msgstr "My Account"
 
-#: .\userauths\views.py:63
-msgid "Данный пользователь не существует, зарегестрируйтесь."
-msgstr "This user does not exist, register."
+#~ msgid "Данный пользователь не существует, зарегестрируйтесь."
+#~ msgstr "This user does not exist, register."
 
-#: .\userauths\views.py:65
 #, python-brace-format
-msgid "Пользователя с почтой {email} не существует."
-msgstr "Username with mail {email} does not exist."
+#~ msgid "Пользователя с почтой {email} не существует."
+#~ msgstr "Username with mail {email} does not exist."
 
-#: .\userauths\views.py:75
-msgid "Вы успешно вышли из аккаунта."
-msgstr "Logged out!"
+#~ msgid "Вы успешно вышли из аккаунта."
+#~ msgstr "Logged out!"
 
-#: .\userauths\views.py:99
-msgid "Пароль успешно изменен"
-msgstr "Password successfully changed"
+#~ msgid "Пароль успешно изменен"
+#~ msgstr "Password successfully changed"
 
-#: .\userauths\views.py:104
-msgid "Текущий пароль введен неправильно"
-msgstr "Current password is not valid."
+#~ msgid "Текущий пароль введен неправильно"
+#~ msgstr "Current password is not valid."
 
-#: .\userauths\views.py:110
-msgid "Необходимо войти в аккаунт."
-msgstr "Log in before."
-
-msgid "Примечение к вашему заказу"
-msgstr "Note about your order"
-
-msgid "Password"
-msgstr "Password"
+#~ msgid "Необходимо войти в аккаунт."
+#~ msgstr "Log in before."

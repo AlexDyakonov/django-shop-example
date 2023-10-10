@@ -1,18 +1,16 @@
 window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
+    const header = document.querySelector('.header');
     const headerHeight = header.offsetHeight;
     const scrollTop = document.documentElement.scrollTop;
   
-    if (scrollTop < headerHeight * 2){
+    if (scrollTop < headerHeight * 1.5){
       header.classList.remove('header-hidden')
-      header.classList.remove('header-sticky')
     
-    } else if (scrollTop > headerHeight * 2 && scrollTop < headerHeight * 7){
+    } else if (scrollTop > headerHeight * 1.5 && scrollTop < headerHeight * 7){
       header.classList.add('header-hidden');
-
     } if (scrollTop > headerHeight * 7){
       header.classList.remove('header-hidden');
-      header.classList.add('header-sticky')
     }
   });
   
+  console.log("works!!!")
