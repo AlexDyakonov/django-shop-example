@@ -17,7 +17,8 @@
     color: white;
     font-weight: 700;
     font-size: 36px;
-    width: 450px;
+    width: 100%;
+    max-width: 450px;
   }
   
   .crypto-image{
@@ -200,5 +201,4 @@
   .block-content-review {
     width: 100%;
   }
-  
 }

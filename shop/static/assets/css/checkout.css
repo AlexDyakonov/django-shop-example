@@ -79,7 +79,8 @@ footer {
 }
 
 .right-content-checkout{
-    width: 530px;
+    max-width: 530px;
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: center;

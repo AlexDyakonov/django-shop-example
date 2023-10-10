@@ -177,3 +177,10 @@
       width: calc(90% - 10px);
     }
   }
+
+  @media (max-width: 410px){
+    .item-picture-bigger{
+      height: 200px;
+      width: 200px;
+  }
+  }

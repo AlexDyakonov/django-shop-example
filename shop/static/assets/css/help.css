@@ -12,7 +12,9 @@
 }
 
 .help-text{
-    width: 510px;
+    padding: 10px;
+    max-width: 510px;
+    width: 100%;
 }
 
 .help-img{
