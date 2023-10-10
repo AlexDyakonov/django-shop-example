@@ -293,6 +293,18 @@ footer{
   background-color: #e9ecef;
 }
 
+@media (max-width: 1720px) {
+  .header-container{
+    width: 900px;
+  }
+}
+
+@media (max-width: 1390px) {
+  .header-container{
+    width: 700px;
+  }
+}
+
 @media (max-width: 1200px) {
   .header-container{
     width: 700px;
