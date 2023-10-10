@@ -1,3 +1,11 @@
+.header-section {
+    position: relative;
+}
+
+footer {
+    bottom: auto;
+}
+
 .section-checkout{
     display: flex;
     justify-content: center;
@@ -20,10 +28,12 @@
 .checkout-content{
     display: flex;
     justify-content: center;
+    padding: 0 10px;
 }
 
 .left-content-checkout{
-    width: 690px;
+    max-width: 690px;
+    width: 100%;
     margin-bottom: 25px;
 }
 
@@ -121,7 +131,8 @@ tfoot{
 
 .item-info{
     padding: 5px 0;
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
     font-size: 0.9em;
 }
 
@@ -176,7 +187,7 @@ form {
   background: linear-gradient(90deg, rgba(32,188,137,1) 0%, rgba(82,109,178,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20bc89",endColorstr="#526db2",GradientType=1); 
   text-decoration: none;
-  width: 170px;
+  width: calc(50% - 10px);
   height: 40px;
   background-size: 200%;
   transition: .5s;
@@ -187,4 +198,18 @@ form {
 .create-order-btn:hover {
   color: #fff;
   background-position: right;
+}
+
+@media (max-width: 760px) {
+    .checkout-content{
+        flex-direction: column;
+    }
+    
+    .right-content-checkout{
+        margin: 0 auto;
+    }
+    
+    footer {
+        bottom: auto;
+    }
 }

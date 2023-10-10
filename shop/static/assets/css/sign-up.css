@@ -1,3 +1,7 @@
+.header-section {
+    position: relative;
+}
+
 .section-sign-up{
     display: flex;
     justify-content: center;
@@ -100,4 +104,17 @@
 
 .alert alert-danger{
     display:inline-block;
+}
+
+@media (max-width: 900px) {
+    .register-img{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 760px) {
+    .register-img{
+        display: none;
+    }
 }

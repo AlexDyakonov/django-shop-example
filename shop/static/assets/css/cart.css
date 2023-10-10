@@ -1,3 +1,11 @@
+.header-section {
+    position: relative;
+}
+
+footer {
+    bottom: auto;
+}
+
 .section-cart{
     display: flex;
     justify-content: center;
@@ -6,6 +14,7 @@
 
 .container-cart{
     width: 1220px;
+    padding: 0 10px;
 }
 
 .cart-header{
@@ -151,4 +160,13 @@ th:last-child{
   
 .remove_from_cart{
     all:unset
+}
+
+@media (max-width: 768px) {
+    .cart-info {
+      flex-direction: column;
+    }
+    td:last-child {
+      text-align: left;
+    }
 }

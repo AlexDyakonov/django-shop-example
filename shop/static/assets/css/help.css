@@ -38,3 +38,20 @@
     line-height: 1.6;
     font-size: 100%;
 }
+
+.description a{
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .help-img{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 760px) {
+    .help-img{
+        display: none;
+    }
+}

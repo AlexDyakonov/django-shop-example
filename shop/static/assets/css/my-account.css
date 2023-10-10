@@ -94,3 +94,22 @@
   .sumbit-btn:hover {
     background-position: right;
   }
+
+@media (max-width: 1200px) {
+    .account-data{
+        display: block;
+    }
+}
+
+@media (max-width: 900px) {
+    .account-card {
+        width: 100%;
+        margin: 0 30px;
+      }
+}
+
+@media (max-width: 830px) {
+    .profile-img {
+        display: none;
+    }
+}

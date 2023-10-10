@@ -1,3 +1,7 @@
+.header-section {
+  position: relative;
+}
+
 .item-price{
   color: #111;
   font-weight: 700;
@@ -28,4 +32,37 @@
 .show-case{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 1200px) {
+  .show-case {
+      grid-template-columns: 1fr 1fr 1fr;
+  }
+  .item-card {
+    width: calc(80% - 10px);
+  }
+}
+
+@media (max-width: 900px) {
+  .item-card {
+    width: calc(90% - 10px);
+  }
+}
+
+@media (max-width: 760px) {
+  .show-case {
+    grid-template-columns: 1fr 1fr;
+  }
+  .item-card {
+    width: calc(90% - 10px);
+  }
+}
+
+@media (max-width: 540px) {
+  .show-case {
+    grid-template-columns: 1fr;
+  }
+  .item-card {
+    width: calc(90% - 10px);
+  }
 }
