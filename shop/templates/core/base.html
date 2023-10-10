@@ -45,6 +45,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
+
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'userauths:account' %}"> 
+                {% trans 'Мой аккаунт' %} 
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'core:cart' %}"> 
+                {% trans 'Корзина' %} 
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'userauths:sign-out' %}"> 
+                {% trans 'Выход' %} 
+              </a>
+            </li>
+            {% else %}
+            {% endif %}
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'core:help' %}">
                 {% trans 'Поддержка' %}
@@ -71,24 +93,6 @@
               </form>
             </li>
             
-            {% if request.user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {% trans 'Аккаунт' %}
-              </a>
-              <ul class="dropdown-menu">
-                <li> <a class="dropdown-item" href="{% url 'userauths:account' %}"> {{ request.user.username|slice:":7" }} </a> </li>
-                <li> <a class="dropdown-item" href="{% url 'userauths:account' %}"> {% trans 'Мой аккаунт' %} </a> </li>
-                <li> <a class="dropdown-item" href="{% url 'core:cart' %}"> {% trans 'Корзина' %} </a> </li>
-                <li> <a class="dropdown-item" href="{% url 'userauths:sign-out' %}"> {% trans 'Выход' %} </a> </li>
-              </ul>
-            </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'userauths:sign-in' %}"> {% trans 'Вход' %} </a>
-              </li>
-            {% endif %}
-            
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {% trans 'Категории' %}
@@ -103,6 +107,13 @@
                 {% endfor %}
               </ul>
             </li>
+
+            {% if request.user.is_authenticated %}
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'userauths:sign-in' %}"> {% trans 'Вход' %} </a>
+            </li>
+           {% endif %}
           </ul>
         </div>
       </div>
