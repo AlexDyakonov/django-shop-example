@@ -20,6 +20,8 @@ COPY --chown=shop:shop . .
 
 RUN pip install -r requirements.txt
 
+RUN pip install gunicorn
+
 USER shop
 
-CMD ["gunicorn","-b","0.0.0.0:8001","shop:application"]
+CMD ["gunicorn","-b","0.0.0.0:8000","shop.shop.wsgi:application"]

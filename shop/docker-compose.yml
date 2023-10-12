@@ -6,9 +6,11 @@ services:
     restart: always
     container_name: shop_postgres
     volumes:
-      - ~/.pg/pg_data/shop:/var/lib/postgresql/database
+      - ~/.pg/pg_data/shop:/var/lib/postgresql/data
     env_file:
       - .env
+    ports:
+      - "127.0.0.1:5432:5432"
   shop:
     build: 
       dockerfile: Dockerfile
@@ -23,7 +25,7 @@ services:
     env_file:
       - .env
     command: >
-      bash -c "python ./shop/manage.py collectstatic --noinput && python ./shop/manage.py migrate  && gunicorn -b 0.0.0.0:8000 shop:application"
+      bash -c "python ./shop/manage.py collectstatic --noinput && python ./shop/manage.py migrate  && gunicorn -b 0.0.0.0:8000 shop.shop.wsgi:application"
   nginx:
     build:
       dockerfile: ./Dockerfile
