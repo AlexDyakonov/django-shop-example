@@ -6,7 +6,7 @@ services:
     restart: always
     container_name: shop_postgres
     volumes:
-      - ~/.pg/pg_data/shop:/var/lib/posgresql/database
+      - ~/.pg/pg_data/shop:/var/lib/postgresql/database
     env_file:
       - .env
   shop:
@@ -23,7 +23,7 @@ services:
     env_file:
       - .env
     command: >
-      bash -c "python manage.py collectstatic --noinput && python manage.py migrate  && gunicorn -b 0.0.0.0:8000 soaqaz.wsgi:application"
+      bash -c "python ./shop/manage.py collectstatic --noinput && python ./shop/manage.py migrate  && gunicorn -b 0.0.0.0:8000 shop:application"
   nginx:
     build:
       dockerfile: ./Dockerfile

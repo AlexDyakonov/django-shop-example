@@ -22,4 +22,4 @@ RUN pip install -r requirements.txt
 
 USER shop
 
-CMD ["gunicorn","-b","0.0.0.0:8001","soaqaz.wsgi:application"]
+CMD ["gunicorn","-b","0.0.0.0:8001","shop:application"]
