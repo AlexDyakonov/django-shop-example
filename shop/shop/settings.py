@@ -35,9 +35,11 @@ DEBUG = True
 
 # Hosts and origins
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.getenv("ALLOWED_HOST"),]
 
-CSRF_TRUSTED_ORIGINS=['https://*']
+CSRF_TRUSTED_ORIGINS = []
+if scrf_subdomain := os.getenv("SCRF_SUBDOMAIN"):
+    CSRF_TRUSTED_ORIGINS += [f'http://{scrf_subdomain}', f'https://{scrf_subdomain}']
 
 CORS_ALLOWED_ORIGINS = [
     "https://*",
