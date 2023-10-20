@@ -18,26 +18,60 @@ Create a file .env in the root directory of the project and specify the necessar
 
 **Example of the .env file:**    
     
-    DB_NAME=db_name
-    DB_USER=db_username
-    DB_PASSWORD=db_password
-    DB_HOST=db_hostname
-    DB_PORT=5432
-    SECRET_KEY=django_secret_key
-    COINBASE_API_KEY=coinbase_secret_key
-    COINBASE_WEBHOOK_SECRET=coinbase_webhook_secret
-    EMAIL_HOST=YOUR.SMTP.DOMAIN
-    EMAIL_HOST_USER=your_email@SMTP.DOMAIN
-    EMAIL_HOST_PASSWORD=email_host_password
-    NUMBER_OF_PRODUCTS_ON_MAIN_PAGE=int_number_of_products_on_page
+    POSTGRES_DB=your_db
+    POSTGRES_USER=your_user
+    POSTGRES_PASSWORD=your_pass
+    POSTGRES_HOST=localhost # your host, default localhost
+    POSTGRES_PORT=5432 # your port, default 5432
 
-<!-- ## How to Deploy the Website on a Server Using Docker
+    SECRET_KEY=your_key
+
+    COINBASE_API_KEY=your_key
+    COINBASE_WEBHOOK_SECRET=your_secret
+
+    EMAIL_HOST=your_host
+    EMAIL_HOST_USER=your_user
+    EMAIL_HOST_PASSWORD=your_pass
+
+    NUMBER_OF_PRODUCTS_ON_MAIN_PAGE=your_number
+
+    ALLOWED_HOST=your_host
+    SCRF_SUBDOMAIN=*.your_domain
+    DJANGO_SETTINGS_MODULE=shop.settings
+
+    NGINX_EXTERNAL_PORT=80 # your port, default 80
+    NGINX_EXTERNAL_SSL_PORT=443 # your port, default 443
+
+## How to Deploy the Website on a Server Using Docker
 
 Follow these steps to deploy your website using Docker:
 
-1. **Clone the Repository:**
+1. Clone the Repository:
 
    ```bash
    git clone https://github.com/AlexDyakonov/django-shop-example.git
+   ```
 
-2. **To be continued:** -->
+2. Navigate to the project directory:
+
+   ```bash
+   cd django-shop-example/shop/
+   ```
+
+3. Build the Docker containers:
+
+   ```bash
+   docker-compose build
+   ```
+
+4. Start the Docker containers:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+5. To stop the Docker containers:
+
+   ```bash
+   docker-compose down
+   ```
