@@ -1,9 +1,3 @@
-FROM nginx:latest
+FROM jwilder/nginx-proxy:1.2
 
-RUN apt-get update && apt-get install -y certbot python3-certbot-nginx
-
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d
-COPY proxy_params /etc/nginx
-
-CMD ["certbot", "--nginx", "-d", "site.mydemo-site.ru", "--register-unsafely-without-email", "--agree-tos", "--redirect"]
+COPY default_location /etc/nginx/vhost.d/default_location

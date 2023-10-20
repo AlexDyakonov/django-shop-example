@@ -31,13 +31,15 @@ COINBASE_API_KEY = os.getenv("COINBASE_API_KEY")
 COINBASE_WEBHOOK_SECRET = os.getenv("COINBASE_WEBHOOK_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Hosts and origins
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.getenv("ALLOWED_HOST"),]
 
-CSRF_TRUSTED_ORIGINS=['https://*']
+CSRF_TRUSTED_ORIGINS = []
+if scrf_subdomain := os.getenv("SCRF_SUBDOMAIN"):
+    CSRF_TRUSTED_ORIGINS += [f'http://{scrf_subdomain}', f'https://{scrf_subdomain}']
 
 CORS_ALLOWED_ORIGINS = [
     "https://*",
@@ -155,9 +157,9 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/staticfiles')]
 
 MEDIA_URL = '/media/'
 
