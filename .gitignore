@@ -173,7 +173,6 @@ __pycache__/
 *.pot
 *.pyc
 db.sqlite3
-media/
 staticfiles/
 .env
 
@@ -183,5 +182,3 @@ staticfiles/
 # Ignore local settings
 /local_settings.py
 
-# Ignore any file that starts with a dot
-.*
