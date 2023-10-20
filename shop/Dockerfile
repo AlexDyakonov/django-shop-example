@@ -14,11 +14,10 @@ RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
 
 RUN useradd -rms /bin/bash shop && chmod 777 /opt /run
 
-WORKDIR /shop/shop
-
-RUN mkdir /shop/static && mkdir /shop/media && chown -R shop:shop /shop && chmod 755 /shop
+WORKDIR /shop
 
 COPY --chown=shop:shop . .
+RUN chown -R shop:shop /shop && chmod -R 755 /shop
 
 RUN pip install -r requirements.txt
 

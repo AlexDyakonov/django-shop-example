@@ -3,7 +3,7 @@ version: "2"
 services:
   database:
     image: postgres:15
-    restart: always
+    restart: unless-stopped
     container_name: shop_postgres
     volumes:
       - ~/.pg/pg_data/shop:/var/lib/postgresql/data
@@ -12,6 +12,7 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
   shop:
+    restart: unless-stopped
     build: 
       dockerfile: Dockerfile
       context: .
@@ -20,8 +21,9 @@ services:
     depends_on:
       - database
     volumes:
-      - static_volume:/shop/static
-      - media_volume:/shop/media
+      - ./static:/shop/static:consistent
+      - ./media:/shop/media:consistent
+      - ./shop/settings.py:/shop/shop/settings.py:consistent
     env_file:
       - .env
     environment:
@@ -30,14 +32,15 @@ services:
     command: >
       bash -c "python manage.py collectstatic --noinput && python manage.py migrate  && gunicorn -b 0.0.0.0:8000 shop.wsgi:application"
   nginx:
+    restart: unless-stopped
     build:
       dockerfile: ./Dockerfile
       context: ./docker/nginx/
     container_name: shop_nginx
     image: shop_nginx
     volumes:
-      - static_volume:/shop/static
-      - media_volume:/shop/media
+      - ./static:/shop/static:consistent
+      - ./media:/shop/media:consistent
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -48,6 +51,7 @@ services:
       - "${NGINX_EXTERNAL_PORT}:80"
       - "443:443"
   acme_companion:
+    restart: unless-stopped
     image: nginxproxy/acme-companion:2.2
     container_name: shop_acme_companion
     volumes_from:
@@ -59,8 +63,6 @@ services:
 
 
 volumes:
-  static_volume:
-  media_volume:
   certs:
   vhost:
   html:

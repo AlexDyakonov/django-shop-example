@@ -4,10 +4,11 @@ from django.urls import include, path
 from shop import settings
 from django.conf.urls.i18n import i18n_patterns
 
-from core.views import pageNotFound, add_to_cart, remove_from_cart, update_cart_item, coinbase_webhook, create_payment
+from core.views import pageNotFound, add_to_cart, remove_from_cart, update_cart_item, coinbase_webhook, create_payment, index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index),
     path('i18n/', include('django.conf.urls.i18n')),
     path('add-to-cart', add_to_cart, name="add-to-cart"),
     path('remove-from-cart', remove_from_cart, name="remove-from-cart"),
