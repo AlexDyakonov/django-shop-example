@@ -182,3 +182,4 @@ staticfiles/
 # Ignore local settings
 /local_settings.py
 
+shop/media/user_1/avatar.jpg

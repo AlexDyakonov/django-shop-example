@@ -23,6 +23,6 @@ RUN pip install -r requirements.txt
 
 RUN pip install gunicorn
 
-USER shop
+#USER shop
 
 CMD ["gunicorn","-b","0.0.0.0:8000","shop.wsgi:application"]
