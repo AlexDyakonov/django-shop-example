@@ -171,12 +171,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # For Proton https://www.getmailbird.com/setup/ru/access-protonmail-com-via-imap-smtp
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST =  'YOUR_HOST'
+EMAIL_HOST =  'smtp.mail.ru'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'YOUR_USER'
-EMAIL_HOST_PASSWORD = 'YOUR_PASS'
+EMAIL_HOST_USER = 'smtp-mail-for-test@mail.ru'
+EMAIL_HOST_PASSWORD = 'pd05VCw4eXCN8m1cDNHv'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

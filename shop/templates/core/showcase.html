@@ -17,6 +17,7 @@
 
         {% for product in products %}
 
+        {% if product.product_status == 'published' %}
         <div class="item-card">
           <div class="show-case-item">
             <img class="show-case-img" src="{{ product.image.url }}" alt="">
@@ -31,6 +32,7 @@
             </div>
           </div>
         </div>
+        {% endif %}
 
         {% endfor %}
 

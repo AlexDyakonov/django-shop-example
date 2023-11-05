@@ -52,7 +52,7 @@ class Product(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to=user_directiory_path, null=False, default="product.png")
     description = models.TextField(null=False, blank=False, default="Товар в нашем магазине")
-    # specifications = models.TextField(null=False, blank=False, default="Особых свойств нет")
+    accessories = models.TextField(blank=True, null=True, default="Поле может быть пустым. Иначе введите список комплектации с помощью переноса строки.")
 
     countries = models.ManyToManyField(Country, related_name='products')
 
@@ -72,6 +72,12 @@ class Product(models.Model):
 
     def product_image(self):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+    
+    def get_accessories_list(self):
+        if self.accessories:
+            return self.accessories.split('\n')
+        else:
+            return []
 
     def __str__(self) -> str:
         return self.title

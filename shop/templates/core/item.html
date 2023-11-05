@@ -28,14 +28,16 @@
         {{item.description}}
       </div>
 
+      {% if item.accessories %}
       <div class="item-description">
         {% trans 'Комплект' %}:
         <ul class="item-ul">
-          <li class="item-li">{% trans 'Данные для доступа к аккаунту' %}</li>
-          <li class="item-li">{% trans 'Данные для доступа к привязанному E-mail' %}</li>
-          <li class="item-li">{% trans 'Данные для доступа к виртуальному номеру телефона' %}</li>
+          {% for accessory in item.get_accessories_list %}
+            <li class="item-li">{{ accessory }}</li>
+          {% endfor %}
         </ul>
       </div>
+      {% endif %}
 
       <div class="item-action">
         {% trans 'Страна аккаунта' %}

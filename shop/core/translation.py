@@ -12,4 +12,4 @@ class CountryTranslationOptions(TranslationOptions):
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'description',)
+    fields = ('title', 'description', 'accessories')
