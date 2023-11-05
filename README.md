@@ -30,6 +30,7 @@ Create a file .env in the root directory of the project and specify the necessar
     COINBASE_WEBHOOK_SECRET=your_secret
 
     EMAIL_HOST=your_host
+    EMAIL_PORT=your_port
     EMAIL_HOST_USER=your_user
     EMAIL_HOST_PASSWORD=your_pass
 

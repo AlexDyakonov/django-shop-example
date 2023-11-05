@@ -26,6 +26,7 @@
 .item-picture-bigger{
     width: 600px;
     height: 600px;
+    margin-right: 20px;
 }
 .item-text {
     width: 100%;
@@ -135,6 +136,7 @@
     .item-picture-bigger{
         height: 400px;
         width: 400px;
+        margin-right: 20px;
     }
     .container-item {
         justify-content: center;
@@ -148,6 +150,9 @@
 }
 
 @media (max-width: 970px) {
+    .item-picture-bigger{
+      margin-right: 0;
+    }
     .container-item{
         flex-direction: column;
         align-items: center;

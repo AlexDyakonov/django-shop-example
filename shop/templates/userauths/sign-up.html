@@ -24,16 +24,16 @@
                     {% csrf_token %}
                     
                     <div class="form-group">
-                        <input type="text" required name="username" placeholder="{% trans 'Username' %}">    
+                        <input type="text" required name="username" placeholder="Username">    
                     </div>
                     <div class="form-group">
-                        <input type="text" required name="email" placeholder="{% trans 'Email' %}">    
+                        <input type="text" required name="email" placeholder="Email">    
                     </div>
                     <div class="form-group">
-                        <input required type="password" id="password1" name="password1" placeholder="{% trans 'Password' %}" required onkeyup="check_pass()">
+                        <input required type="password" id="password1" name="password1" placeholder="Password" required onkeyup="check_pass()">
                     </div>
                     <div class="form-group">
-                        <input required type="password" id="password2" name="password2" placeholder="{% trans 'Confirmation' %}" required onkeyup="check_pass()">
+                        <input required type="password" id="password2" name="password2" placeholder="Confirmation" required onkeyup="check_pass()">
                     </div>
                     <div>
                         {% if msz %}
