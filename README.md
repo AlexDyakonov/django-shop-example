@@ -40,6 +40,8 @@ Create a file .env in the root directory of the project and specify the necessar
     SCRF_SUBDOMAIN=*.your_domain
     DJANGO_SETTINGS_MODULE=shop.settings
 
+    SITE_NAME=name of your site
+
     NGINX_EXTERNAL_PORT=80 # your port, default 80
     NGINX_EXTERNAL_SSL_PORT=443 # your port, default 443
 

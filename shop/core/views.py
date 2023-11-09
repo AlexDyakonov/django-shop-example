@@ -20,10 +20,6 @@ from email_utils.email_utils import send_order_confirmation_email, send_create_o
 import os
 from dotenv import load_dotenv
 
-import logging
-
-logger = logging.getLogger(__name__)
-
 load_dotenv()
 
 num_of_products = int(os.getenv("NUMBER_OF_PRODUCTS_ON_MAIN_PAGE"))
@@ -34,6 +30,38 @@ def exit_if_not_logged_in(request):
         return True
     return False
 
+from django.utils.translation import get_language
+
+
+messages_locale = {
+    'en': {
+        "help_title": "Support",
+        "cart_title": "Cart",
+        "checkout_title": "Order",
+        "success_title": "Success",
+        "cancel_title": "Cancel",
+        "order_on_site" : "Payment on site ",
+        "order": "Order ",
+    },
+    'ru': {
+        "help_title": "Поддержка",
+        "cart_title": "Корзина",
+        "checkout_title": "Оформление заказа",
+        "success_title": "Успешно",
+        "cancel_title": "Отмена",
+        "order_on_site" : "Оплата заказа на сайте ",
+        "order": "Заказ ",
+    },
+}
+
+def get_message(msg_id):
+    current_language = get_language()
+    if current_language in messages_locale:
+        if msg_id in messages_locale[current_language]:
+            return messages_locale[current_language][msg_id]
+    
+    return "None"
+
 
 categories = Category.objects.all()
 
@@ -41,7 +69,7 @@ def index(request):
     products = Product.objects.filter(product_status="published")
 
     content = {
-        'title': 'CompanyName',
+        'title': os.getenv("SITE_NAME"),
         "categories" : categories,
         "products" : products,
     }
@@ -57,7 +85,7 @@ def index(request):
 
 def help(request):
     content = {
-        'title': _('ТехПоддержка'),
+        'title': get_message("help_title"),
         "categories" : categories,
     }
     return render(request, 'core/help.html', content)
@@ -134,7 +162,6 @@ def add_to_cart(request):
 def remove_from_cart(request):
     if exit_if_not_logged_in(request):
         return redirect("core:home")
-    
     try:
         if request.method == 'POST':
             product_id = request.POST.get('id')
@@ -173,7 +200,7 @@ def show_cart(request):
     cart_items_exist = cart_items.exists
 
     content = {
-        'title': 'Корзина',
+        'title': get_message("cart_title"),
         'categories': categories,
         'cart_items': cart_items,
         'cart': cart,
@@ -233,7 +260,7 @@ def show_checkout(request):
     cart_items_exist = cart_items.exists
 
     content = {
-        'title': 'Оформление заказа',
+        'title': get_message("checkout_title"),
         'categories': categories,
         'user': request.user,
         'cart_items': cart_items,
@@ -247,7 +274,7 @@ def success_view(request):
     if exit_if_not_logged_in(request):
         return redirect("core:home")
     content = {
-        'title': _('Успешно!'),
+        'title': get_message("success_title"),
         'categories': categories,
     }
     return render(request, 'core/success.html', content)
@@ -257,7 +284,7 @@ def cancel_view(request):
     if exit_if_not_logged_in(request):
         return redirect("core:home")
     content = {
-        'title': _('Отмена'),
+        'title': get_message("cancel_title"),
         'categories': categories,
     }
     return render(request, 'core/cancel.html', content)
@@ -278,15 +305,13 @@ def create_payment(request):
         total = cart.total_price()
 
         payment = Payment.objects.get_or_create(order=order, description=user.email)
-        # TODO научиться удалять платеж спустя время
-        # delete_payment.apply_async(args=[payment[0].charge_id], countdown=3600)
 
-        order_string = _("Заказ ")
+        order_string = get_message("order")
 
         client = Client(api_key)
         charge_data = {
             "name": order_string + "#" + str(order.oid).replace("order", ""), 
-            "description": "Оплата заказа на сайте SiteName",
+            "description": get_message("order_on_site") + os.getenv("SITE_NAME"),
             "local_price": {
                 "amount": float(total),
                 "currency": "USD"  
@@ -312,8 +337,6 @@ def create_payment(request):
 @csrf_exempt
 @require_http_methods(['POST'])
 def coinbase_webhook(request):
-    logger = logging.getLogger(__name__)
-
     request_data = request.body.decode('utf-8')
     request_sig = request.headers.get('X-CC-Webhook-Signature', None)
     webhook_secret = settings.COINBASE_WEBHOOK_SECRET
@@ -332,7 +355,6 @@ def coinbase_webhook(request):
             send_create_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""), order_amount=order.total, payment_link=payment_url, language = language)
 
         if event['type'] == 'charge:failed':
-            logger.info('Payment failed.')
             order_id = event['data']['metadata']['order_id']
             language = event['data']['metadata']['language']
 
@@ -343,7 +365,6 @@ def coinbase_webhook(request):
             send_cancel_order_mail(user=order.cart.user, order_id=str(order.oid).replace("order", ""), language = language)
 
         if event['type'] == 'charge:confirmed':
-            logger.info('Payment confirmed.')
             order_id = event['data']['metadata']['order_id']
             language = event['data']['metadata']['language']
 
@@ -358,7 +379,7 @@ def coinbase_webhook(request):
     except (SignatureVerificationError, WebhookInvalidPayload) as e:
         return HttpResponse(e, status=400)
 
-    logger.info(f'Received event: id={event.id}, type={event.type}')
+
     return HttpResponse('ok', status=200)
 
 def pageNotFound(request, exception):

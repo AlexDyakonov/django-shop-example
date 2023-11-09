@@ -24,6 +24,9 @@ messages_locale = {
         'incorrect_current_password': "Incorrect current password.",
         'logged_in' : 'Logged in!',
         "need_log_in": "Log in before action.",
+        "register_title": "Sign up",
+        "login_title": "Sign in",
+        "my_acc_title": "My account",
     },
     'ru': {
         'mail_exist': "Пользователь с такой почтой уже существует.",
@@ -38,6 +41,9 @@ messages_locale = {
         'incorrect_current_password': "Неправильно введен текущий пароль.",
         'logged_in' : 'Вы успешно вошли!',
         "need_log_in": "Необходимо войти в аккаунт.",
+        "register_title": "Регистрация",
+        "login_title": "Авторизация",
+        "my_acc_title": "Личный кабинет",
     },
 }
 
@@ -58,8 +64,10 @@ def register_view(request):
         messages.warning(request, get_message('already_logged_in'))
         return redirect("core:home")
     
+
     context = {
         "categories" : categories,
+        "title": get_message("register_title")
     }
 
     if request.method == "POST":
@@ -94,6 +102,7 @@ def register_view(request):
 def login_view(request):
     context = {
         "categories" : categories,
+        "title": get_message("login_title")
     }
 
     if request.user.is_authenticated:
@@ -129,9 +138,10 @@ def logout_view(request):
 
 def my_account(request):
     context = {
-           "username" : request.user.username,
-           "email" : request.user.email,
-           "categories" : categories,
+        "username" : request.user.username,
+        "email" : request.user.email,
+        "categories" : categories,
+        "title": get_message("my_acc_title")
     }
 
     if request.user.is_authenticated:
